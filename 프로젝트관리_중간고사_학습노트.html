@@ -1,0 +1,1398 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>프로젝트관리 중간고사 노트</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Nanum+Myeongjo:wght@700;800&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{
+  --bg:#F4F6F8; --surface:#FFFFFF; --ink:#1B2230; --muted:#5A6476; --line:#DCE1E8;
+  --accent:#2A57A0; --accent-soft:#E6EDF8; --mark:#F6DB74; --mark-ink:#1B2230;
+  --blank:#CBD3DF; --ok:#1F7A4D; --ok-soft:#E3F3EA; --bad:#B23A3A; --bad-soft:#F8E5E5;
+  --warn:#8A5A00; --warn-soft:#FBF1D9;
+  --serif:"Nanum Myeongjo",Georgia,"Apple SD Gothic Neo",serif;
+  --sans:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#11151C; --surface:#1A2029; --ink:#E3E8EF; --muted:#9AA5B6; --line:#2C3542;
+    --accent:#86A9E6; --accent-soft:#1F2D45; --mark:rgba(246,219,116,.30); --mark-ink:#F3F5F8;
+    --blank:#3A4555; --ok:#6CCB97; --ok-soft:#173226; --bad:#EE8B8B; --bad-soft:#3A1F22;
+    --warn:#E6BD63; --warn-soft:#342A15;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#11151C; --surface:#1A2029; --ink:#E3E8EF; --muted:#9AA5B6; --line:#2C3542;
+  --accent:#86A9E6; --accent-soft:#1F2D45; --mark:rgba(246,219,116,.30); --mark-ink:#F3F5F8;
+  --blank:#3A4555; --ok:#6CCB97; --ok-soft:#173226; --bad:#EE8B8B; --bad-soft:#3A1F22;
+  --warn:#E6BD63; --warn-soft:#342A15;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15.5px;line-height:1.7;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:20px;padding-block:28px 80px;display:grid;grid-template-columns:220px minmax(0,1fr);gap:40px}
+@media (max-width:880px){.wrap{grid-template-columns:minmax(0,1fr);gap:16px;padding-inline:16px}}
+nav.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 20px);align-self:start;font-size:13.5px}
+nav.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+nav.toc a{display:block;color:var(--muted);text-decoration:none;padding:5px 10px;border-radius:6px}
+nav.toc a:hover,nav.toc a:focus-visible{background:var(--accent-soft);color:var(--ink);outline:none}
+nav.toc .wk{font-family:var(--mono);font-size:11px;color:var(--accent);margin-right:6px}
+@media (max-width:880px){
+  nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:8px;border-bottom:1px solid var(--line)}
+  nav.toc ol{display:flex;overflow-x:auto;gap:4px;scrollbar-width:none}
+  nav.toc a{white-space:nowrap;border:1px solid var(--line)}
+  nav.toc .toolbar{display:none}
+}
+.toolbar{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);display:grid;gap:8px}
+.toolbar p{margin:0;font-size:12.5px;color:var(--muted);line-height:1.5}
+button{font:inherit;cursor:pointer}
+.btn{border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:7px 12px;border-radius:8px;font-size:13.5px;font-weight:600}
+.btn[aria-pressed="true"]{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.mobile-tools{display:none}
+@media (max-width:880px){.mobile-tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:13px;color:var(--muted)}}
+
+main{min-width:0}
+header.top{padding-bottom:22px;border-bottom:2px solid var(--ink);margin-bottom:8px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--accent);text-transform:uppercase}
+h1{font-family:var(--serif);font-weight:800;font-size:clamp(28px,4.4vw,40px);line-height:1.25;margin:6px 0 10px;text-wrap:balance}
+.lede{color:var(--muted);max-width:62ch;margin:0}
+section{padding-block:34px 10px;border-bottom:1px solid var(--line);scroll-margin-top:70px}
+h2{font-family:var(--serif);font-weight:800;font-size:26px;line-height:1.3;margin:0 0 4px;text-wrap:balance}
+.src{font-size:13px;color:var(--muted);margin:0 0 18px}
+.src b{font-family:var(--mono);font-weight:500;color:var(--accent)}
+h3{font-size:17px;font-weight:700;margin:28px 0 8px}
+h4{font-size:15px;font-weight:700;margin:18px 0 6px}
+p,li{max-width:72ch}
+ul,ol{padding-left:1.3em;margin:6px 0 12px}
+li{margin:3px 0}
+.k{background:linear-gradient(transparent 55%,var(--mark) 55%);color:var(--mark-ink);font-weight:600;padding:0 1px;border-radius:2px}
+body.blank .k{background:var(--blank);color:transparent;cursor:pointer;border-radius:4px;user-select:none}
+body.blank .k.show{background:linear-gradient(transparent 55%,var(--mark) 55%);color:var(--mark-ink);cursor:default;user-select:auto}
+.tbl{overflow-x:auto;margin:10px 0 16px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:520px}
+th,td{padding:9px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:var(--accent-soft);font-weight:700;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.c,th.c{text-align:center}
+.note{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:12px 16px;margin:14px 0}
+.note .tag{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;font-weight:500;display:inline-block;margin-bottom:4px}
+.note.exam{background:var(--warn-soft);border-color:transparent}
+.note.exam .tag{color:var(--warn)}
+.note.v8{background:var(--accent-soft);border-color:transparent}
+.note.v8 .tag{color:var(--accent)}
+.note.fix{background:var(--bad-soft);border-color:transparent}
+.note.fix .tag{color:var(--bad)}
+.note p{margin:4px 0}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:10px 0}
+.grid2 > div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.grid2 h4{margin-top:0}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:10px 0;font-size:14px}
+.flow span{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:4px 10px}
+.flow i{font-style:normal;color:var(--muted)}
+.mono{font-family:var(--mono);font-size:13px}
+
+/* 분류 */
+.sort{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:14px}
+.pack{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px}
+.pack h4{margin:0 0 8px;font-size:15px}
+.pack .files{display:grid;gap:4px;font-size:13.5px}
+.pack .files div{display:flex;gap:8px;align-items:baseline}
+.pack .arrow{color:var(--muted);font-size:12.5px;margin:8px 0 4px}
+.pill{font-family:var(--mono);font-size:11px;padding:1px 7px;border-radius:99px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+.pill.solo{background:var(--warn-soft);color:var(--warn)}
+
+/* 퀴즈 */
+.quiz-head{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:10px}
+.score{font-family:var(--mono);font-size:14px;font-variant-numeric:tabular-nums}
+.q{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:12px 0}
+.q .qn{font-family:var(--mono);font-size:12px;color:var(--accent)}
+.q .qt{font-weight:600;margin:2px 0 10px}
+.opts{display:grid;gap:6px}
+.opt{text-align:left;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;padding:8px 12px;font-size:14.5px}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.opt:disabled{cursor:default}
+.opt.right{background:var(--ok-soft);border-color:var(--ok);color:var(--ink)}
+.opt.wrong{background:var(--bad-soft);border-color:var(--bad);color:var(--ink)}
+.exp{margin-top:10px;font-size:14px;color:var(--muted)}
+.exp b{color:var(--ink)}
+details.essay{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin:10px 0}
+details.essay summary{cursor:pointer;font-weight:600}
+details.essay summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+details.essay .ans{margin-top:10px;font-size:14.5px}
+[hidden]{display:none!important}
+nav.toc a[aria-current="page"]{background:var(--accent);color:var(--bg)}
+nav.toc a[aria-current="page"] .wk{color:var(--bg);opacity:.8}
+main > section{border-bottom:none}
+.pager{display:flex;justify-content:space-between;gap:10px;margin-top:28px;padding-top:16px;border-top:1px solid var(--line);flex-wrap:wrap}
+.pager button{max-width:48%;text-align:left}
+.pager .next{margin-left:auto;text-align:right}
+.pager small{display:block;font-size:11.5px;color:var(--muted);font-weight:500}
+.quiz-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.summary{background:var(--accent-soft);border-radius:12px;padding:14px 16px;margin:14px 0;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.summary b{font-size:18px}
+.q .qn .tagwk{color:var(--muted);margin-left:8px}
+.ecard{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:12px 0}
+.ecard .qn{font-family:var(--mono);font-size:12px;color:var(--accent)}
+.ecard .qt{font-weight:700;font-size:16.5px;margin:4px 0 12px;text-wrap:balance}
+.ecard textarea{width:100%;min-height:130px;font:inherit;font-size:14.5px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;resize:vertical}
+.ecard textarea:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.ecard .row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.ecard .ans{margin-top:12px;padding:12px 14px;border-radius:8px;background:var(--ok-soft);font-size:14.5px}
+.ecard .kw{margin-top:8px;font-size:13px;color:var(--muted)}
+main [id]{scroll-margin-top:80px}
+.exp{border-radius:8px;padding:10px 14px;background:var(--bg);border:1px solid var(--line);color:var(--ink)}
+.exp.is-wrong{background:var(--bad-soft);border-color:transparent}
+.exp.is-right{background:var(--ok-soft);border-color:transparent}
+.exp .verdict{font-weight:700}
+.exp .picked{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+.exp .why{display:block;margin-top:6px}
+.goto{margin-top:8px;border:none;background:none;padding:0;color:var(--accent);font-weight:600;font-size:13.5px;text-decoration:underline;text-underline-offset:3px}
+.goto:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.flash{outline:3px solid var(--mark);outline-offset:6px;border-radius:6px;transition:outline-color 1.6s}
+.flash.fade{outline-color:transparent}
+.backbar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:10;box-shadow:0 6px 20px rgba(0,0,0,.18);background:var(--ink);color:var(--bg);border:none;padding:10px 18px;border-radius:99px;font-weight:600;font-size:14px}
+.backbar:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+/* 시험 직전 요약 */
+nav.toc a.cram-link{color:var(--ink);font-weight:600}
+.cram-nums{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin:10px 0 6px}
+.cram-nums > div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px;line-height:1.35}
+.cram-nums b{display:block;font-family:var(--mono);font-weight:500;font-size:19px;color:var(--accent);margin-bottom:4px;font-variant-numeric:tabular-nums}
+.cram-nums b .k{color:var(--accent)}
+.cram-nums span{font-size:13.5px}
+.cram-nums small{font-size:12px;color:var(--muted)}
+.cram-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:12px;margin:10px 0}
+.ccard{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.ccard h4{margin:0 0 6px;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.ccard .wkt{font-family:var(--mono);font-size:11px;font-weight:500;color:var(--accent);margin-right:8px}
+.ccard ul{margin:0;padding-left:1.1em;font-size:14px;line-height:1.6}
+.ccard li{margin:5px 0}
+.ref{border:none;background:none;padding:0;color:var(--accent);font-weight:600;font-size:12.5px;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.ref:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+#cram .tbl table{min-width:480px}
+/* 2x2 상황판 */
+.quad{overflow-x:auto;margin:14px 0}
+.quad table{border-collapse:separate;border-spacing:6px;width:100%;min-width:460px;table-layout:fixed}
+.quad th{border:none;background:none;font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.03em;color:var(--muted);text-align:center;vertical-align:middle;white-space:normal;padding:2px}
+.quad th:first-child{width:64px}
+.quad td{border:1px solid var(--line);border-radius:10px;padding:12px 14px;vertical-align:top}
+.quad td b.qn{display:block;font-size:14.5px;font-weight:700;margin-bottom:5px;color:var(--ink)}
+.quad td small{display:block;color:var(--muted);font-size:10.5px;margin:-2px 0 6px}
+.quad td ul{margin:0;padding-left:1.05em;font-size:13px;line-height:1.55}
+.quad td li{margin:2px 0}
+.quad td.qa{background:var(--accent-soft)}
+.quad td.qb{background:var(--ok-soft)}
+.quad td.qc{background:var(--warn-soft)}
+.quad td.qd{background:var(--bad-soft)}
+/* 3원 벤다이어그램 */
+.venn3{position:relative;width:100%;max-width:360px;aspect-ratio:1/1;margin:26px auto 30px}
+.venn3 .circ{position:absolute;width:58%;aspect-ratio:1;border-radius:50%}
+.venn3 .cA{left:2%;top:0;background:var(--accent);opacity:.16}
+.venn3 .cB{right:2%;top:0;background:var(--warn);opacity:.16}
+.venn3 .cC{left:22%;bottom:0;background:var(--ok);opacity:.16}
+.venn3 .clabel{position:absolute;z-index:2;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.02em}
+.venn3 .rlabel{position:absolute;z-index:2;transform:translate(-50%,-50%);text-align:center;font-size:11px;font-weight:600;color:var(--ink);width:78px;line-height:1.25}
+.venn3 .rlabel small{display:block;font-weight:500;color:var(--muted);font-size:10px;letter-spacing:.01em}
+.venn3 .rlabel.core{font-size:12.5px;font-weight:800;color:var(--accent);width:64px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+
+<div class="wrap">
+<nav class="toc" aria-label="목차">
+  <ol>
+    <li><a href="#sort"><span class="wk">00</span>자료 분류</a></li>
+    <li><a href="#cram" class="cram-link"><span class="wk">★</span>시험 직전 요약</a></li>
+    <li><a href="#org"><span class="wk">W2·3</span>조직·시스템</a></li>
+    <li><a href="#life"><span class="wk">W2·3</span>수명주기·애자일</a></li>
+    <li><a href="#charter"><span class="wk">W2·3</span>통합관리·헌장</a></li>
+    <li><a href="#proc"><span class="wk">W4·5</span>통합 프로세스 ②~⑦</a></li>
+    <li><a href="#pmi"><span class="wk">W4·5</span>PMI-isms·판 비교</a></li>
+    <li><a href="#prin"><span class="wk">W4·5</span>12원칙·8판 6원칙</a></li>
+    <li><a href="#stake"><span class="wk">W6</span>이해관계자 영역</a></li>
+    <li><a href="#team"><span class="wk">W6</span>팀 성과영역</a></li>
+    <li><a href="#quiz"><span class="wk">Q</span>객관식 퀴즈</a></li>
+    <li><a href="#essay"><span class="wk">Q</span>서술형 예상</a></li>
+  </ol>
+  <div class="toolbar">
+    <button class="btn blank-toggle" type="button" aria-pressed="false">빈칸 암기 모드</button>
+    <p>켜면 형광펜 친 핵심어가 가려져요. 가려진 칸을 누르면 하나씩 열립니다.</p>
+  </div>
+</nav>
+
+<main>
+<div class="mobile-tools">
+  <button class="btn blank-toggle" type="button" aria-pressed="false">빈칸 암기 모드</button>
+  <span>가려진 칸을 누르면 열립니다</span>
+</div>
+<header class="top" id="top-header">
+  <div class="eyebrow">2026-2 프로젝트관리 · 중간고사 범위 2~6주차</div>
+  <h1>프로젝트관리 중간고사 노트</h1>
+  <p class="lede">왼쪽 목차에서 파트를 고르면 그 파트만 보입니다. 형광펜은 외울 말, 노란 상자는 시험 포인트, 파란 상자는 오프라인 수업의 8판 관점, 빨간 상자는 교안 간 정정입니다.</p>
+</header>
+
+<!-- 00 분류 -->
+<section id="sort">
+  <h2>자료 분류</h2>
+  <p class="src">폴더 안 PDF 11개를 열어 내용을 대조한 결과</p>
+  <p>3주차와 5주차는 앞 주차 온라인 1~3차시를 한 번에 다루는 <b>오프라인 수업 합본</b>입니다. 문장을 그대로 이어붙인 게 아니라 경비 정산 사례와 PMBOK 8판 관점으로 다시 짠 자료라 문장이 겹치지 않습니다(줄 단위 일치율 0%). 3주차 자료 4쪽은 "2주차 1차시 3~9쪽 · 2차시 · 3차시"를 근거로 적어 두었고, 5주차 2쪽은 "4주차에서 이어받을 내용"으로 시작합니다.</p>
+  <div class="sort">
+    <div class="pack">
+      <h4>합본 ① <span class="pill">3주차 · 39p · 9/12</span></h4>
+      <div class="files">
+        <div><span class="pill">10p</span>2주차 1차시 · 조직과 시스템</div>
+        <div><span class="pill">12p</span>2주차 2차시 · 수명주기·애자일</div>
+        <div><span class="pill">10p</span>2주차 3차시 · 통합관리·헌장</div>
+      </div>
+      <div class="arrow">→ 3주차_프로젝트 관리.pdf (조직·시스템 / 수행 방식 / 통합·착수)</div>
+    </div>
+    <div class="pack">
+      <h4>합본 ② <span class="pill">5주차 · 36p · 9/19</span></h4>
+      <div class="files">
+        <div><span class="pill">22p</span>4주차 1차시 · 통합관리 프로세스 ②~⑦</div>
+        <div><span class="pill">11p</span>4주차 2차시 · PMI-isms·원칙(1)</div>
+        <div><span class="pill">17p</span>4주차 3차시 · 원칙(2)</div>
+      </div>
+      <div class="arrow">→ 5주차_프로젝트 관리.pdf (6·7·8판 / 6원칙 / 통합관리·거버넌스)</div>
+    </div>
+    <div class="pack">
+      <h4>단독 자료 <span class="pill solo">합본 없음</span></h4>
+      <div class="files">
+        <div><span class="pill">13p</span>6주차 1차시 · 이해관계자 성과영역(1)</div>
+        <div><span class="pill">12p</span>6주차 2차시 · 이해관계자(2)·팀(1)</div>
+        <div><span class="pill">14p</span>6주차 3차시 · 팀 성과영역(2)</div>
+      </div>
+      <div class="arrow">6주차를 묶은 오프라인 자료는 폴더에 없습니다. 교안 그대로 공부해야 하는 범위입니다.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ★ 시험 직전 요약 -->
+<section id="cram">
+  <h2>시험 직전 요약</h2>
+  <p class="src">시험장 들어가기 전 10분용. 형광펜만 훑어도 되고, <b>빈칸 암기 모드</b>를 켜면 숫자·핵심어가 가려져 셀프 테스트가 됩니다. 각 카드의 <b>노트 →</b>를 누르면 자세한 설명으로 갑니다.</p>
+
+  <h3 id="cram-num">숫자로 외우기</h3>
+  <div class="cram-nums">
+    <div><b><span class="k">4</span></b><span>조직 이해 프레임<br><small>구조·인적자원·정치·상징</small></span></div>
+    <div><b><span class="k">10</span></b><span>조직문화 특성<br><small>균형 3 + 강할수록 7</small></span></div>
+    <div><b><span class="k">5</span></b><span>수명주기 유형<br><small>예측·반복·증분·적응·혼합</small></span></div>
+    <div><b><span class="k">2~4개월</span></b><span>반복 수명주기 1회<br><small>애자일(적응형)은 2~4주</small></span></div>
+    <div><b><span class="k">3·3·4</span></b><span>스크럼<br><small>역할·아티팩트·미팅</small></span></div>
+    <div><b><span class="k">5~9명</span></b><span>스크럼 팀 규모</span></div>
+    <div><b><span class="k">5</span></b><span>통합관리 유형<br><small>수평·수직·인지·프로세스·컨텍스트</small></span></div>
+    <div><b><span class="k">7</span></b><span>통합관리 프로세스<br><small>①헌장 ~ ⑦종료</small></span></div>
+    <div><b><span class="k">4</span> / <span class="k">9</span> / <span class="k">4</span></b><span>헌장 인풋 / 내용 / 도구</span></div>
+    <div><b><span class="k">18</span> · <span class="k">33</span></b><span>관리계획 구성요소 · 프로젝트 문서<br><small>보조 9 + 추가 3 + 기준선 4 + 2</small></span></div>
+    <div><b><span class="k">7</span></b><span>③ 작업 지시 및 관리 아웃풋</span></div>
+    <div><b><span class="k">3</span></b><span>데이터 분석<br><small>탐지·진단·시정 및 예방</small></span></div>
+    <div><b><span class="k">10·49</span></b><span>6판 지식영역·프로세스</span></div>
+    <div><b><span class="k">12·8</span></b><span>7판 원칙·성과영역</span></div>
+    <div><b><span class="k">6·7·40</span></b><span>8판 원칙·성과영역·프로세스</span></div>
+    <div><b><span class="k">3P</span></b><span>가치<br><small>Profit·People·Planet</small></span></div>
+    <div><b><span class="k">4</span></b><span>스튜어드십 요소<br><small>청렴성·돌봄·신뢰성·규정 준수</small></span></div>
+    <div><b><span class="k">8</span></b><span>품질 특성</span></div>
+    <div><b><span class="k">3</span> → <span class="k">7</span></b><span>현저성 모델<br><small>속성 3개 → 유형 7개</small></span></div>
+    <div><b><span class="k">5</span></b><span>참여 수준<br><small>비인지→저항→중립→지원→주도</small></span></div>
+    <div><b><span class="k">4</span></b><span>허시-블랜차드<br><small>지시·설득·참여·위임</small></span></div>
+    <div><b><span class="k">7</span> / <span class="k">5</span> / <span class="k">8</span></b><span>팀 문화 / 팀 개발 / 고성과팀</span></div>
+    <div><b><span class="k">4</span></b><span>감성지능 요소</span></div>
+  </div>
+
+  <h3 id="cram-part">파트별 핵심 키워드</h3>
+  <div class="cram-cards">
+    <div class="ccard">
+      <h4><span><span class="wkt">W2·3</span>조직·시스템</span><button type="button" class="ref" data-ref="org-struct">노트 →</button></h4>
+      <ul>
+        <li>시스템 접근법 <span class="k">1950년대</span>, 하위시스템 효율보다 <span class="k">전체 효율</span></li>
+        <li>정치적 프레임 = 조직은 <span class="k">이해집단의 연합체</span> · 상징적 = 의미·문화</li>
+        <li>예산 통제자: 기능·약한 매트릭스 <span class="k">기능관리자</span> / 균형 <span class="k">혼합형</span> / 강한·전담 PM</li>
+        <li>PM 풀타임은 <span class="k">균형 매트릭스</span>부터</li>
+        <li>문화 중 <b>균형</b>이 좋은 3개: <span class="k">관리 초점 · 통제 · 수단 대 목적 지향</span></li>
+        <li>스폰서가 주는 것: <span class="k">자원 · 의사결정 · 장애 해소</span> (챔피언과 다를 수 있음)</li>
+        <li>6판→8판: 통합→<span class="k">Governance</span>, 원가→<span class="k">Finance</span>, 이해관계자+의사소통→<span class="k">Stakeholders</span>, 품질→<span class="k">원칙</span>, 조달→<span class="k">부록 X4</span></li>
+      </ul>
+    </div>
+    <div class="ccard">
+      <h4><span><span class="wkt">W2·3</span>수명주기·애자일</span><button type="button" class="ref" data-ref="life-types">노트 →</button></h4>
+      <ul>
+        <li>예측 = <span class="k">폭포수</span> · 적응형 = <span class="k">애자일</span>(반복+증분) · 혼합 = 예측+적응</li>
+        <li>프로세스 그룹은 순서가 아니라 <span class="k">활동의 묶음</span> (되먹임 고리)</li>
+        <li>실행 = <span class="k">가장 길고 중요한 단계</span></li>
+        <li>8판 접근법 3: 예측형·적응형·하이브리드 / 선택 근거 <span class="k">요구 명확성 · 피드백 가능성 · 변경 영향</span></li>
+        <li>Process Groups → <span class="k">Focus Areas</span> 재도입, 40개 프로세스</li>
+        <li>공식 스크럼 산출물 <span class="k">Product Backlog · Sprint Backlog · Increment</span></li>
+        <li>스프린트: <b>기간 고정</b>, 범위는 다시 정함</li>
+      </ul>
+    </div>
+    <div class="ccard">
+      <h4><span><span class="wkt">W2·3</span>통합관리·헌장</span><button type="button" class="ref" data-ref="ch-charter">노트 →</button></h4>
+      <ul>
+        <li>헌장 = 프로젝트 <span class="k">공식 승인</span> + PM에게 <span class="k">자원 사용 권한</span> (스폰서 → PM)</li>
+        <li>인풋 4: <span class="k">비즈니스 문서 · 계약 · EEF · OPA</span></li>
+        <li>비즈니스 문서는 PM이 <b>사용하지만 업데이트하지 않음</b></li>
+        <li>계약은 <span class="k">외부 고객</span> 프로젝트일 때만</li>
+        <li>도구 4: 전문가 판단 · 데이터 수집 · 대인관계 및 팀 스킬 · 회의</li>
+        <li>승인 판단: <span class="k">시작 / 조건부 시작 / 추가 검토</span></li>
+        <li>완료 판정 = 만든 것 (종료 시) · 효과 판정 = 나아진 것 (종료 뒤)</li>
+      </ul>
+    </div>
+    <div class="ccard">
+      <h4><span><span class="wkt">W4·5</span>통합 프로세스 ②~⑦</span><button type="button" class="ref" data-ref="pr-table">노트 →</button></h4>
+      <ul>
+        <li>② 도구의 회의 = <span class="k">킥오프</span> → 아웃풋 <span class="k">프로젝트관리계획</span></li>
+        <li>③ 인풋 <span class="k">승인된 변경요청</span> · 도구 <span class="k">PMIS</span> · 아웃풋 7개(작업성과데이터 포함)</li>
+        <li>④ 아웃풋 핵심 = <span class="k">교훈 등록부</span> (애자일에선 회고)</li>
+        <li>⑤ 아웃풋 <span class="k">작업성과보고서</span> · 의사결정 = 만장일치·과반·최다득표</li>
+        <li>⑥ 아웃풋 승인된 변경요청 + 항상 <span class="k">변경로그</span> · <span class="k">scope creep</span> 방지</li>
+        <li>⑦ 인풋 <span class="k">수락된 산출물</span>(서면) · <span class="k">취소·미완성</span>도 종료 실행</li>
+        <li>거버넌스 3칸: <span class="k">결정 기준 · 권한과 책임 · 평가</span></li>
+      </ul>
+    </div>
+    <div class="ccard">
+      <h4><span><span class="wkt">W4·5</span>PMI-isms·판 비교</span><button type="button" class="ref" data-ref="pmi-isms">노트 →</button></h4>
+      <ul>
+        <li>PM은 <span class="k">슈퍼맨</span> · 대부분 조직은 <span class="k">매트릭스</span> · 조달은 <span class="k">구매자 입장</span> · <span class="k">성선설</span></li>
+        <li><span class="k">WIP</span>가 많으면 생산성 저하 · 범위 밖 이슈는 <span class="k">PMO</span>에 에스컬레이션</li>
+        <li>모든 변경요청은 <span class="k">변경통제 절차</span>(CCB)</li>
+        <li>7판 강조: 프로세스보다 <span class="k">원칙</span>, 인도물보다 <span class="k">가치</span>, 무형 소프트웨어</li>
+        <li>8판 정의: <span class="k">initiative · unique context · create value</span></li>
+        <li>고유성의 자리 = <b>상황</b>, 성공 = <b>가치</b> 충족, 유지되는 것 = <b>한시적</b></li>
+        <li>8판은 원칙과 실행 사이에 <span class="k">조정(tailoring)</span></li>
+      </ul>
+    </div>
+    <div class="ccard">
+      <h4><span><span class="wkt">W4·5</span>원칙</span><button type="button" class="ref" data-ref="pr12">노트 →</button></h4>
+      <ul>
+        <li>원칙 = 규정이 아니라 <span class="k">마인드셋</span></li>
+        <li>가치 = 성공의 <span class="k">궁극적 지표</span>, 대부분 프로젝트 <b>이후</b> 실현</li>
+        <li>시스템적 사고 = 부문이 아닌 <span class="k">전체 최적화</span></li>
+        <li>조정: 크고·중요하고·<span class="k">성숙도 낮을수록</span> 계획 기반 통제</li>
+        <li>복잡성·리스크·적응성과 복원력 관통 키워드 = <span class="k">불확실성</span></li>
+        <li>너무 많은 변화 → <span class="k">변화 피로</span> → 저항</li>
+        <li>8판 6원칙 = 3 마인드셋 × 2 (아래 표)</li>
+      </ul>
+    </div>
+    <div class="ccard">
+      <h4><span><span class="wkt">W6</span>이해관계자</span><button type="button" class="ref" data-ref="st-id">노트 →</button></h4>
+      <ul>
+        <li>Known Unknown = 식별 가능했는데 <span class="k">놓침</span> · Unknown Known = 식별했지만 <span class="k">분석 못함</span>(지원부서)</li>
+        <li>현저성: <span class="k">권력 · 긴급성 · 합법성</span>, 셋 다 = <span class="k">가장 중요한(Definitive)</span></li>
+        <li>권력+합법성 = 지배적 · 권력+긴급성 = 위험한 · 긴급성+합법성 = 의존하는</li>
+        <li>권력↑관심↑ <span class="k">집중 관리</span> · 권력↑ <span class="k">만족 유지</span> · 관심↑ <span class="k">정보 제공</span> · 둘 다↓ <span class="k">모니터링</span></li>
+        <li><span class="k">수신 확인 ≠ 동의·이해</span></li>
+        <li>최고 채널 = <span class="k">화이트보드 대면 대화</span></li>
+        <li>참여계획서는 이해관계자에게 <span class="k">배포 금지</span></li>
+      </ul>
+    </div>
+    <div class="ccard">
+      <h4><span><span class="wkt">W6</span>팀</span><button type="button" class="ref" data-ref="tm-lead">노트 →</button></h4>
+      <ul>
+        <li>관리 <span class="k">Do Things Right</span> (how/when) · 리더십 <span class="k">Do the Right Things</span> (what/why)</li>
+        <li>섬김형: <span class="k">장애물 제거 · 외부 업무로부터 보호 · 격려와 동기부여</span></li>
+        <li>허시-블랜차드: 설득형(중반 이전) → 참여형(중반 이후) → 위임형(후반)</li>
+        <li>팀 문화 7: 투명성·정직·존중·건전한 토의·지원·용기·성공 축하</li>
+        <li>감성지능: <span class="k">자기 인식 · 자기 관리 · 사회적 인식 · 사회적 기술</span></li>
+        <li><span class="k">닻 효과</span> · <span class="k">집단사고</span> 피하기</li>
+        <li><span class="k">외재적 동기</span>에 의존할수록 수행이 어려워짐</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 id="cram-8">8판 6원칙 한 장</h3>
+  <div class="tbl"><table>
+    <tr><th>마인드셋</th><th>묻는 것</th><th>원칙 ①</th><th>원칙 ②</th></tr>
+    <tr><td><span class="k">가치 지향</span></td><td>어떤 목표로</td><td><span class="k">가치 중심</span></td><td><span class="k">지속 가능성 통합</span></td></tr>
+    <tr><td><span class="k">주인 의식</span></td><td>어떤 자세로 책임지나</td><td><span class="k">책임감 있는 리더 되기</span></td><td><span class="k">권한 위임의 문화 구축</span></td></tr>
+    <tr><td><span class="k">선제적</span></td><td>어떻게 미리 관리하나</td><td><span class="k">전체론적 관점 채택</span></td><td><span class="k">품질 내재화</span></td></tr>
+  </table></div>
+
+  <h3 id="cram-pair">헷갈리는 짝</h3>
+  <div class="tbl"><table>
+    <tr><th>A</th><th>B</th><th>가르는 기준</th></tr>
+    <tr><td>반복</td><td>증분</td><td>같은 것을 <span class="k">다듬기</span> vs <span class="k">쓸 수 있는 부분</span>을 나눠 내기</td></tr>
+    <tr><td>프로젝트 수명주기</td><td>프로젝트관리 수명주기</td><td>단계·작업 순서 vs 어떻게 <b>관리</b>되는가</td></tr>
+    <tr><td>EEF</td><td>OPA</td><td>통제 밖, <span class="k">내부+외부</span> vs 조직 자산, <span class="k">내부만</span></td></tr>
+    <tr><td>형식지</td><td>암묵지</td><td>코드화 가능(매뉴얼) vs 경험·통찰(관찰·모방)</td></tr>
+    <tr><td>정보관리</td><td>지식관리</td><td>사람↔정보, <b>형식지</b> vs 사람↔사람, <b>암묵지</b></td></tr>
+    <tr><td>비즈니스 케이스</td><td>편익관리계획</td><td>가치가 어떻게 <span class="k">창출</span> vs 어떻게 <span class="k">유지</span></td></tr>
+    <tr><td>비즈니스 케이스 · 헌장</td><td>관리계획</td><td><b>왜</b> · <b>무엇을 어떤 권한으로</b> vs <b>어떻게</b></td></tr>
+    <tr><td>작업성과데이터 → 정보</td><td>작업성과보고서</td><td>③ 원시값 → 통제에서 분석 vs ⑤에서 편집해 보고</td></tr>
+    <tr><td>협업 (collaborative)</td><td>협력 (cooperative)</td><td>문화가 뒷받침 vs 정해진 프로세스대로</td></tr>
+    <tr><td>리스크 한계선</td><td>리스크 선호도</td><td>수용 가능한 <b>노출 수준</b> vs 추구·회피 <b>정도</b></td></tr>
+    <tr><td>적응성</td><td>복원력</td><td>변화에 <b>대응</b> vs 충격 흡수·실패에서 <b>회복</b></td></tr>
+    <tr><td>수용 기준</td><td>DoD</td><td>인도물 승인 조건(<b>이해관계자</b>) vs 완료 조건(<b>팀</b> 합의)</td></tr>
+    <tr><td>통합관리</td><td>거버넌스</td><td>무엇에 <b>영향</b>을 주나 vs <b>누가 정하나</b></td></tr>
+    <tr><td>조직 거버넌스</td><td>프로젝트 거버넌스</td><td>방향·기준 vs 그 안의 관리 방법</td></tr>
+    <tr><td>7판 정의</td><td>8판 정의</td><td>unique <b>product</b>, 요구사항 충족 vs unique <b>context</b>, 가치 충족</td></tr>
+    <tr><td>설득형 (Selling)</td><td>참여형 (Participating)</td><td>역량✕·의지○ vs 역량○·의지✕</td></tr>
+    <tr><td>내재적 동기</td><td>외재적 동기</td><td>일의 성취 만족 vs 승진·보너스</td></tr>
+    <tr><td>귀납적 추론</td><td>연역적 추론</td><td>데이터 → 결론 vs 참인 명제 → 새 명제</td></tr>
+    <tr><td>고맥락 / 복합시간</td><td>저맥락 / 단일시간</td><td>종합적·관계 중시 vs 명확한 지시·일정 중시</td></tr>
+  </table></div>
+
+  <h3 id="cram-trap">함정 문장 (보기에 나오면 틀린 말)</h3>
+  <div class="tbl"><table>
+    <tr><th>✕ 틀린 말</th><th>○ 바른 말</th></tr>
+    <tr><td>번다운 차트는 스크럼 산출물이다</td><td>산출물은 <span class="k">PB · SB · Increment</span>, 번다운은 기법</td></tr>
+    <tr><td>프로세스 그룹 5개는 순서대로 밟는 단계다</td><td>활동의 묶음, 계획·실행·점검은 되먹임</td></tr>
+    <tr><td>품질·조달은 8판 성과영역이다</td><td>품질 = <span class="k">원칙</span>, 조달 = <span class="k">부록 X4</span></td></tr>
+    <tr><td>취소된 프로젝트는 종료 프로세스가 필요 없다</td><td>취소·미완성도 종료 실행, OPA에 보관</td></tr>
+    <tr><td>수신 확인했으면 동의한 것이다</td><td>수신 확인 ≠ 동의·이해, 피드백까지 확인</td></tr>
+    <tr><td>참여계획서는 이해관계자와 공유한다</td><td>민감 정보라 <span class="k">배포하지 않음</span></td></tr>
+    <tr><td>권한이 있어야 리더십을 발휘한다</td><td>권한 없는 리더십도 성공 가능, 팀원 누구나 발휘</td></tr>
+    <tr><td>가장 중요한 이해관계자는 스폰서다</td><td><span class="k">프로젝트 팀</span>(PM 포함)이 가장 중요</td></tr>
+    <tr><td>OPA는 외부 요인도 포함한다</td><td>OPA는 <span class="k">내부만</span>, 내·외부는 EEF</td></tr>
+    <tr><td>IT라서 애자일, 사내 업무라서 예측형</td><td>요구 명확성·피드백 가능성·변경 영향으로 고름</td></tr>
+    <tr><td>스프린트를 늘려 못 끝낸 일을 담는다</td><td>기간은 고정, 범위를 다시 정함</td></tr>
+    <tr><td>CCB는 모든 프로젝트에 둔다</td><td>필요할 때 두는 기구 (단, PMI-isms는 모든 변경요청이 변경통제 절차를 거친다고 전제)</td></tr>
+    <tr><td>보고서로 기준을 바꿀 수 있다</td><td>보고는 상태 알림, 기준 변경은 승인 필요</td></tr>
+  </table></div>
+</section>
+
+<!-- 1 조직 -->
+<section id="org">
+  <h2>조직과 시스템</h2>
+  <p class="src"><b>2주차 1차시</b> + <b>3주차 01 조직·시스템</b></p>
+
+  <h3 id="org-sys">시스템 접근법</h3>
+  <p><span class="k">1950년대</span>에 관리·문제해결을 더 분석적으로 하려고 등장. 시스템이란 목적 달성을 위해 환경 안에서 상호작용하는 컴포넌트의 집합이고, 분석 대상을 하위시스템으로 구성된 <span class="k">유기적이고 개방된 시스템</span>으로 봅니다.</p>
+  <ol>
+    <li>모든 것이 <span class="k">상호관련·상호의존</span>한다는 일반화에 기초</li>
+    <li>시스템은 하위시스템으로 구성되고 <span class="k">계층구조</span>를 이룸</li>
+    <li>내부와 외부를 가르는 <span class="k">경계</span>가 존재</li>
+    <li>시스템은 진공 상태처럼 그 자체로 존재하지 않음</li>
+    <li>하위시스템의 효율보다 <span class="k">시스템 전반의 효율</span>에 주의</li>
+  </ol>
+  <p><b>시스템 사고</b>: 부분보다 <span class="k">전체</span>, 정적 스냅샷보다 <span class="k">변화의 패턴</span>, 미묘한 상호연결성을 보는 능력. PM의 자세는 ① 목표와 산출물 관리 ② 프로젝트와 환경의 상호작용 고려 ③ 조직 맥락에서 거시적 관점.</p>
+
+  <h3 id="org-frame">조직을 이해하는 4가지 프레임</h3>
+  <div class="tbl"><table>
+    <tr><th>프레임</th><th>초점</th></tr>
+    <tr><td><span class="k">구조적</span></td><td>조직이 어떻게 구성되는지. 작업지향. 경영진 목표·정책을 위한 그룹의 역할과 책임</td></tr>
+    <tr><td><span class="k">인적자원</span></td><td>조직의 요구와 개인의 요구 사이의 조화</td></tr>
+    <tr><td><span class="k">정치적</span></td><td>제한된 예산 속 상충 의제를 가진 개인·이익집단 관리. 조직 = 이해집단의 연합체</td></tr>
+    <tr><td><span class="k">상징적</span></td><td>실제 사건이 아닌 상징과 의미. 사내문화 포괄, 작업의 목적과 의미</td></tr>
+  </table></div>
+
+  <h3 id="org-struct">조직구조 유형 (기능·프로젝트·매트릭스·복합)</h3>
+  <div class="tbl"><table>
+    <tr><th>특성</th><th class="c">기능조직</th><th class="c">약한 매트릭스</th><th class="c">균형 매트릭스</th><th class="c">강한 매트릭스</th><th class="c">프로젝트 전담</th></tr>
+    <tr><td>PM 권한</td><td class="c">적거나 없음</td><td class="c">제한적</td><td class="c">낮음~보통</td><td class="c">보통~높음</td><td class="c">높음~거의 전체</td></tr>
+    <tr><td>자원 가용성</td><td class="c">적거나 없음</td><td class="c">제한적</td><td class="c">낮음~보통</td><td class="c">보통~높음</td><td class="c">높음~거의 전체</td></tr>
+    <tr><td>예산 통제자</td><td class="c"><span class="k">기능관리자</span></td><td class="c">기능관리자</td><td class="c"><span class="k">혼합형</span></td><td class="c">PM</td><td class="c">PM</td></tr>
+    <tr><td>PM 파워</td><td class="c">적거나 없음</td><td class="c">최소한</td><td class="c">균형</td><td class="c">완전</td><td class="c">완전</td></tr>
+    <tr><td>PM 역할</td><td class="c">파트타임</td><td class="c">파트타임</td><td class="c"><span class="k">풀타임</span></td><td class="c">풀타임</td><td class="c">풀타임</td></tr>
+    <tr><td>관리업무 담당자</td><td class="c">파트타임</td><td class="c">파트타임</td><td class="c">파트타임</td><td class="c">풀타임</td><td class="c">풀타임</td></tr>
+  </table></div>
+  <div class="note v8"><span class="tag">3주차 · 8판 관점</span>
+    <p>조직 구조는 <b>요청할 수 있는 권한</b>을 바꿉니다. 기능형은 요청이 부서장을 거치고, 매트릭스형은 투입 비율 합의가 필요하며(합의가 없으면 이름만 올라감), 프로젝트형은 전임으로 붙지만 끝난 뒤 갈 자리가 문제. <b>어느 구조가 언제나 낫다는 결론은 없다.</b></p>
+    <p>두 우선순위(정산 마감 vs 시범 화면 검수)가 한 사람에게 오면 빠진 것은 노력이 아니라 <span class="k">합의</span>. 야근은 일회성 해결, 부서장과 프로젝트 책임자의 투입 시간 합의 → 안 되면 상위 결정 경로가 구조적 해결.</p>
+  </div>
+
+  <h3 id="org-culture">조직문화 10가지 특성</h3>
+  <p>조직문화 = 조직의 기능을 특징짓는 공유된 가정·가치·행동의 집합. 10개 차원은 양극단을 가진 <span class="k">연속체(continuum)</span>.</p>
+  <div class="tbl"><table>
+    <tr><th>특성</th><th>의미</th><th>양극단</th></tr>
+    <tr><td>구성원 정체성</td><td>업무·전문분야보다 조직 전체와 동일시하는 정도</td><td>업무 ↔ 조직</td></tr>
+    <tr><td>팀 강조</td><td>작업이 개인보다 그룹 중심으로 조직되는 정도</td><td>개인 ↔ 그룹</td></tr>
+    <tr><td>관리 초점 ★</td><td>의사결정이 구성원에 미치는 영향을 고려하는 정도</td><td>과업 ↔ 사람</td></tr>
+    <tr><td>단위 통합</td><td>부서가 조정·상호의존적으로 운영되는 정도</td><td>독립 ↔ 상호의존</td></tr>
+    <tr><td>통제 ★</td><td>규칙·정책·직접 감독 사용 정도</td><td>느슨 ↔ 엄격</td></tr>
+    <tr><td>위험 내성</td><td>적극적·혁신적이며 위험을 두려워하지 않도록 권장</td><td>낮음 ↔ 높음</td></tr>
+    <tr><td>보상 기준</td><td>연공서열보다 개인 성과로 보상</td><td>비성과 ↔ 성과</td></tr>
+    <tr><td>갈등 관용</td><td>갈등·비판을 공개적으로 표현하도록 권장</td><td>낮음 ↔ 높음</td></tr>
+    <tr><td>수단 대 목적 지향 ★</td><td>과정보다 결과에 초점을 맞추는 정도</td><td>수단 ↔ 목적</td></tr>
+    <tr><td>개방형 시스템 초점</td><td>외부 환경 변화를 모니터링·대응하는 정도</td><td>내부 ↔ 외부</td></tr>
+  </table></div>
+  <div class="note exam"><span class="tag">시험 포인트</span>
+    <p>★ <span class="k">관리 초점 · 통제 · 수단 대 목적 지향</span> 3개는 <b>균형</b>을 이룰 때 성공 확률이 높고, 나머지 7개는 <b>강하거나 높을 때</b> 성공 확률이 높다.</p>
+  </div>
+
+  <h3 id="org-commit">최고경영진의 커밋먼트</h3>
+  <p><span class="k">커밋먼트(commitment)</span> = 최고경영진의 지원. 자원 확보를 돕고 무관한 이벤트로 인한 주의 산만을 줄임. 핵심 지지자 역할의 고위경영진은 <span class="k">챔피언(champion)</span>.</p>
+  <p>PM에게 커밋먼트가 중요한 이유 4가지: ① 적절한 <b>자원</b>이 필요 ② 다른 부서와 <b>협력</b>해야 함(정치적 문제·비협조 부서장) ③ 리더십 <b>멘토링·코칭</b>이 필요(기술직 출신 PM) ④ <b>IT에 대한 조직의 커밋먼트</b>도 중요.</p>
+  <div class="note v8"><span class="tag">3주차 · 8판 관점</span>
+    <p>스폰서가 실제로 내주는 것: <span class="k">자원 · 의사결정 · 장애 해소</span>. 챔피언(밀어주는 사람)과 스폰서(자원·결정을 내주는 사람)는 다를 수 있음. 문화는 문서가 아니라 <b>행동</b>(문제를 일찍 보고하는가, 다른 부서와 협력하는가, 결정을 제때 받는가)에서 드러남.</p>
+    <p>같은 증빙 누락 문제도 A 문화(먼저 추궁)는 보고가 늦고 누가 잘못했는지부터 적지만, B 문화(사실부터 확인)는 그날 알리고 영향 범위를 적으며 재발 방지를 절차에 반영. 권한을 주는 문화가 책임을 없애는 것은 아님.</p>
+    <p><b>부서 최적 ≠ 전체 최적</b>: 회계 작업은 10분→4분(−6분), 신청은 5분→12분(+7분), 세 역할 합계 18분→19분(+1분). 시간 합계만으로 실패라 단정할 수 없고 재요청률·대기시간·오류 영향도 봐야 함.</p>
+  </div>
+  <div class="note v8" id="org-map"><span class="tag">3주차 · 6판 지식영역 → 8판 성과영역</span>
+    <div class="tbl"><table>
+      <tr><th>6판 지식영역 (10)</th><th>8판 도착지</th></tr>
+      <tr><td>통합</td><td><span class="k">Governance</span> (거버넌스) · 강의 해석</td></tr>
+      <tr><td>범위 / 일정 / 자원 / 리스크</td><td>Scope / Schedule / Resources / Risk (그대로)</td></tr>
+      <tr><td>원가</td><td><span class="k">Finance</span> (비용을 넘어 재무 자원까지)</td></tr>
+      <tr><td>이해관계자 + 의사소통</td><td><span class="k">Stakeholders</span> (둘이 합쳐짐)</td></tr>
+      <tr><td>품질</td><td>성과영역 아님 → <span class="k">원칙 3.5</span> "프로세스와 인도물에 품질 내재화"</td></tr>
+      <tr><td>조달</td><td>성과영역 아님 → <span class="k">부록 X4</span> Procurement</td></tr>
+    </table></div>
+    <p>거버넌스(강의 해석) = 모든 결정을 CEO가 하게 만드는 것이 아니라 <span class="k">결정권 · 책임 · 위임 · 보고</span>의 경계를 분명히 하는 것. 조직을 읽는 세 질문: 누구의 가치인가 → 누구에게 영향이 가는가 → 누가 조정하고 결정하는가.</p>
+  </div>
+</section>
+
+<!-- 2 수명주기 -->
+<section id="life">
+  <h2>수명주기와 애자일</h2>
+  <p class="src"><b>2주차 2차시</b> + <b>3주차 02 수행 방식</b></p>
+
+  <h3 id="life-types">프로젝트 수명주기 5유형</h3>
+  <p>프로젝트 수명주기 = 시작부터 완료까지 거치는 일련의 모든 단계. 각 단계의 작업, 결과물과 생산 시점, 참여자, 통제·승인 방법을 정의.</p>
+  <div class="tbl"><table>
+    <tr><th>유형</th><th>핵심</th><th>특징</th></tr>
+    <tr><td><span class="k">예측</span> (Predictive)</td><td>범위·일정·비용을 초기에 결정. 이전 단계를 반복하지 않음 = <span class="k">폭포수</span></td><td>분석→설계→개발→테스트→가동. 활동 순서 예측 가능, 위험 회피·비용 절감</td></tr>
+    <tr><td><span class="k">반복</span> (Iterative)</td><td>개선·향상을 위해 반복 주기로 개발. 각 반복이 SDLC 전체 포함</td><td>초기 요구사항만으로 완성 불가 → 지속적 피드백으로 다듬음. 반복당 <span class="k">2~4개월</span></td></tr>
+    <tr><td><span class="k">증분</span> (Incremental)</td><td>정해진 시간 안에 기능을 연속 추가 (점증적)</td><td>일련의 <b>폭포수</b> 반복, 각 반복이 전체 결과물의 구성요소 생성</td></tr>
+    <tr><td><span class="k">적응형</span> (Adaptive)</td><td>= <span class="k">애자일</span>. 반복 + 증분의 혼합형. 사용자 피드백으로 변경 가능</td><td>반복 <span class="k">2~4주</span>, 높은 이해관계자 참여 필요. 변화가 많은 프로젝트에 적합</td></tr>
+    <tr><td><span class="k">혼합</span> (Hybrid)</td><td>예측 + 적응형 조합. 전체는 예측, 세부는 적응형</td><td>고정 요구사항은 예측, 진화하는 요소는 적응형</td></tr>
+  </table></div>
+  <div class="note v8"><span class="tag">3주차 · 반복 vs 증분</span>
+    <p><b>반복</b> = 같은 것을 되풀이해 <span class="k">다듬는다</span>(1차 초안 → 2차 항목 정리 → 3차 안내 문구). <b>증분</b> = <span class="k">쓸 수 있는 부분</span>을 나누어 내놓는다(경비 한 종류 → 다른 유형 추가 → 예외 처리 추가). 증분은 쓸 수 없는 부품을 쌓는 게 아니라 회차마다 그 자체로 쓰임. 예측형도 변경이나 되돌아가기가 불가능하다는 뜻은 아님.</p>
+  </div>
+
+  <h3 id="life-pm">수명주기 vs 프로젝트관리 수명주기</h3>
+  <p>프로젝트 수명주기는 <b>단계나 작업 순서</b>, 프로젝트관리 수명주기는 프로젝트가 <b>어떻게 관리되는지</b>를 설명. 완전히 다른 개념입니다. PMBOK 프로세스 그룹 5단계:</p>
+  <div class="tbl"><table>
+    <tr><th>그룹</th><th>내용</th></tr>
+    <tr><td>시작(착수)</td><td>기본 목표·규칙 설정. 타당성 조사, 범위·결과물·이해관계자 식별, 비즈니스 케이스, 작업명세서, 초기 비용·일정</td></tr>
+    <tr><td>계획</td><td>작업·일정·자원·제약 포함 계획, 예산 수립, 위험 식별·완화 계획</td></tr>
+    <tr><td>실행</td><td><span class="k">가장 길고 중요한 단계</span>. 팀원은 작업, PM은 감독</td></tr>
+    <tr><td>모니터링 및 통제</td><td>성과 측정·진행 추적. 모든 것이 관리계획과 일치하는지 확인</td></tr>
+    <tr><td>종료</td><td>모든 작업 완료 + 소유자가 산출물 승인 → 종료. 문서 전달</td></tr>
+  </table></div>
+  <div class="note fix"><span class="tag">3주차 정정 · 프로세스 그룹은 순서가 아니다</span>
+    <p>다섯 이름은 순서대로 밟는 단계가 아니라 <span class="k">활동의 묶음</span>. 계획·실행·점검은 <b>되먹임</b>으로 연결되는 고리. "실행 전에 모든 것이 정의되어야 한다"는 일반 규칙이 아니고(접근법마다 다름), 점검은 실행 안에만 있지 않다. 2주차의 "모니터링 및 통제" = "감시 및 통제"(같은 개념).</p>
+    <p>세 질문을 한 줄로 잇지 말 것: <b>수명주기·단계</b>(일을 어떻게 나눌까) / <b>개발 접근법</b>(결과물을 어떻게 만들까) / <b>관리 활동</b>(진행을 어떻게 계획·점검·조정할까). 한 단계 안에도 계획·실행·감시 및 통제가 들어 있다.</p>
+  </div>
+  <div class="note v8" id="life-v8"><span class="tag">3주차 · 8판 접근법과 Focus Areas</span>
+    <p>8판 목차는 개발 접근법을 <span class="k">예측형 · 적응형 · 하이브리드</span> 셋 중심으로 구성하고, 선택 고려사항과 전달 주기를 따로 다룸. 반복·증분이 사라진 것은 아님. PMI는 기존 Process Groups를 <span class="k">Focus Areas</span>로 재도입하고 <span class="k">40개</span> 프로세스를 성과영역에 통합.</p>
+    <div class="tbl"><table>
+      <tr><th>구분</th><th>예측형</th><th>적응형</th><th>하이브리드</th></tr>
+      <tr><td>먼저 정할 것</td><td>요구·서식·연계 규격 확정</td><td>목표·우선순위·검증 주기</td><td>고정 요구와 학습 구간의 경계</td></tr>
+      <tr><td>적합한 조건</td><td>요구·연계 조건을 충분히 확인 가능</td><td>작게 시험하며 요구를 구체화 가능</td><td>확정·불확실 부분이 섞임</td></tr>
+      <tr><td>주의할 점</td><td>변경 영향 관리 절차 없으면 흔들림</td><td>참여·검토 여건 없으면 이름뿐</td><td>두 구간의 연결·인수 기준 없으면 흩어짐</td></tr>
+    </table></div>
+    <p>선택 근거: <span class="k">요구 명확성 · 피드백 가능성 · 변경 영향</span>. "IT라서 애자일, 회사 업무라서 예측형"은 이유가 아님. 문장 틀: "회계 기준은 <u>명확하므로</u> 예측형으로, 입력 화면은 <u>사용감을 확인해야 하므로</u> 적응형으로 진행한다." 제약(일정·비용·자원·피드백 여건)이 바뀌면 답도 바뀜. 참여 없이 주기만 짧게 잡으면 학습이 생기지 않음.</p>
+  </div>
+
+  <h3 id="life-trend">프로젝트관리 트렌드 5</h3>
+  <p>① 원격근무 보편화 ② 소프트 스킬 중요성 강조 ③ <span class="k">혼합 수명주기</span> 활용 증가 ④ 프로젝트 관리팀 다양화 ⑤ 능력 있는 인력 확보·유지 중요성 증가(AI 확산)</p>
+
+  <h3 id="life-scrum">애자일과 스크럼</h3>
+  <p>애자일은 요구사항을 알 수 없거나 계속 변할 때 쓰는 개발 방법. 지속가능한 개발, 일정한 페이스, 현업-개발자 협력, 정기적 적응, 기술적 수월성을 중시. 스크럼 = <span class="k">3 역할 · 3 아티팩트 · 4 미팅</span>.</p>
+  <div class="grid2">
+    <div><h4>역할 (2주차 교안)</h4><ul>
+      <li><span class="k">제품 소유자(PO)</span>: 비즈니스 가치 책임, 백로그의 작업·순서 결정</li>
+      <li><span class="k">스크럼 마스터</span>: 생산성 보장, 일일 스크럼 지원, 방해물 제거</li>
+      <li><span class="k">스크럼 팀</span>: 2~4주 스프린트, <span class="k">5~9명</span> 다기능팀</li>
+    </ul></div>
+    <div><h4>아티팩트 (2주차 교안)</h4><ul>
+      <li>제품 백로그: 비즈니스 가치로 우선순위 매긴 기능 목록</li>
+      <li>스프린트 백로그: 한 스프린트에 완료할 최고 우선순위 항목</li>
+      <li>번다운 차트: 매일 남은 누적 작업 표시</li>
+    </ul></div>
+    <div><h4>미팅 4</h4><ul>
+      <li>스프린트 계획 · 일일 스크럼(24시간마다) · 스프린트 리뷰 · 스프린트 회고</li>
+      <li>스프린트 종료일과 산출물은 불변</li>
+    </ul></div>
+  </div>
+  <div class="note fix"><span class="tag">3주차 정정 · 공식 Scrum Guide 기준</span>
+    <p>산출물 3 = <span class="k">Product Backlog · Sprint Backlog · Increment</span>(쓸 수 있는 결과). <span class="k">번다운 차트는 산출물이 아니라</span> 진행을 가늠하는 기법. Scrum Team은 <span class="k">PO · Scrum Master · Developers</span>가 함께 이룸. 스프린트는 <b>기간</b>을 고정하고 <b>만들 범위</b>는 배운 것에 따라 다시 정함(주기를 늘려 못 끝낸 일을 담지 않음).</p>
+  </div>
+</section>
+
+<!-- 3 통합·헌장 -->
+<section id="charter">
+  <h2>통합관리와 프로젝트 헌장</h2>
+  <p class="src"><b>2주차 3차시</b> + <b>3주차 03 통합·착수</b></p>
+
+  <h3 id="ch-int">통합관리의 5가지 유형</h3>
+  <div class="tbl"><table>
+    <tr><th>유형</th><th>의미</th></tr>
+    <tr><td><span class="k">수평적</span> 통합</td><td>팀을 통합, 모든 지식영역의 다양한 프로세스를 통합 (작업 사이를 잇기)</td></tr>
+    <tr><td><span class="k">수직적</span> 통합</td><td>스폰서와 협력해 목표·결과물을 조직의 프로그램·포트폴리오·운영 목표와 연계. 전략 목표·비즈니스 케이스 이해 선행</td></tr>
+    <tr><td><span class="k">인지</span> 수준</td><td>PMI <span class="k">재능 삼각형</span>의 통합 (PM 지식 + 비즈니스 관리 + 리더십 스킬)</td></tr>
+    <tr><td><span class="k">프로세스</span> 수준</td><td>모든 지식영역·프로세스 그룹의 프로세스 통합. 통합관리의 주요 업무</td></tr>
+    <tr><td><span class="k">컨텍스트</span> 수준</td><td>프로젝트 컨텍스트(전략 목표)와 조직 컨텍스트(부서·사업부·파트너십)의 통합</td></tr>
+  </table></div>
+
+  <h3 id="ch-7">통합관리 7개 프로세스와 프로세스 그룹</h3>
+  <div class="tbl"><table>
+    <tr><th>착수</th><th>계획</th><th>실행</th><th>모니터링 및 통제</th><th>종료</th></tr>
+    <tr><td>① 프로젝트 <span class="k">헌장</span> 작성</td><td>② 프로젝트관리 <span class="k">계획</span> 수립</td><td>③ 작업 지시 및 관리<br>④ 프로젝트 <span class="k">지식관리</span></td><td>⑤ 작업 모니터링 및 통제<br>⑥ <span class="k">통합 변경통제</span> 수행</td><td>⑦ 프로젝트 또는 단계 종료</td></tr>
+  </table></div>
+
+  <h3 id="ch-charter">① 프로젝트 헌장 작성</h3>
+  <p>목적: 프로젝트의 존재를 <span class="k">공식적으로 승인</span>하고 PM에게 <span class="k">자원을 사용할 권한</span>을 부여(스폰서 → PM). 범위·목표, 역할·책임, 주요 이해관계자, PM의 권한을 정의.</p>
+  <h4>인풋 4가지</h4>
+  <div class="grid2">
+    <div><h4>1. 비즈니스 문서</h4><p>프로젝트 외부에서 생성. PM은 <b>사용하지만 업데이트하지 않음</b>.</p><ul>
+      <li><span class="k">비즈니스 케이스</span>: 가치·이익이 어떻게 <b>창출</b>되는지. 작업명세·비즈니스 니즈·전략 목표, 비용편익분석 포함 가능</li>
+      <li><span class="k">편익관리계획</span>: 혜택이 조직에서 어떻게 <b>유지</b>되는지. 목표 편익·전략적 연계·실현 기간·편익 소유자</li></ul></div>
+    <div><h4>2. 계약</h4><p>판매자가 제품·서비스·결과를 제공하도록 의무화하는 상호 구속 문서. <b>외부 고객</b> 프로젝트일 때만 존재. 조달 작업명세서, 일정 마감, 가격·지불조건, 변경요청 처리 절차, 승인 기준 포함.</p></div>
+    <div><h4>3. 기업환경요인 (EEF)</h4><p>팀의 <b>통제 밖</b>에서 영향·제한·지시하는 조건. <b>내부</b>(조직문화·소프트웨어·인프라) + <b>외부</b>(사회·문화, 법적 제한, 물리적 환경).</p></div>
+    <div><h4>4. 조직 프로세스 자산 (OPA)</h4><p>조직 고유의 계획·프로세스·정책·절차·지식기반. <span class="k">조직 내부만</span> 다룸. 유연하며 계속 업데이트 가능.</p><ul>
+      <li>프로세스와 정책 및 절차 (지침·기준, 정책, 절차, 템플릿, 종료 요구사항)</li>
+      <li>기업 지식 베이스 (형식지 + 암묵지)</li>
+      <li>팀 및 주제 전문가(SME)</li></ul></div>
+  </div>
+  <div class="note exam"><span class="tag">시험 포인트</span>
+    <p>EEF는 <b>내부·외부</b> 두 범주, OPA는 <b>내부만</b>. <span class="k">형식지</span> = 단어·그림·숫자로 코드화 가능(매뉴얼·사양서·설계도). <span class="k">암묵지</span> = 신념·경험·통찰, 관찰·모방·경험으로 획득.</p>
+  </div>
+  <h4>헌장에 들어갈 내용 9</h4>
+  <p>① 프로젝트 정보 ② 팀 역할과 책임 ③ 목적(상위 수준 이점, 방향)과 목표(특정 이정표, 해야 할 일) ④ 혜택·수행 이유 ⑤ 범위 ⑥ 타임라인 ⑦ 예산 ⑧ 주요 가정·제약 ⑨ 요구사항과 <span class="k">성공 기준</span></p>
+  <h4>도구와 기법 4</h4>
+  <p><span class="k">전문가 판단 · 데이터 수집</span>(브레인스토밍·포커스 그룹·인터뷰) · <span class="k">대인관계 및 팀 스킬</span>(갈등관리·진행 등) · <span class="k">회의</span></p>
+
+  <div class="note v8" id="ch-docs"><span class="tag">3주차 · 세 문서는 답하는 질문이 다르다</span>
+    <div class="tbl"><table>
+      <tr><th>문서</th><th>답하는 질문</th><th>답하지 않는 것</th></tr>
+      <tr><td>비즈니스 케이스</td><td><span class="k">왜</span> 수행할 가치가 있는가 (이유·기대 편익)</td><td>자원을 쓸 권한은 여기서 생기지 않음</td></tr>
+      <tr><td>프로젝트 헌장</td><td><span class="k">무엇을 어떤 권한으로</span> 시작하는가</td><td>상세 일정·실행계획까지 담지 않음</td></tr>
+      <tr><td>관리계획</td><td><span class="k">어떻게</span> 수행하고 관리하는가</td><td>시작해도 되는지 판단은 담지 않음</td></tr>
+    </table></div>
+    <p>A 필요성 / B 착수 합의(목적·범위·자원·책임·승인) / C 수행 계획(일정·역할·품질·위험)은 서로 다른 합의. 문서 분량이 아니라 <b>합의한 내용과 승인 권한</b>을 본다.</p>
+    <p><b>완료 판정 vs 효과 판정</b>: 완료 = 만든 것(개통·교육·인계, 종료 승인 시). 효과 = 나아진 것(처리시간·재작업·사용자 부담·장기 운영, 종료 뒤). 효과는 확인 담당자와 시점이 정해지지 않으면 확인되지 않는다.</p>
+    <p>승인 판단 3가지: <span class="k">시작</span>(승인·자원·책임 확인됨) / <span class="k">조건부 시작</span>(작게 검증하도록 범위·기간 한정) / <span class="k">추가 검토</span>(판단 정보 부족). 불확실하다는 이유만으로 보류하지 않는다.</p>
+    <p>착수 메모 6항목: ① 문제 ② 기대 변화 ③ 범위·제외 ④ 수행 방식 ⑤ 승인·협조 ⑥ 위험·가정. 좋은 답은 "재요청 건수와 처리일을 도입 전후로 비교"처럼 대상·자료·비교 시점이 드러난다.</p>
+  </div>
+</section>
+
+<!-- 4 통합 프로세스 -->
+<section id="proc">
+  <h2>통합관리 프로세스 ②~⑦</h2>
+  <p class="src"><b>4주차 1차시</b> + <b>5주차 04 통합관리와 거버넌스</b></p>
+  <p id="pr-table">ITTO(인풋·도구와 기법·아웃풋)가 나오는 파트라 표로 외우는 게 가장 빠릅니다. EEF·OPA는 거의 모든 인풋에 들어갑니다.</p>
+
+  <div class="tbl"><table>
+    <tr><th>프로세스</th><th>인풋</th><th>도구와 기법</th><th>아웃풋</th></tr>
+    <tr><td><b>② 관리계획 수립</b></td><td>헌장, 다른 프로세스 아웃풋, EEF, OPA</td><td>전문가 판단, 데이터 수집(+체크리스트), 대인관계·팀 스킬(갈등관리·진행·회의관리), 회의(<span class="k">킥오프</span>)</td><td><span class="k">프로젝트관리계획</span></td></tr>
+    <tr><td><b>③ 작업 지시 및 관리</b></td><td>관리계획, 프로젝트 문서, <span class="k">승인된 변경요청</span>, EEF, OPA</td><td>전문가 판단, <span class="k">PMIS</span>, 회의</td><td><span class="k">7개</span>: 산출물, <span class="k">작업성과데이터</span>, 이슈로그, 변경요청, 계획 업데이트, 문서 업데이트, OPA 업데이트</td></tr>
+    <tr><td><b>④ 지식관리</b></td><td>관리계획, 문서, 산출물, EEF, OPA (5)</td><td>전문가 판단, <span class="k">지식관리</span>(사람↔사람, 암묵지), <span class="k">정보관리</span>(사람↔정보, 형식지), 대인관계·팀 스킬</td><td><span class="k">교훈 등록부</span>(가장 중요), 계획 업데이트, OPA 업데이트</td></tr>
+    <tr><td><b>⑤ 작업 모니터링 및 통제</b></td><td>관리계획, 문서, <span class="k">작업성과정보</span>, 계약, EEF, OPA</td><td>전문가 판단, 데이터 분석, 의사결정(만장일치·과반·최다득표), 회의</td><td><span class="k">작업성과보고서</span>, 변경요청, 계획 업데이트, 문서 업데이트</td></tr>
+    <tr><td><b>⑥ 통합 변경통제 수행</b></td><td>관리계획(변경관리계획·형상관리계획·기준선), 문서, 작업성과보고서*, 변경요청, EEF, OPA</td><td>전문가 판단, 변경통제 도구, 데이터 분석(비용편익·대안), 의사결정(투표·독재적·다기준), 회의(CCB)</td><td><span class="k">승인된 변경요청</span>, 계획 업데이트, 문서 업데이트(항상 <span class="k">변경로그</span>)</td></tr>
+    <tr><td><b>⑦ 프로젝트/단계 종료</b></td><td>헌장, 관리계획, 문서, <span class="k">수락된 산출물</span>, 비즈니스 문서, 계약, 조달 문서, OPA</td><td>전문가 판단, 데이터 분석, 회의(종료 보고·고객 마무리·교훈·축하)</td><td>문서 업데이트, <span class="k">최종 제품·서비스·결과 이전</span>, <span class="k">최종 보고서</span>, OPA 업데이트</td></tr>
+  </table></div>
+  <p class="src">* 교안 본문은 "작업성과보고서", 도식은 "작업성과정보"로 표기가 섞여 있습니다. ⑥의 도구는 제목상 "4가지"지만 표에는 5개가 나열돼 있습니다.</p>
+
+  <div class="note exam"><span class="tag">시험 포인트 · 데이터 흐름</span>
+    <div class="flow"><span>작업성과<b>데이터</b> (③ 아웃풋)</span><i>→</i><span>작업성과<b>정보</b> (통제 프로세스에서 분석)</span><i>→</i><span>작업성과<b>보고서</b> (⑤ 아웃풋)</span></div>
+    <p>③은 ②의 아웃풋(관리계획)과 ⑥의 아웃풋(승인된 변경요청)을 실행. 변경요청은 보통 ⑤의 결과로 나옴. 지식관리에서 관리계획은 인풋이면서 아웃풋.</p>
+  </div>
+
+  <h3 id="pr-plan">② 관리계획 수립 — 18개 구성요소 · 33개 프로젝트 문서</h3>
+  <div class="grid2">
+    <div><h4>보조 관리계획</h4><p>다른 <span class="k">9개 지식영역</span>의 계획: 범위·일정·비용·품질·자원·의사소통·위험·조달 관리계획, 이해관계자 참여계획</p></div>
+    <div><h4>추가 관리계획</h4><p><span class="k">요구사항 · 변경 · 형상</span> 관리계획</p></div>
+    <div><h4>기준선</h4><p><span class="k">범위 · 일정 · 비용 · 성과측정</span> 기준선</p></div>
+    <div><h4>추가 구성요소</h4><p>프로젝트관리 수명주기, 프로젝트 수명주기</p></div>
+  </div>
+  <p>①은 주로 이해관계자·SME가 참여했지만 ②는 주로 <b>프로젝트 팀과 SME</b>. 킥오프 미팅은 대규모면 계획이 끝나고 실행 시작 때, 소규모면 착수 후 계획 시작 시점.</p>
+
+  <h3 id="pr-km">④ 지식관리</h3>
+  <p>기존 지식으로 목표를 달성하고, 새로 얻은 지식(<span class="k">교훈, lessons learned</span>)으로 조직 지식체계에 기여. 애자일에서는 스프린트 끝의 <span class="k">회고(retrospective)</span>. 교훈의 두 가지 가치: 현행 프로젝트를 실시간 개선 + 교훈 등록부로 다른 프로젝트 지원. 형식지·암묵지를 모두 다루며 지식 공유와 지식 통합이 필요.</p>
+
+  <h3 id="pr-da">⑤ 데이터 분석 3유형</h3>
+  <div class="tbl"><table>
+    <tr><th>유형</th><th>하는 일</th><th>기법</th></tr>
+    <tr><td><span class="k">탐지</span></td><td>차이가 존재하는지 찾기</td><td>획득가치관리, 차이분석, 추세분석</td></tr>
+    <tr><td><span class="k">진단</span></td><td>차이의 원인 찾기</td><td>근본원인분석</td></tr>
+    <tr><td><span class="k">시정 및 예방</span></td><td>해결책 검토·최상안 선택</td><td>대안분석, 비용편익분석</td></tr>
+  </table></div>
+
+  <h3 id="pr-cc">⑥ 통합 변경통제 흐름</h3>
+  <p>변경요청을 실제로 구현할지 결정. PM의 가장 큰 애로인 <span class="k">범위 확장(scope creep)</span>을 막는 필수 프로세스.</p>
+  <div class="flow"><span>변경 요청</span><i>→</i><span>변경로그 기록</span><i>→</i><span>영향 분석</span><i>→</i><span>CCB 제출</span><i>→</i><span>승인 → 작업 지시 및 관리로 구현</span><i>/</i><span>거부 → 요청인 통보</span></div>
+  <p>변경로그: 승인된 변경은 구현 추적용, 거부된 변경은 <b>거부 사유</b>를 남기려고 기록.</p>
+  <div class="note v8"><span class="tag">5주차 · 결정은 세 갈래</span>
+    <div class="tbl"><table>
+      <tr><th>승인</th><th>보류</th><th>기각</th></tr>
+      <tr><td>계획·문서 갱신 → 담당 배정·실행 → 관계자 통보 → 결과 확인</td><td>보완 자료 지정 → 재검토 시점·담당 지정 → 영향 분석 단계로 되돌아감</td><td>사유 기록 → 요청자 통보 → 변경로그에 보존</td></tr>
+    </table></div>
+    <p><span class="k">CCB는 필요할 때 두는 기구</span>이지 모든 프로젝트의 장치가 아니다. 팀이 세부 절차를 정하는 권한 ≠ 승인된 기준을 바꾸는 권한. 보고는 상태를 알리는 문서이지 기준을 바꾸는 승인이 아니다.</p>
+  </div>
+
+  <h3 id="pr-close">⑦ 종료가 필요한 경우</h3>
+  <p>① 단계 완료 ② 프로젝트 완료 ③ <span class="k">취소·미완성 종료</span>도 종료 프로세스를 실행해야 함. 중단 이유·마지막 상태·최종 성과·최신 문서를 OPA 라이브러리에 보관(향후 교훈). 수락된 산출물은 범위 검증의 아웃풋이며 <b>서면으로</b> 수락.</p>
+
+  <div class="note v8" id="pr-gov"><span class="tag">5주차 · 통합관리와 거버넌스</span>
+    <p>통합관리 = 계획을 따로따로 잘 쓰는 게 아니라 <span class="k">서로 맞추는 일(정합성)</span>. 결정 하나(검토 대상을 대표 유형으로 좁힘)가 인수조건·검토 시간·작성 안내를 함께 바꾼다.</p>
+    <p><span class="k">거버넌스</span> = 프로젝트를 관리·통제하기 위한 의사결정의 기준과 구조: <b>결정 구조, 역할과 책임, 평가 방식, 관리 시스템</b>. 세 칸 — 무엇을 근거로(결정 기준) · 누가 결정하는가(권한과 책임) · 무엇으로 확인하는가(평가). 하나라도 비면 같은 상황에서 결정이 매번 달라진다.</p>
+    <p><b>조직 거버넌스</b>가 방향과 기준(투자 승인 절차, 변경 승인 기준, 교훈 등록 절차, 개인정보 프로세스)을 주고, <b>프로젝트 거버넌스</b>는 그 안에서 관리 방법(성공 기준, 변경 접수 방식, 보고 주기, 보관 기간)을 정한다. 기준 자체를 바꾸려면 정한 쪽과 협의.</p>
+    <p>같은 요청을 두 관점으로: 통합관리는 "<b>무엇에 영향을 주는가</b>", 거버넌스는 "<b>누가 정하는가</b>". 영향을 모아도 결정할 사람이 없으면 멈추고, 결정 구조가 있어도 영향을 모으지 않으면 결정할 재료가 없다.</p>
+    <p>Focus Areas 5개(Initiating·Planning·Executing·Monitoring and Controlling·Closing)는 처방이 아니고 정해진 순서를 강제하지 않음. 40개 프로세스를 다 쓰지 않고 골라 조정.</p>
+    <p><b>프로젝트 vs 운영</b>: 프로젝트는 가치를 낼 <span class="k">수단</span>을 만들고(시작과 끝), 운영은 그 수단으로 매월 가치를 낸다(끝을 정하지 않음). 인계 뒤에도 효과 확인은 이어진다.</p>
+  </div>
+</section>
+
+<!-- 5 PMI-isms -->
+<section id="pmi">
+  <h2>PMI-isms와 PMBOK 판 비교</h2>
+  <p class="src"><b>4주차 2차시</b> + <b>5주차 01~03</b></p>
+
+  <h3 id="pmi-isms">PMI-isms</h3>
+  <p>자격시험의 "주어진 상황에서 어떻게 할 것인가" 문제는 출제기관(PMI)의 의도로 정답이 정해지므로, PMI가 전제하는 관점을 알아야 합니다.</p>
+  <div class="tbl"><table>
+    <tr><th>영역</th><th>전제</th></tr>
+    <tr><td>수행 환경</td><td>조직이 방법론·도구·정책·템플릿을 제공 / 합리적인 사람들이 합리적으로 판단 / 역량 있는 <span class="k">PMO</span>가 지원(범위 밖 리스크·이슈는 PMO에 에스컬레이션) / 준비 안 된 상황에서 애자일 적용 안 함(경영층 지원·팀원 의지·이해가 필요조건)</td></tr>
+    <tr><td>PM 역할·역량</td><td>PM은 <span class="k">슈퍼맨</span> / 지역사회·지구환경 이익도 고려 / 계획·의사결정에 팀원 최대한 참여</td></tr>
+    <tr><td>계획 수립</td><td>최적의 개발방식은 존재(업무별로 달리 적용 가능) / 일부 계획 항목은 개발방식에 따라 다름 / 유사 프로젝트 실적 데이터 활용(스토리 점수는 주관 반영)</td></tr>
+    <tr><td>변경관리</td><td>범위 변경은 일정·원가·리스크·자원 중 하나 이상 변경 초래 / 예측형은 계획을 잘 세워 예방 / <span class="k">모든 변경요청은 변경통제 절차</span>(CCB)</td></tr>
+    <tr><td>실행</td><td><span class="k">WIP</span>가 많으면 생산성 저하 / 조건 갖추면 애자일은 목표 달성(시험에선 가정) / <span class="k">성선설</span> / PM은 보상에 영향력 행사 가능 / 대부분 조직은 <span class="k">매트릭스</span> / 조달은 <span class="k">구매자 입장</span> / 조직 프로세스 개선사항 도출 / 품질·구매·계약은 담당부서 도움</td></tr>
+  </table></div>
+  <div class="note v8"><span class="tag">5주차 · PMI-isms vs 공식 원칙</span>
+    <p>PMI-isms는 교재·시험이 전제하는 <b>합의된 관점</b>(공식 목록 아님). 프로젝트 관리 원칙은 〈프로젝트 관리 표준〉이 제시하는 <b>공식 항목</b>이며 강제 규정이 아니라 판단을 돕는 가이드. 윤리 강령과는 별개이며 상호 보완.</p>
+  </div>
+
+  <h3 id="pmi-ed">6판 · 7판 · 8판</h3>
+  <div class="tbl"><table>
+    <tr><th></th><th>6판</th><th>7판</th><th>8판</th></tr>
+    <tr><td>구성</td><td><span class="k">10 지식영역 · 49 프로세스</span></td><td><span class="k">12 원칙 · 8 성과영역</span></td><td><span class="k">6 원칙 · 7 성과영역 · 40 프로세스</span></td></tr>
+    <tr><td>설명의 중심</td><td>지식영역·프로세스, ITTO</td><td>원칙·성과영역, 마인드셋</td><td>원칙·성과영역·프로세스를 하나로</td></tr>
+    <tr><td>독자가 얻는 것</td><td>무엇을 어떤 순서로</td><td>어떤 관점으로 판단</td><td>판단 기준 + 상황에 맞춘 실행 방법</td></tr>
+    <tr><td>보완점</td><td>처방적, 적응형 설명 부족</td><td>추상적, 실행 방법 부족</td><td>실무 예시·조정 지침 확대</td></tr>
+  </table></div>
+  <p>뒤 판이 앞 판을 버리는 게 아니라 설명하는 자리가 달라진 것.</p>
+  <h4>7판이 강조한 것 (4주차 2차시)</h4>
+  <ul>
+    <li>프로세스 분석보다 <span class="k">원칙</span>의 이해</li>
+    <li>인도물(deliverables)보다 <span class="k">가치(value)</span>: 고객 가치 · 비즈니스 가치 · 사회적 가치</li>
+    <li>유형 제품(건축물)보다 <span class="k">무형 소프트웨어</span>를 전형으로 설정 (잦은 출시, 프로젝트-운영 경계 모호)</li>
+  </ul>
+  <h4 id="pmi-def">프로젝트 정의의 변화 (5주차)</h4>
+  <div class="tbl"><table>
+    <tr><th></th><th>7판</th><th>8판</th></tr>
+    <tr><td>정의</td><td>고유한 제품·서비스·결과물을 만들기 위한 한시적 노력</td><td>가치를 창출하기 위해 고유한 상황에서 추진하는 한시적 활동</td></tr>
+    <tr><td>핵심어</td><td>endeavor · unique product · create a result</td><td><span class="k">initiative · unique context · create value</span></td></tr>
+    <tr><td>고유성의 자리</td><td>만들어 내는 결과물</td><td>프로젝트가 놓인 <b>상황</b>(목표·환경 조건·접근 방식·이해관계자)</td></tr>
+    <tr><td>성공</td><td>요구사항을 충족했는가</td><td>의도한 <b>가치</b>를 충족했는가</td></tr>
+  </table></div>
+  <p>유지: <b>한시적(temporary)</b>. initiative는 실행을 넘어 조직의 변화·혁신까지 포함하는 말로 읽음. 같은 양식을 만들어도 한 부서 소규모 시범과 여러 부서 동시 도입은 다른 프로젝트.</p>
+  <div class="note v8"><span class="tag">5주차 · 네 용어의 역할 (주방장 비유)</span>
+    <div class="tbl"><table>
+      <tr><th>용어</th><th>하는 일</th><th>주방</th></tr>
+      <tr><td>관리 원칙</td><td>판단과 행동의 기준</td><td>요리 철학</td></tr>
+      <tr><td>상황에 맞는 조정</td><td>상황에 맞는 방법 선택</td><td>조리법 조정(비 오는 날 소스 줄이기)</td></tr>
+      <tr><td>성과영역</td><td>함께 관리할 대상·활동을 묶음</td><td>코스 서비스</td></tr>
+      <tr><td>프로세스</td><td>활동을 잇는 수행 절차</td><td>—</td></tr>
+    </table></div>
+    <p>8판은 원칙과 실행 사이에 <b>조정</b>을 놓음. 조정 근거: 규모·영향 범위·불확실성·조직 규정. 줄일 수 없는 것(증빙 보존 규정, 지급 승인 권한, 개인정보 기준)은 조직이 정한 최소 기준.</p>
+  </div>
+</section>
+
+<!-- 6 원칙 -->
+<section id="prin">
+  <h2>7판 12원칙과 8판 6원칙</h2>
+  <p class="src"><b>4주차 2·3차시</b> + <b>5주차 03 마인드셋과 여섯 원칙</b></p>
+  <p>원칙은 프랙티스나 규정이 아니라 PM이 추구해야 할 <span class="k">마인드셋</span>.</p>
+
+  <h3 id="pr12">7판 12원칙</h3>
+  <div class="tbl"><table>
+    <tr><th>원칙</th><th>외울 것</th></tr>
+    <tr><td><span class="k">스튜어드십</span></td><td>윤리 범위 내에서 내부·외부 이해관계자 이익 추구. 4요소 <span class="k">청렴성 · 돌봄 · 신뢰성 · 규정 준수</span>. 재무·사회·지속가능한 환경 종합 고려. 리더십 발휘의 기본 요건</td></tr>
+    <tr><td><span class="k">협업하는 팀</span> 구축</td><td>팀에 프로세스 정의 재량권, 단순 반복 업무는 표준화. <b>협업(collaborative)</b>은 팀·조직 문화가 뒷받침돼야, <b>협력(cooperative)</b>은 정해진 프로세스대로. 사일로보다 홀 팀. 개인뿐 아니라 팀도 학습</td></tr>
+    <tr><td>이해관계자 교류</td><td>PM 포함 <b>프로젝트 팀이 가장 중요한 이해관계자</b>. 참여 제고 → 요구사항 변경 조기 식별, 공감대, 창의적 아이디어</td></tr>
+    <tr><td><span class="k">가치 중점</span></td><td>가치는 성공의 <b>궁극적 지표</b>. <span class="k">3P</span>(Profit·People·Planet). 대부분 프로젝트 <b>이후</b> 운영에서 실현 → 도중 계속 평가. 인도물은 수단, 가치는 목적</td></tr>
+    <tr><td><span class="k">시스템적 사고</span></td><td>시스템은 계층을 가지며 상호작용하고 조직 외부도 포함. 핵심은 부문 최적화가 아니라 <span class="k">전체 최적화</span>. 종료 이후도 고려. 이질적 조직은 새 문화를 만든다</td></tr>
+    <tr><td>리더십 행동</td><td>팀 모두가 발휘 가능. <span class="k">권한(authority) ≠ 리더십</span>: 리더십 없는 권한은 실패하기 쉽고 권한 없는 리더십은 성공할 수 있음. 상황에 따라 다름(독재형이 나을 때도). 존중하는 리더십 = <span class="k">섬김 리더십</span></td></tr>
+    <tr><td>상황에 맞는 <span class="k">조정(tailoring)</span></td><td>모든 프로젝트는 유니크. 조직의 조정 가이드 참조. <b>규모가 크고, 중요하고, 성숙도가 낮을수록 계획 기반 통제</b>. 완벽보다 적정 수준, 반복적으로 보완. 팀 참여 시 커밋먼트↑</td></tr>
+    <tr><td><span class="k">품질 내재화</span></td><td>명시적 인수조건 + 암묵적 기대. 평가: 인수기준 부합 + 사용 적합성. 8특성: 성능·적합성·신뢰성·복원력·만족·균일성·효율성·지속가능성. 사후 테스트보다 과정에서 결함 제거(품질비용↓)</td></tr>
+    <tr><td><span class="k">복잡성</span> 탐색</td><td>결정 요인은 상호작용의 개수와 내용. 원인: 인간 행동, 시스템 상호작용, 불확실성·모호성, 기술 혁신. 증가는 예측하기 힘듦</td></tr>
+    <tr><td><span class="k">리스크</span> 대응</td><td>기회(긍정)·위협(부정), 개별·전체 리스크. <span class="k">리스크 한계선</span> = 수용할 수 있는 노출 수준 / <span class="k">리스크 선호도</span> = 추구·회피 정도. 대응계획: 비용 효율·적시·현실적·합의·책임자 관리</td></tr>
+    <tr><td><span class="k">적응성</span>·<span class="k">복원력</span></td><td>적응성 = 변화하는 상황에 대응하는 능력. 복원력 = 충격 흡수 + 실패에서 빠른 회복. 인도물보다 목표에 중점. 돌이키기 힘든 결정은 최대한 마지막 순간에</td></tr>
+    <tr><td>미래 목표 달성을 위한 <span class="k">변화</span></td><td>톱다운 변화관리는 단기 성공처럼 보여도 장기 실패 확률↑. 짧은 시간에 너무 많은 변화 → <b>변화 피로</b> → 저항</td></tr>
+  </table></div>
+  <div class="note exam"><span class="tag">시험 포인트</span>
+    <p>복잡성 탐색 · 리스크 대응 · 적응성과 복원력을 관통하는 키워드는 <span class="k">불확실성</span>.</p>
+  </div>
+
+  <h3 id="pr-pd">7판 8개 성과영역</h3>
+  <p><span class="k">이해관계자 · 팀 · 개발방식과 생애주기 · 기획 · 프로젝트 작업 · 인도 · 측정 · 불확실성</span>. 원칙과 성과영역은 서로 연관되고, 성과영역끼리 영향을 주거나 선후관계를 가짐.</p>
+
+  <h3 id="pr8">8판 6원칙 = 3 마인드셋 × 2</h3>
+  <p>마인드셋 = 상황을 해석하고 대응하는 신념·사고방식·습관. 여섯 원칙은 서로 겹치고 한 결정에 함께 작용합니다.</p>
+  <div class="tbl"><table>
+    <tr><th>마인드셋</th><th>묻는 것</th><th>원칙</th><th>교재 예시</th></tr>
+    <tr><td rowspan="2"><span class="k">가치 지향</span></td><td rowspan="2">어떤 목표로 수행하는가</td><td><span class="k">가치 중심</span> (Focus on Value)</td><td>RPA 제안 대신 FAQ 노출 → 단순 문의 월 600→400건. "기술 없이도 해결 가능한가"</td></tr>
+    <tr><td><span class="k">지속 가능성 통합</span> (Integrate Sustainability)</td><td>저가 챗봇 정확도 60% → 재설계 후 80%, 재문의율 22%↓. "지금의 절약이 누구의 미래 비용인가"</td></tr>
+    <tr><td rowspan="2"><span class="k">주인 의식</span></td><td rowspan="2">어떤 자세로 책임지는가</td><td><span class="k">책임감 있는 리더 되기</span> (Be an Accountable Leader)</td><td>로그인 오류: 대치 → 공동 재현 → 세션 타임아웃 원인 규명, 문의 70%↓. 공유 리더십</td></tr>
+    <tr><td><span class="k">권한 위임의 문화 구축</span> (Build an Empowered Culture)</td><td>PMO 표준을 소규모에 그대로 적용해 불만 → 최소 기준은 PMO와 합의, 세부 절차는 팀이. 팀 협약서(그라운드 룰)</td></tr>
+    <tr><td rowspan="2"><span class="k">선제적</span></td><td rowspan="2">어떻게 미리 관리하는가</td><td><span class="k">전체론적 관점 채택</span> (Adopt a Holistic View)</td><td>챗봇 VoC가 실은 FAQ·채널·KPI 충돌 문제 → 통합 CX 전략</td></tr>
+    <tr><td><span class="k">품질 내재화</span> (Embed Quality)</td><td>채널마다 다른 답변 → 콘텐츠 관리 통합, 재문의율 25%↓</td></tr>
+  </table></div>
+  <p><b>수용 기준</b>(인도물마다 정하는 승인 조건, 이해관계자가 정함) · <b>DoD</b>(팀이 합의하는 완료 조건) · <b>사용 적합성</b>(사용자가 느끼는 품질, 지표만으로 확인 안 됨)은 서로 다르다. 비즈니스 케이스는 착수 승인으로 끝나지 않고 착수·중간·종료에서 가치 실현 가능성을 다시 본다.</p>
+  <p>원칙 이름에 없는 이해관계자·리스크는 성과영역에서, 조정은 별도 지침에서 다룸. 원칙은 일곱 성과영역 모두에 걸친다.</p>
+</section>
+
+<!-- 7 이해관계자 -->
+<section id="stake">
+  <h2>이해관계자 성과영역</h2>
+  <p class="src"><b>6주차 1차시</b> + <b>6주차 2차시 전반</b> · 합본 없음</p>
+
+  <h3>이해관계자와 참여관리</h3>
+  <p>이해관계자 = 프로젝트 결과에 영향을 받기 때문에 프로젝트에 영향을 미치려는 개인·그룹. 이해관계는 진행 수준·유형에 따라 달라지므로 <b>지속적으로</b> 관리. 범위: 지역(외부) 이해관계자(경쟁사·사용자·벤더·정부), 조직 내부(CEO·마케팅·법무·QA·재무), 프로젝트 팀 관련(PM·개발팀·팀원 소속 부서장).</p>
+
+  <h3 id="st-id">식별 매트릭스 (식별 가능 × 분석 가능)</h3>
+  <div class="tbl"><table>
+    <tr><th>유형</th><th>뜻</th></tr>
+    <tr><td><span class="k">Known Known</span></td><td>식별·분석 모두 가능. 핵심 이해관계자는 착수 시점에 분석까지</td></tr>
+    <tr><td><span class="k">Known Unknown</span></td><td>착수 시 식별 가능했는데 <b>놓친</b> 경우</td></tr>
+    <tr><td><span class="k">Unknown Unknown</span></td><td>착수 시 식별이 힘들고 수행 도중 식별(예상 못한 이슈 관련)</td></tr>
+    <tr><td><span class="k">Unknown Known</span></td><td>식별은 했지만 이해관계 <b>분석을 못한</b> 경우. 법무·품질·구매 등 <b>지원부서</b> 대부분</td></tr>
+  </table></div>
+  <p><b>이해관계자 관리대장</b>: 기본 정보(성명·직위·부서·역할·연락처), 평가 정보(관심사항·기대수준·잠재 영향력), 유형 정보(중립·지지·반대). 계속 업데이트, 민감 정보라 보안 유의.</p>
+  <p><b>분석 항목 5</b>: 권력 · 관심사항과 기대수준 · 참여 형태 · 영향력 · 이해관계자 상호작용(연대 가능성).</p>
+
+  <h3 id="st-sal">현저성 모델 (Salience Model)</h3>
+  <p>세 속성: <span class="k">권력(Power)</span> 결과에 미치는 영향력 · <span class="k">긴급성(Urgency)</span> 결과물을 긴급히 필요로 하는 정도 · <span class="k">합법성(Legitimacy)</span> 참여 형태의 적절성(공식적). 속성을 몇 개·어떤 조합으로 가졌는지에 따라 7가지 유형으로 나뉩니다.</p>
+  <figure>
+    <div class="venn3" role="img" aria-label="권력·긴급성·합법성 세 원이 겹치는 벤다이어그램. 한 속성만 가지면 Dormant·Demanding·Discretionary, 두 속성이면 Dangerous·Dominant·Dependent, 세 속성 모두면 Definitive.">
+      <span class="circ cA"></span>
+      <span class="circ cB"></span>
+      <span class="circ cC"></span>
+      <span class="clabel" style="left:14%;top:2%;color:var(--accent)">권력</span>
+      <span class="clabel" style="right:8%;top:2%;color:var(--warn)">긴급성</span>
+      <span class="clabel" style="left:33%;bottom:1%;color:var(--ok)">합법성</span>
+      <span class="rlabel" style="left:20%;top:20%">활동이 없는<small>Dormant</small></span>
+      <span class="rlabel" style="left:80%;top:20%">요구사항이 많은<small>Demanding</small></span>
+      <span class="rlabel" style="left:50%;top:84%">임의로 관리할 수 있는<small>Discretionary</small></span>
+      <span class="rlabel" style="left:50%;top:26%">위험한<small>Dangerous</small></span>
+      <span class="rlabel" style="left:36%;top:52%">지배적인<small>Dominant</small></span>
+      <span class="rlabel" style="left:64%;top:52%">의존하는<small>Dependent</small></span>
+      <span class="rlabel core" style="left:50%;top:50%">가장 중요<small>Definitive</small></span>
+    </div>
+    <figcaption class="src">권력·긴급성·합법성이 겹치는 자리마다 이름이 다릅니다. 영문 명칭이 모두 <b>D</b>로 시작해 "7 Ds"로 외우면 편합니다. 교안 도식의 유형명을 표준 현저성 모델 배치에 맞춰 정리했습니다.</figcaption>
+  </figure>
+
+  <h3 id="st-pri">우선순위 결정 스키마 (권력 × 관심도)</h3>
+  <div class="quad"><table>
+    <tr><th></th><th>관심도 낮음</th><th>관심도 높음</th></tr>
+    <tr><th>권력<br>높음</th>
+      <td class="qa"><b class="qn"><span class="k">만족 상태 유지</span></b><small>Keep Satisfied</small></td>
+      <td class="qb"><b class="qn"><span class="k">집중 관리</span></b><small>Manage Closely</small></td>
+    </tr>
+    <tr><th>권력<br>낮음</th>
+      <td class="qc"><b class="qn"><span class="k">최소한으로 모니터링</span></b><small>Monitor</small></td>
+      <td class="qd"><b class="qn"><span class="k">정보 제공</span></b><small>Keep Informed</small></td>
+    </tr>
+  </table></div>
+  <p>요구가 상충하면 우선 고려 대상을 검토, 대면 소통에 시간을 아끼지 않음, 만족·참여를 정기 모니터링.</p>
+
+  <h3 id="st-com">의사소통 모델</h3>
+  <div class="flow"><span>① 암호화</span><i>→</i><span>② 메시지 전송 (잡음)</span><i>→</i><span>③ 해독</span><i>→</i><span>④ 수신 확인</span><i>→</i><span>⑤ 피드백</span></div>
+  <p><span class="k">수신 확인이 동의나 이해를 뜻하지는 않는다</span>. 피드백이 발신자 의도와 일치함을 확인한 뒤 종료. 장애 요인: 문화적(국가·편견·성별·전문분야), 개인적(지식·집중도·성격).</p>
+  <p>다문화 소통 주의 요인 7: 내용 해석 오류 · 송수신자 관계(불신) · <span class="k">선택적 지각</span> · 감정 상태 · 시간과 정보량 · 상대의 지식 수준 · 문화·민족성.</p>
+  <h4>브로이스와 프라이스(Browaeys & Price)의 다문화 관리</h4>
+  <div class="tbl"><table>
+    <tr><th>인식 대상</th><th>대비</th><th>핵심</th></tr>
+    <tr><td>시간 집중</td><td><span class="k">단일시간</span> vs <span class="k">복합시간</span></td><td>단일: 일정 중시·과업지향·단기·상세정보·엄격 준수 / 복합: 관계 중시·인간관계·장기·암묵지·유연 통제</td></tr>
+    <tr><td>시간 지향성</td><td>과거 · 현재 · 미래</td><td>과거: 전통 유지 / 미래: 가치 창출·변화</td></tr>
+    <tr><td>권력</td><td>위계 vs 평등</td><td>위계: 중앙집중 계획·지시 선호 / 평등: 참여·분산 계획·협의</td></tr>
+    <tr><td>경쟁</td><td>경쟁 vs 협력</td><td>경쟁: 승진·재산 / 협력: 삶의 질·업무 성취</td></tr>
+    <tr><td>활동</td><td>실행(Doing) vs 존재(Being)</td><td>실행: 과업 성취 / 존재: 개인 성장·비전</td></tr>
+    <tr><td>공간</td><td>개인 vs 공공</td><td>개인: 분리된 공간·과업지향 / 공공: 열린 광장·관계지향</td></tr>
+    <tr><td>의사소통</td><td><span class="k">고맥락</span> vs <span class="k">저맥락</span></td><td>고맥락: 종합적·비전 중심 / 저맥락: 명확한 작업 지시</td></tr>
+    <tr><td>구조</td><td>개인 vs 집단</td><td>개인: 나 / 집단: 우리</td></tr>
+  </table></div>
+  <p><b>채널 효과성</b>: 가장 많은 정보를 빠르게, 암묵지까지 나눌 수 있는 수단은 <span class="k">화이트보드를 활용한 대면 대화</span>. 문서·이메일은 단순 사실 공유(예: 주간회의 일정)에 국한.</p>
+
+  <h3 id="st-plan">참여계획서와 참여평가 매트릭스</h3>
+  <p><b>이해관계자 참여계획서</b>: 역할·태도·관심사항·단계별 영향력·참여도 제고방안. 민감 정보가 많아 <span class="k">이해관계자에게 배포하지 않도록</span> 주의.</p>
+  <p><b>참여평가 매트릭스</b>: 기대(목표) 참여수준과 현 참여수준의 차이를 소통으로 줄임.</p>
+  <div class="flow"><span>비인지 Unaware</span><i>→</i><span>저항 Resistant</span><i>→</i><span>중립 Neutral</span><i>→</i><span>지원 Supportive</span><i>→</i><span>주도 Leading</span></div>
+
+  <h3 id="st-inter">다른 성과영역과의 상호작용</h3>
+  <div class="tbl"><table>
+    <tr><th>성과영역</th><th>이해관계자와의 상호작용</th></tr>
+    <tr><td>팀</td><td>팀 평가·보상 결정, 팀 빌딩에 영향</td></tr>
+    <tr><td>개발방식과 생애주기</td><td>PMO가 개발방식 결정에 영향</td></tr>
+    <tr><td>기획</td><td>요구사항·제약조건 제시, 계획 승인</td></tr>
+    <tr><td>프로젝트 작업</td><td>작업 결과를 의사소통, <b>변경요청의 주체</b></td></tr>
+    <tr><td>인도</td><td>요구사항·범위·우선순위 정의, 승인 기준 정의·인도물 확인</td></tr>
+    <tr><td>측정</td><td>고위경영층·포트폴리오·프로그램 관리자는 성과지표에 관심</td></tr>
+    <tr><td>불확실성</td><td>불확실성을 줄이기도, <b>만들기도</b> 함</td></tr>
+  </table></div>
+  <p><b>조정 질문 4</b>: 식별·분석에 얼마나 시간을 쓸지(복잡·역동적일수록 많이) / 우선순위 조정 / 의사소통 방법·협업 도구(이해관계자에게 익숙한 것) / 변화관리 전략(불편·심리적 저항 고려).</p>
+  <h4>목표 달성 점검</h4>
+  <ul>
+    <li>생산적 업무관계 유지 → 참여수준 평가 매트릭스</li>
+    <li>목적·가치에 공감 → 변경 요청이 많으면 공감하지 않는 상황(단, 무관심해서 요청이 없을 수도)</li>
+    <li>긍정적 영향력 극대화·부정적 최소화 → 인터뷰, 만족도 설문, 이해관계자발 리스크 분석</li>
+  </ul>
+</section>
+
+<!-- 8 팀 -->
+<section id="team">
+  <h2>팀 성과영역</h2>
+  <p class="src"><b>6주차 2차시 후반</b> + <b>6주차 3차시</b> · 합본 없음</p>
+
+  <h3 id="tm-lead">관리 vs 리더십</h3>
+  <div class="tbl"><table>
+    <tr><th>관리</th><th>리더십</th></tr>
+    <tr><td>직위·권력으로 지시</td><td>개인적 역량으로 영향력</td></tr>
+    <tr><td>계획 수립과 통제</td><td>인간적 관계와 혁신</td></tr>
+    <tr><td>단기 목표</td><td>장기 목표</td></tr>
+    <tr><td>방법과 시기를 질문 (how/when)</td><td>대상과 이유를 질문 (what/why)</td></tr>
+    <tr><td>현 상황 유지</td><td>현 상황 도전</td></tr>
+    <tr><td>운영 이슈 문제해결</td><td>비전·변화·혁신</td></tr>
+    <tr><td><span class="k">Do Things Right</span> (올바르게 일하기)</td><td><span class="k">Do the Right Things</span> (올바른 일 하기)</td></tr>
+  </table></div>
+  <p>관리 방식: <b>중앙집중형</b>(PM 중심 계획·통제) vs <b>권한분산형</b>(팀원에게 많이 위임).</p>
+
+  <h3 id="tm-servant">섬김형 리더십 (Servant Leadership)</h3>
+  <p>팀원을 존중하고 섬겨 잠재력을 끌어올림, 리더가 섬길 때 팀원이 리더처럼 행동. PMP 시험은 거의 모든 상황에서 섬김형이 효과적이라고 봄. 행동 3: <span class="k">장애물 제거 · 외부 업무로부터 팀 보호</span>(불필요한 문서·보고서) · <span class="k">격려와 동기부여</span>.</p>
+  <h4>리더십 스타일 결정 시 고려사항</h4>
+  <ul>
+    <li><b>유사 프로젝트 경험</b>: 익숙하면 위임형, 생소하면 지시형</li>
+    <li><b>팀원 성숙도</b>: 업종·기술 지식이 많으면 위임</li>
+    <li><b>조직 거버넌스 구조</b>: 통제 중시 문화면 지시형, 수평·자율이면 위임형</li>
+    <li><b>분산된 팀(<span class="k">가상팀</span>)</b>: 화상회의, 협업도구(Slack), 개인 성과지표 명확화</li>
+  </ul>
+
+  <h3 id="tm-hb">허시-블랜차드 상황 리더십</h3>
+  <div class="quad"><table>
+    <tr><th></th><th>의지 낮음</th><th>의지 높음</th></tr>
+    <tr><th>역량<br>낮음</th>
+      <td class="qa"><b class="qn">지시형</b><small>Telling</small><ul><li>지침 제시</li></ul></td>
+      <td class="qb"><b class="qn">설득형</b><small>Selling</small><ul><li>의사결정 내용을 설명</li></ul></td>
+    </tr>
+    <tr><th>역량<br>높음</th>
+      <td class="qc"><b class="qn">참여형</b><small>Participating</small><ul><li>아이디어 공유</li></ul></td>
+      <td class="qd"><b class="qn">위임형</b><small>Delegating</small><ul><li>의사결정 위임</li></ul></td>
+    </tr>
+  </table></div>
+  <p>진행 단계별: 중반 이전 <b>설득형</b> → 중반 이후 <b>참여형</b> → 후반부 <b>위임형</b>. 축은 과업지향 ↔ 인간관계지향.</p>
+
+  <h3 id="tm-culture">팀 문화 구축 7</h3>
+  <p><span class="k">투명성</span>(결정 기준·과정 공유) · <span class="k">정직함과 윤리의식</span>(나쁜 소식을 신속·정확하게, 잠재 리스크 공개) · <span class="k">존중</span>(없으면 관료적 문화) · <span class="k">건전한 토의</span> · <span class="k">지원</span> · <span class="k">용기</span>(결과는 같이 책임) · <span class="k">성공 축하</span></p>
+
+  <h3 id="tm-dev">팀 개발 5 / 고성과팀 8</h3>
+  <div class="grid2">
+    <div><h4>팀 개발 (개인 역량 → 팀워크)</h4><ol>
+      <li>비전과 목표 공감</li><li>책임과 역할 명확화(부족하면 교육·코칭)</li><li>팀 규칙 정의</li><li>업무수행 방법 가이드</li><li>팀과 개인의 성장</li></ol></div>
+    <div><h4>고성과팀의 특징</h4><ol>
+      <li>열린 소통</li><li>오너십 공유</li><li>신뢰</li><li>협업</li><li>적응성</li><li>복원력</li><li>권한 위임</li><li>인정(외재적 + 내재적 보상)</li></ol></div>
+  </div>
+
+  <h3 id="tm-skill">리더십 기술</h3>
+  <h4>1. 비전 수립·유지</h4>
+  <p>조직 비전은 거의 안 바뀜. 프로젝트 비전 = 추구하는 가치·수행 이유이며 대부분 <b>팀이 만들지 않고 주어짐</b>. 좋은 비전: 짧은 문구로 목표 요약 · 달성 가능한 최상의 결과 구체화 · 공감과 열정.</p>
+  <h4>2. 비판적 사고</h4>
+  <ul>
+    <li>편향 없는 관점 (<span class="k">확증편향</span> 주의)</li>
+    <li>명시되지 않은 가정과 요구사항 파악 (외주 프로젝트 특히)</li>
+    <li>데이터에 근거한 분석·결정</li>
+    <li><span class="k">귀납적</span>(데이터 → 결론) · <span class="k">연역적</span>(참인 명제 → 새 명제) 추론 활용</li>
+  </ul>
+  <h4>3. 동기부여</h4>
+  <p>프로젝트에서 동기 = 자신의 헌신을 다하고 다른 팀원을 자발적으로 도우려는 힘. <span class="k">내재적 동기</span>(일의 성취 만족) vs <span class="k">외재적 동기</span>(승진·보너스). <b>외재적 동기에 의존할수록 수행이 어려워짐</b>. 내재적 예시: 목표 달성, 도전, 가치 공감, 자기주도, 성장 이력, 핵심 팀 일원.</p>
+  <h4 id="tm-ei">4. 대인관계 기술</h4>
+  <div class="tbl"><table>
+    <tr><th>감성지능 4요소</th><th>뜻</th></tr>
+    <tr><td><span class="k">자기 인식</span></td><td>자신의 감정·목표·동기·강약점에 대한 현실적 평가</td></tr>
+    <tr><td><span class="k">자기 관리</span> (자기 조절)</td><td>파괴적 감정·충동 통제, 행동 전에 생각</td></tr>
+    <tr><td><span class="k">사회적 인식</span> (타인 인식)</td><td>공감, 비언어 신호 읽기</td></tr>
+    <tr><td><span class="k">사회적 기술</span> (타인 관리)</td><td>팀 관리, 네트워크 구축, 관계 형성</td></tr>
+  </table></div>
+  <p id="tm-dec"><b>팀 의사결정 유의사항</b>: 팀원의 수용성 높이기 / 다양한 의견 수렴(<span class="k">닻(anchor) 효과</span> = 영향력 있는 사람의 첫 의견만 나오는 현상) / 시간·비용 고려 / <span class="k">집단사고</span> 피하기(분산해 의견 수집 후 토의로 좁힘) / 대책 없는 문제도 중요시.</p>
+  <p id="tm-conf"><b>갈등관리</b>: 갈등은 한 쪽의 목표를 다른 쪽이 방해해서 생김. 적정 수준은 혁신 촉진.</p>
+  <div class="grid2">
+    <div><h4>순기능</h4><ul><li>혁신적 풍토</li><li>상호작용·협업하는 팀워크</li><li>품질 문제 조기 발견</li></ul></div>
+    <div><h4>역기능</h4><ul><li>집단 간 파벌의식</li><li>팀원 침묵</li><li>수직적 지시 의존</li></ul></div>
+    <div><h4>역기능↓ 순기능↑</h4><ul><li>상대를 존중하는 의사소통</li><li>과거가 아닌 현재·미래</li><li>사람이 아닌 문제에 집중</li><li>함께 대안 모색</li></ul></div>
+  </div>
+  <p><b>다른 성과영역과의 상호작용</b>: 이해관계자(평가·보상·팀 빌딩) · 기획(비전·가치 설명) · 프로젝트 작업(비판적 사고·의사결정) · 측정(측정 결과로 평가·보상).</p>
+</section>
+
+<!-- 퀴즈 -->
+<section id="quiz">
+  <h2>객관식 퀴즈</h2>
+  <p class="src" id="pool-info">문제은행에서 매번 무작위로 뽑고 보기 순서도 섞습니다</p>
+  <div class="quiz-head">
+    <div class="quiz-bar">
+      <label for="q-scope" class="mono">범위</label>
+      <select id="q-scope" class="btn">
+        <option value="all">전체</option>
+        <option value="W2">2·3주차</option>
+        <option value="W4">4·5주차</option>
+        <option value="W6">6주차</option>
+      </select>
+      <label for="q-count" class="mono">문항</label>
+      <select id="q-count" class="btn">
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="0">전부</option>
+      </select>
+      <button class="btn" id="new-set" type="button">새 문제 뽑기</button>
+    </div>
+    <span class="score" id="score"></span>
+  </div>
+  <div id="qs"></div>
+  <div class="summary" id="summary" hidden>
+    <span id="sum-text"></span>
+    <span class="quiz-bar">
+      <button class="btn" id="retry-wrong" type="button">틀린 문제만 다시</button>
+      <button class="btn" id="new-set-2" type="button">새 문제 뽑기</button>
+    </span>
+  </div>
+</section>
+
+<!-- 서술형 -->
+<section id="essay">
+  <h2>서술형 예상 문제</h2>
+  <p class="src" id="essay-info">문제은행에서 한 문제씩 무작위로 나옵니다. 먼저 답을 써 보고 모범답안과 비교하세요.</p>
+  <div class="quiz-bar">
+    <label for="e-scope" class="mono">범위</label>
+    <select id="e-scope" class="btn">
+      <option value="all">전체</option>
+      <option value="W2">2·3주차</option>
+      <option value="W4">4·5주차</option>
+      <option value="W6">6주차</option>
+    </select>
+    <span class="score" id="e-progress"></span>
+  </div>
+  <div class="ecard" id="ecard">
+    <div class="qn" id="e-num"></div>
+    <div class="qt" id="e-q"></div>
+    <label for="e-draft" class="mono" style="color:var(--muted)">내 답안</label>
+    <textarea id="e-draft" placeholder="핵심어를 넣어 3~5문장으로 써 보세요"></textarea>
+    <div class="row">
+      <button class="btn" id="e-show" type="button">모범답안 보기</button>
+      <button class="btn" id="e-next" type="button">다른 문제</button>
+    </div>
+    <div class="ans" id="e-ans" hidden></div>
+    <div class="kw" id="e-kw" hidden></div>
+  </div>
+</section>
+</main>
+</div>
+
+<script>
+(function(){
+  /* ---------- 빈칸 모드 ---------- */
+  var KEY='pm-midterm-blank';
+  var btns=document.querySelectorAll('.blank-toggle');
+  function setBlank(on){
+    document.body.classList.toggle('blank',on);
+    btns.forEach(function(b){b.setAttribute('aria-pressed',on?'true':'false');b.textContent=on?'빈칸 모드 끄기':'빈칸 암기 모드';});
+    if(!on) document.querySelectorAll('.k.show').forEach(function(k){k.classList.remove('show');});
+    try{localStorage.setItem(KEY,on?'1':'0');}catch(e){}
+  }
+  var init=false; try{init=localStorage.getItem(KEY)==='1';}catch(e){}
+  setBlank(init);
+  btns.forEach(function(b){b.addEventListener('click',function(){setBlank(!document.body.classList.contains('blank'));});});
+  document.addEventListener('click',function(e){
+    var k=e.target.closest('.k'); if(k&&document.body.classList.contains('blank')) k.classList.toggle('show');
+  });
+
+  /* ---------- 탭 전환 ---------- */
+  var sections=[].slice.call(document.querySelectorAll('main > section'));
+  var links=[].slice.call(document.querySelectorAll('nav.toc a'));
+  var header=document.getElementById('top-header');
+  var TAB='pm-midterm-tab';
+  function label(id){var a=links.filter(function(l){return l.getAttribute('href')==='#'+id;})[0];if(!a)return id;var t=a.cloneNode(true),w=t.querySelector('.wk');if(w)w.remove();return t.textContent.trim();}
+  sections.forEach(function(sec,i){
+    var p=document.createElement('div'); p.className='pager';
+    if(i>0){var b=document.createElement('button');b.type='button';b.className='btn';b.innerHTML='<small>이전</small>';b.appendChild(document.createTextNode('← '+label(sections[i-1].id)));b.addEventListener('click',function(){show(sections[i-1].id,true);});p.appendChild(b);}
+    if(i<sections.length-1){var n=document.createElement('button');n.type='button';n.className='btn next';n.innerHTML='<small>다음</small>';n.appendChild(document.createTextNode(label(sections[i+1].id)+' →'));n.addEventListener('click',function(){show(sections[i+1].id,true);});p.appendChild(n);}
+    sec.appendChild(p);
+  });
+  function show(id,scroll){
+    if(!sections.some(function(s){return s.id===id;})) id=sections[0].id;
+    sections.forEach(function(s){s.hidden=s.id!==id;});
+    links.forEach(function(l){ if(l.getAttribute('href')==='#'+id) l.setAttribute('aria-current','page'); else l.removeAttribute('aria-current'); });
+    header.hidden=id!=='sort';
+    var cur=links.filter(function(l){return l.getAttribute('aria-current');})[0];
+    if(cur&&cur.scrollIntoView&&window.matchMedia('(max-width:880px)').matches) cur.scrollIntoView({block:'nearest',inline:'center'});
+    if(scroll) window.scrollTo(0,0);
+    try{localStorage.setItem(TAB,id);}catch(e){}
+  }
+  links.forEach(function(l){l.addEventListener('click',function(e){e.preventDefault();show(l.getAttribute('href').slice(1),true);});});
+  var start=(location.hash||'').slice(1); if(!start){try{start=localStorage.getItem(TAB)||'';}catch(e){}}
+  show(start||'sort',false);
+
+  /* ---------- 노트 위치로 이동 / 돌아가기 ---------- */
+  var back=document.createElement('button'); back.type='button'; back.className='backbar'; back.hidden=true;
+  document.body.appendChild(back);
+  var ret=null;
+  function jumpTo(ref,fromId){
+    var el=document.getElementById(ref); if(!el) return;
+    var sec=el.closest('main > section'); if(!sec) return;
+    ret={id:fromId,y:window.scrollY};
+    show(sec.id,false);
+    el.scrollIntoView({block:'start'});
+    el.classList.remove('fade'); el.classList.add('flash');
+    setTimeout(function(){el.classList.add('fade');},1400);
+    setTimeout(function(){el.classList.remove('flash','fade');},3200);
+    back.textContent='← '+({essay:'서술형으로',cram:'요약으로'}[fromId]||'퀴즈로')+' 돌아가기';
+    back.hidden=false;
+  }
+  back.addEventListener('click',function(){
+    if(!ret) return; var r=ret; ret=null; back.hidden=true;
+    show(r.id,false);
+    var html=document.documentElement, prev=html.style.scrollBehavior; html.style.scrollBehavior='auto';
+    window.scrollTo(0,r.y); html.style.scrollBehavior=prev;
+  });
+  links.forEach(function(l){l.addEventListener('click',function(){ret=null;back.hidden=true;});});
+  function gotoBtn(ref,fromId,text){
+    var b=document.createElement('button'); b.type='button'; b.className='goto';
+    b.textContent=text||'관련 내용 보기 →';
+    b.addEventListener('click',function(){jumpTo(ref,fromId);});
+    return b;
+  }
+
+  document.querySelectorAll('#cram .ref').forEach(function(b){b.addEventListener('click',function(){jumpTo(b.getAttribute('data-ref'),'cram');});});
+
+  /* ---------- 유틸 ---------- */
+  function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+  var WK={W2:'2·3주차',W4:'4·5주차',W6:'6주차'};
+
+  /* ---------- 객관식 문제은행: [범위, 문제, 보기, 정답 index, 해설] ---------- */
+  var Q=[
+    ["W2","PM의 권한이 '높음~거의 전체'이고 예산 통제자가 PM이며 PM이 풀타임인 조직구조는?",["기능 조직","약한 매트릭스","균형 매트릭스","프로젝트 전담 조직"],3,"균형 매트릭스의 예산 통제자는 '혼합형', 기능·약한 매트릭스는 '기능관리자'.","org-struct"],
+    ["W2","균형 매트릭스 조직의 예산 통제자는?",["기능관리자","혼합형","프로젝트 관리자","PMO"],1,"기능·약한 매트릭스는 기능관리자, 균형은 혼합형, 강한 매트릭스·프로젝트 전담은 PM.","org-struct"],
+    ["W2","조직문화 10특성 중 '균형'을 이룰 때 성공 확률이 높은 3가지에 속하지 않는 것은?",["관리 초점","통제","수단 대 목적 지향","위험 내성"],3,"위험 내성은 강하거나 높을수록 유리한 7개 중 하나.","org-culture"],
+    ["W2","조직문화 10특성이 양극단 사이에서 점진적으로 변하는 성질을 가리키는 말은?",["계층구조","연속체(continuum)","하위시스템","프레임"],1,"10개 차원은 양극단을 가진 연속체적 특성을 지닌다.","org-culture"],
+    ["W2","시스템 접근법이 등장한 시기는?",["1920년대","1950년대","1980년대","2000년대"],1,"관리·문제해결을 더 분석적으로 하기 위해 1950년대에 등장.","org-sys"],
+    ["W2","시스템 접근법의 특징으로 옳지 않은 것은?",["모든 것이 상호관련·상호의존한다","하위시스템은 계층구조를 이룬다","내부와 외부를 가르는 경계가 있다","하위시스템의 효율을 전체 효율보다 우선한다"],3,"하위시스템의 효율보다 시스템 전반의 효율에 주의를 기울인다.","org-sys"],
+    ["W2","조직을 다양한 개인과 이해집단으로 구성된 '연합체'로 보는 프레임은?",["구조적 프레임","인적자원 프레임","정치적 프레임","상징적 프레임"],2,"정치적 프레임: 제한된 예산 속 상충 의제를 가진 이익집단 관리.","org-frame"],
+    ["W2","실제로 발생한 일이 아닌 상징과 의미에 초점을 맞추고 사내문화를 포괄하는 프레임은?",["구조적","인적자원","정치적","상징적"],3,"상징적 프레임은 작업의 목적과 의미에 대한 궁금증을 해소하는 수단.","org-frame"],
+    ["W2","조직의 요구와 개인의 요구 사이의 조화에 초점을 두는 프레임은?",["구조적","인적자원","정치적","상징적"],1,"인적자원 프레임은 조직과 개인·그룹 요구의 불일치를 인식하고 해결하려 한다.","org-frame"],
+    ["W2","PM에게 최고경영진의 커밋먼트가 중요한 이유로 교안에 없는 것은?",["적절한 자원이 필요하다","다른 부서 구성원과 협력해야 한다","리더십에 대한 멘토링·코칭이 필요하다","PM의 인사고과를 직접 결정해 준다"],3,"네 가지 이유: 자원, 협력, 멘토링·코칭, IT에 대한 조직의 커밋먼트.","org-commit"],
+    ["W2","프로젝트의 핵심 지지자 역할을 하는 고위경영진을 부르는 말은?",["스튜어드","챔피언","스크럼 마스터","주제전문가"],1,"챔피언(champion). 3주차는 챔피언과 실제로 자원·결정을 내주는 스폰서가 다를 수 있다고 강조.","org-commit"],
+    ["W2","3주차 수업이 말한 '스폰서가 실제로 내주는 것' 세 가지는?",["자원·의사결정·장애 해소","예산·일정·품질","헌장·계획·보고서","교육·코칭·보상"],0,"자원(예산·인력), 의사결정(제때), 장애 해소(부서 간 막힌 협조).","org-commit"],
+    ["W2","회계 담당자가 같은 날 '정산 마감'과 '시범 화면 검수'를 요청받을 때 3주차가 말한 구조적 해결은?",["담당자가 야근해서 둘 다 처리한다","더 열심히 일하도록 독려한다","부서장과 프로젝트 책임자가 투입 시간을 합의하고, 안 되면 상위 결정 경로로 올린다","프로젝트 요청을 무조건 우선한다"],2,"빠진 것은 노력이 아니라 합의. 야근은 일회성 해결.","org-struct"],
+    ["W2","8판에서 6판의 '이해관계자'와 '의사소통' 지식영역이 함께 이어지는 곳은?",["Governance","Stakeholders","Resources","Scope"],1,"둘이 Stakeholders 성과영역으로 합쳐진다.","org-map"],
+    ["W2","6판 지식영역 '조달'은 8판에서 어디로 가는가?",["Finance 성과영역","Resources 성과영역","부록 X4 Procurement","원칙 3.5"],2,"조달은 성과영역이 아니라 부록 X4.","org-map"],
+    ["W2","6판 지식영역 '원가'가 이어지는 8판 성과영역은?",["Finance","Governance","Schedule","Risk"],0,"Finance(재무): 비용을 넘어 재무 자원까지.","org-map"],
+    ["W2","6판 지식영역 '품질'은 8판에서 어디로 이어지는가?",["Governance 성과영역","Scope 성과영역","원칙 '프로세스 및 인도물에 품질 내재화'","부록 X4"],2,"품질은 성과영역이 아니라 원칙(3.5).","org-map"],
+    ["W2","폭포수(waterfall) 수명주기로도 불리는 것은?",["예측 수명주기","반복 수명주기","증분 수명주기","적응형 수명주기"],0,"각 단계가 이전 단계를 반복하지 않고 다음 단계로 넘어가서 폭포수라 부른다.","life-types"],
+    ["W2","반복과 증분의 혼합형으로, 2~4주 반복과 높은 이해관계자 참여가 필요한 수명주기는?",["예측","적응형","혼합","폭포수"],1,"적응형 = 애자일 수명주기. 혼합은 예측 + 적응형.","life-types"],
+    ["W2","2주차 교안에서 반복 수명주기의 한 반복 기간으로 제시한 것은?",["1~2주","2~4주","2~4개월","6개월 이상"],2,"반복은 2~4개월, 적응형(애자일)은 2~4주.","life-types"],
+    ["W2","'일련의 폭포수 반복으로 산출물을 만들되, 각 반복이 전체 결과물의 구성요소를 생성'하는 수명주기는?",["예측","반복","증분","혼합"],2,"증분(점증적) 수명주기.","life-types"],
+    ["W2","전체적으로는 예측형, 세부 단계에서는 적응형으로 관리하는 수명주기는?",["반복","증분","적응형","혼합"],3,"혼합(Hybrid): 고정 요구사항은 예측, 진화하는 요소는 적응.","life-types"],
+    ["W2","3주차가 설명한 반복과 증분의 차이로 옳은 것은?",["반복은 쓸 수 있는 부분을 늘리고, 증분은 같은 것을 다듬는다","반복은 같은 것을 되풀이해 다듬고, 증분은 쓸 수 있는 부분을 나누어 내놓는다","둘은 같은 개념이다","증분은 쓸 수 없는 부품만 쌓는 방식이다"],1,"증분은 회차마다 그 자체로 쓰이는 결과를 내놓는다.","life-types"],
+    ["W2","PMBOK 프로세스 그룹 중 '가장 길고 중요한 단계'로 교안이 설명한 것은?",["시작","계획","실행","종료"],2,"실행: 팀원이 작업하고 PM이 감독.","life-pm"],
+    ["W2","3주차가 정정한 '프로세스 그룹'에 대한 설명으로 옳은 것은?",["다섯 이름은 순서대로 밟는 단계다","실행 전에 모든 것이 정의되어야 하는 것이 일반 규칙이다","다섯 이름은 활동의 묶음이며 계획·실행·점검은 되먹임으로 연결된다","점검은 실행 단계 안에만 있다"],2,"순서가 아닌 활동의 묶음, 되먹임 고리.","life-pm"],
+    ["W2","3주차가 개발 접근법 선택의 근거로 든 것이 아닌 것은?",["요구 명확성","피드백 가능성","변경 영향","IT 프로젝트인지 여부"],3,"'IT라서 애자일, 회사 업무라서 예측형'은 이유가 아니다.","life-v8"],
+    ["W2","8판 목차가 개발 접근법의 중심으로 삼는 세 가지는?",["예측형·반복형·증분형","예측형·적응형·하이브리드","폭포수·스크럼·칸반","착수·계획·실행"],1,"반복·증분이 사라진 것은 아니고 상위 구성이 셋 중심.","life-v8"],
+    ["W2","PMI 개정 안내에 따르면 8판은 기존 Process Groups를 무엇으로 재도입하는가?",["Knowledge Areas","Focus Areas","Performance Domains","Principles"],1,"Focus Areas로 재도입하고 40개 프로세스를 성과영역에 통합.","life-v8"],
+    ["W2","프로젝트관리 트렌드로 2주차 교안이 제시하지 않은 것은?",["원격근무의 보편화","소프트 스킬 중요성 강조","혼합 수명주기 활용 증가","단일 수명주기로의 표준화"],3,"오히려 혼합 수명주기 활용이 늘어나는 추세.","life-trend"],
+    ["W2","스크럼에서 비즈니스 가치를 책임지고 제품 백로그의 작업과 순서를 결정하는 역할은?",["스크럼 마스터","제품 소유자","스크럼 팀","PMO"],1,"제품 소유자(Product Owner).","life-scrum"],
+    ["W2","팀의 방해물을 제거하고 일일 스크럼을 돕는 역할은?",["제품 소유자","스크럼 마스터","스폰서","이해관계자"],1,"스크럼 마스터.","life-scrum"],
+    ["W2","2주차 교안이 제시한 스크럼 팀의 인원 규모는?",["2~4명","5~9명","10~15명","제한 없음"],1,"5~9명으로 구성된 다기능팀.","life-scrum"],
+    ["W2","3주차 수업이 공식 Scrum Guide 기준으로 정정한 내용과 맞지 않는 것은?",["Scrum Team은 PO·Scrum Master·Developers로 이룬다","산출물은 Product Backlog·Sprint Backlog·Increment다","번다운 차트는 스크럼의 공식 산출물이다","스프린트는 기간을 고정하고 범위는 다시 정할 수 있다"],2,"번다운 차트는 진행을 가늠하는 기법이다.","life-scrum"],
+    ["W2","스크럼의 4가지 미팅이 아닌 것은?",["스프린트 계획","일일 스크럼","스프린트 회고","킥오프 미팅"],3,"스프린트 계획·일일 스크럼·스프린트 리뷰·스프린트 회고.","life-scrum"],
+    ["W2","PMI 재능 삼각형의 통합을 뜻하는 통합 유형은?",["수평적 통합","수직적 통합","인지 수준에서의 통합","컨텍스트 수준에서의 통합"],2,"인지 수준 = PM 지식영역 + 비즈니스 관리 스킬 + 리더십 스킬.","ch-int"],
+    ["W2","스폰서와 협력해 목표·결과물을 조직의 프로그램·포트폴리오 목표와 연계하는 통합은?",["수평적","수직적","인지 수준","프로세스 수준"],1,"수직적 통합. 전략 목표와 비즈니스 케이스 이해가 선행돼야 한다.","ch-int"],
+    ["W2","통합관리 7개 프로세스 중 '실행' 프로세스 그룹에 속하는 두 가지는?",["헌장 작성 · 관리계획 수립","작업 지시 및 관리 · 지식관리","작업 모니터링 및 통제 · 통합 변경통제","통합 변경통제 · 종료"],1,"착수: 헌장 / 계획: 관리계획 / 실행: 작업 지시·지식관리 / M&C: 모니터링·변경통제 / 종료.","ch-7"],
+    ["W2","프로젝트 헌장 작성 프로세스의 인풋이 아닌 것은?",["비즈니스 문서","계약","기업환경요인","프로젝트관리계획"],3,"인풋 4가지: 비즈니스 문서·계약·EEF·OPA.","ch-charter"],
+    ["W2","프로젝트 헌장의 주요 목적은?",["상세 일정을 확정한다","프로젝트의 존재를 공식 승인하고 PM에게 자원 사용 권한을 부여한다","변경요청을 승인한다","교훈을 기록한다"],1,"스폰서가 PM에게 조직 자원을 쓸 권한을 준다.","ch-charter"],
+    ["W2","PM이 사용하지만 업데이트하지는 않는, 프로젝트 외부에서 생성된 문서는?",["비즈니스 문서","이슈 로그","변경 로그","교훈 등록부"],0,"비즈니스 문서 = 비즈니스 케이스 + 편익관리계획.","ch-charter"],
+    ["W2","프로젝트의 혜택이 조직에서 어떻게 '유지'되는지 보여주는 문서는?",["비즈니스 케이스","편익관리계획","작업명세서","프로젝트 헌장"],1,"비즈니스 케이스는 가치가 어떻게 '창출'되는지.","ch-charter"],
+    ["W2","헌장 작성 인풋 중 '계약'이 존재하는 경우는?",["모든 프로젝트","외부 고객을 위해 수행하는 프로젝트","내부 프로젝트","애자일 프로젝트"],1,"조직 자체를 위한 프로젝트면 작업명세서는 비즈니스 케이스에서 제공.","ch-charter"],
+    ["W2","조직 내부에 관한 요소만 다루는 것은?",["기업환경요인","조직 프로세스 자산","비즈니스 케이스","계약"],1,"EEF는 내부·외부 두 범주, OPA는 내부만.","ch-charter"],
+    ["W2","기업환경요인(EEF)의 외부 요인에 해당하는 것은?",["조직문화","소프트웨어","인프라","법적 제한"],3,"내부: 조직문화·소프트웨어·인프라 / 외부: 사회·문화적 영향, 법적 제한, 물리적 환경.","ch-charter"],
+    ["W2","조직 프로세스 자산의 3분류가 아닌 것은?",["프로세스와 정책 및 절차","기업 지식 베이스","팀 및 주제 전문가","법적 및 규제 요구사항"],3,"법적 요구사항은 EEF 쪽.","ch-charter"],
+    ["W2","3주차 수업에서 '무엇을 어떤 권한으로 시작하는가'에 답하는 문서는?",["비즈니스 케이스","프로젝트 헌장","프로젝트관리계획","변경 로그"],1,"비즈니스 케이스는 '왜', 관리계획은 '어떻게'.","ch-docs"],
+    ["W2","3주차가 구분한 '완료 판정'에 해당하는 것은?",["처리시간이 줄었는가","재작업이 줄었는가","개통·교육·인계가 되었는가","장기 운영이 가능한가"],2,"완료 = 만든 것(종료 승인 시), 효과 = 나아진 것(종료 뒤).","ch-docs"],
+    ["W2","3주차가 제시한 승인 판단 중, '작게 검증하도록 범위와 기간을 정할 때'에 해당하는 것은?",["시작","조건부 시작","추가 검토","보류"],1,"불확실하다는 이유만으로 보류하지 않는다.","ch-docs"],
+    ["W4","통합 변경통제 수행으로 인해 '항상' 영향을 받는 프로젝트 문서는?",["이슈 로그","변경 로그","교훈 등록부","위험 등록부"],1,"승인된 변경은 구현 추적, 거부된 변경은 거부 사유를 남기려고 기록.","pr-cc"],
+    ["W4","작업 지시 및 관리 프로세스의 아웃풋으로, 모니터링 및 통제로 전달되는 측정값은?",["작업성과데이터","작업성과정보","작업성과보고서","승인된 변경요청"],0,"데이터(③) → 정보(통제 프로세스) → 보고서(⑤).","pr-table"],
+    ["W4","작업 모니터링 및 통제 프로세스의 아웃풋은?",["작업성과데이터","작업성과보고서","교훈 등록부","최종 보고서"],1,"작업성과보고서, 변경요청, 계획 업데이트, 문서 업데이트.","pr-table"],
+    ["W4","프로젝트 지식관리의 가장 중요한 아웃풋은?",["이슈 로그","교훈 등록부","최종 보고서","변경 로그"],1,"여러 프로세스의 인풋이자 아웃풋으로 갱신.","pr-km"],
+    ["W4","사람과 정보를 연결해 형식지 공유를 돕는 도구·기법은?",["지식관리","정보관리","전문가 판단","회의"],1,"지식관리는 사람↔사람(암묵지), 정보관리는 사람↔정보(형식지).","pr-table"],
+    ["W4","감지된 차이의 원인을 찾는 '근본원인분석'이 속한 데이터 분석 유형은?",["탐지","진단","시정 및 예방","의사결정"],1,"탐지(획득가치·차이·추세) → 진단(근본원인) → 시정·예방(대안·비용편익).","pr-da"],
+    ["W4","획득가치관리·차이분석·추세분석이 속하는 데이터 분석 유형은?",["탐지","진단","시정 및 예방","대안분석"],0,"차이가 존재하는지 찾아내는 기법.","pr-da"],
+    ["W4","프로젝트관리계획의 구성 규모로 교안이 제시한 것은?",["10개 구성요소·49개 문서","18개 관리계획 구성요소·33개 프로젝트 문서","12개 구성요소·8개 문서","7개 구성요소·40개 문서"],1,"보조 관리계획·추가 관리계획·기준선·추가 구성요소로 나뉜다.","pr-plan"],
+    ["W4","프로젝트관리계획의 '기준선'에 해당하지 않는 것은?",["범위 기준선","일정 기준선","비용 기준선","품질 기준선"],3,"범위·일정·비용·성과측정 기준선.","pr-plan"],
+    ["W4","'추가 관리계획'에 해당하는 것은?",["범위·일정·비용","요구사항·변경·형상 관리계획","이해관계자 참여계획","프로젝트 수명주기"],1,"보조 관리계획은 9개 지식영역 계획, 추가 구성요소는 수명주기.","pr-plan"],
+    ["W4","작업 지시 및 관리의 도구와 기법 3가지에 들어가는 것은?",["PMIS","변경통제 도구","근본원인분석","킥오프"],0,"전문가 판단, 프로젝트관리 정보시스템(PMIS), 회의.","pr-table"],
+    ["W4","작업 지시 및 관리 프로세스의 아웃풋 개수는?",["3개","4개","7개","9개"],2,"산출물·작업성과데이터·이슈로그·변경요청·계획 업데이트·문서 업데이트·OPA 업데이트.","pr-table"],
+    ["W4","대규모 프로젝트에서 킥오프 미팅이 열리는 시점은?",["착수 직후 계획 시작 시점","계획이 끝나고 실행이 시작될 때","종료 직전","변경요청 승인 직후"],1,"소규모는 착수 후 계획 시작 시점에 열릴 수 있다.","pr-plan"],
+    ["W4","작업 지시 및 관리 프로세스가 실행하는 두 가지 인풋은?",["헌장과 비즈니스 케이스","관리계획과 승인된 변경요청","작업성과보고서와 변경로그","교훈 등록부와 OPA"],1,"②의 아웃풋(관리계획)과 ⑥의 아웃풋(승인된 변경요청)을 실행.","pr-table"],
+    ["W4","프로젝트 또는 단계 종료에 대한 설명으로 옳지 않은 것은?",["단계가 완료되면 종료 프로세스가 필요하다","프로젝트가 성공적으로 완료되면 구현한다","프로젝트가 취소되면 종료 프로세스를 생략한다","중단 이유와 마지막 상태를 OPA에 보관한다"],2,"취소·미완성 종료여도 종료 프로세스를 실행해야 한다.","pr-close"],
+    ["W4","범위 검증의 아웃풋으로 종료 프로세스에 들어가며, 서면 수락이 중요한 인풋은?",["최종 보고서","수락된 산출물","조달 문서","승인된 변경요청"],1,"잘못된 의사소통을 피하려고 공식적으로(서면) 수락.","pr-close"],
+    ["W4","통합 변경통제의 의사결정 기법에 포함되지 않는 것은?",["투표","독재적 의사결정","다중기준 결정분석","브레인스토밍"],3,"브레인스토밍은 데이터 수집 기법.","pr-table"],
+    ["W4","5주차가 설명한 변경 요청 처리로 옳지 않은 것은?",["결정은 승인·보류·기각 세 갈래다","보류하면 보완 자료와 재검토 시점을 지정한다","기각하면 사유를 기록하고 요청자에게 통보한다","모든 프로젝트는 반드시 CCB를 둬야 한다"],3,"CCB는 필요할 때 두는 기구.","pr-cc"],
+    ["W4","5주차가 정의한 거버넌스의 구성으로 옳지 않은 것은?",["결정 구조","역할과 책임","평가 방식","개인별 연봉 체계"],3,"결정 구조, 역할과 책임, 평가 방식, 관리 시스템.","pr-gov"],
+    ["W4","같은 요청을 볼 때 '누가 정하는가'를 묻는 관점은?",["통합관리","거버넌스","지식관리","품질관리"],1,"통합관리는 '무엇에 영향을 주는가'.","pr-gov"],
+    ["W4","5주차 설명 중 옳은 것은?",["보고는 기준을 바꾸는 승인이다","승인된 기준과 실제 기록은 나중에 고쳐 쓴다","팀이 세부 절차를 정하는 권한과 승인된 기준을 바꾸는 권한은 다르다","40개 프로세스는 모든 프로젝트가 다 써야 한다"],2,"보고는 상태를 알리는 문서이고, 프로세스는 골라 조정한다.","pr-cc"],
+    ["W4","PMI-isms에서 PM의 범위를 벗어나는 리스크나 이슈를 에스컬레이션하는 대상은?",["스폰서","PMO","CCB","고객"],1,"역량 있는 PMO가 PM을 지원한다.","pmi-isms"],
+    ["W4","PMI-isms에서 조달관리(계약)를 학습하는 관점은?",["판매자","구매자","중재자","PMO"],1,"대규모 사업을 발주하는 정부 사업관리자 입장처럼 구매자 관점.","pmi-isms"],
+    ["W4","PMI-isms가 전제하는 대부분 프로젝트의 조직구조는?",["기능 조직","매트릭스 조직","프로젝트 전담 조직","복합 조직"],1,"소속 부서장(자원관리자)과 PM 사이 갈등에 영향력 행사·사전 협상.","pmi-isms"],
+    ["W4","PMI-isms: 동시에 수행하는 작업(WIP)이 많아지면?",["생산성이 높아진다","생산성이 낮아지고 리드타임이 늘어난다","변화가 없다","품질이 높아진다"],1,"작업 교체 비용 때문에.","pmi-isms"],
+    ["W4","PMI-isms: 팀원 관리의 기본 전제는?",["성악설","성선설","X이론","통제 우선"],1,"합리적으로 토의하면 설득 가능하고 위임해도 잘 수행한다.","pmi-isms"],
+    ["W4","PMBOK 8판의 구성으로 옳은 것은?",["10 지식영역·49 프로세스","12 원칙·8 성과영역","6 원칙·7 성과영역·40 프로세스","8 원칙·6 성과영역·49 프로세스"],2,"6판 10·49, 7판 12·8, 8판 6·7·40.","pmi-ed"],
+    ["W4","7판이 가치로 제시한 세 가지가 아닌 것은?",["고객 가치","비즈니스 가치","사회적 가치","주주 배당 가치"],3,"customer·business·social value.","pmi-ed"],
+    ["W4","7판이 전형적인 프로젝트로 설정한 것은?",["건축물 같은 유형 제품","무형의 소프트웨어","제조 공정","정부 조달"],1,"잦은 출시, 프로젝트-운영 경계 모호.","pmi-ed"],
+    ["W4","8판 프로젝트 정의의 영문 핵심어로 옳은 것은?",["endeavor · unique product · create a result","initiative · unique context · create value","operation · unique process · deliver output","program · unique goal · create benefit"],1,"'한시적'은 유지.","pmi-def"],
+    ["W4","8판 정의에서 고유성이 놓인 자리는?",["만들어 내는 결과물","프로젝트가 놓인 상황","조직 구조","예산 규모"],1,"목표·환경 조건·접근 방식·이해관계자.","pmi-def"],
+    ["W4","스튜어드십 4요소가 아닌 것은?",["청렴성","돌봄","신뢰성","수익성"],3,"청렴성·돌봄·신뢰성·규정 준수.","pr12"],
+    ["W4","협업(collaborative)과 협력(cooperative)에 대한 설명으로 옳은 것은?",["둘은 같은 말이다","협력은 팀·조직 문화가 뒷받침돼야 가능하다","협업은 팀·조직 문화가 뒷받침돼야 가능하다","협업은 정해진 프로세스만 따르면 된다"],2,"협력은 정해진 프로세스대로 하면 된다.","pr12"],
+    ["W4","7판 원칙에서 가장 중요한 이해관계자는?",["고객","스폰서","PM을 포함한 프로젝트 팀","CEO"],2,"프로젝트 팀이 가장 중요한 이해관계자.","pr12"],
+    ["W4","가치 중점 원칙에서 3P가 뜻하는 것은?",["Plan·Process·Product","Profit·People·Planet","Price·Place·Promotion","Power·Priority·Performance"],1,"재무적·사회적·환경적 가치.","pr12"],
+    ["W4","시스템적 사고의 핵심은?",["부문 최적화","전체 최적화","비용 최소화","일정 단축"],1,"통합적으로 사고하고 종료 이후도 고려.","pr12"],
+    ["W4","권한과 리더십에 대한 설명으로 옳은 것은?",["리더십 없는 권한은 성공하기 쉽다","권한 없는 리더십은 성공할 수 있다","리더십은 PM만 발휘한다","독재형은 항상 효과가 낮다"],1,"리더십 없는 권한은 실패하기 쉽다.","pr12"],
+    ["W4","조정(tailoring)에서 계획 기반 통제를 강조하는 프로세스가 적합한 경우는?",["규모가 작고 성숙도가 높을 때","규모가 크고, 중요하고, 성숙도가 낮을 때","애자일 경험이 많을 때","이해관계자가 적을 때"],1,"조직의 조정 가이드 참조, 적정 수준 추구.","pr12"],
+    ["W4","품질 특성 중 '예상치 못한 실패에 신속하게 대처하고 복구'하는 것은?",["신뢰성","복원력","균일성","적합성"],1,"신뢰성은 품질 수준이 일관되게 유지되는 것.","pr12"],
+    ["W4","복잡성 탐색·리스크 대응·적응성과 복원력을 관통하는 키워드는?",["가치","불확실성","거버넌스","스튜어드십"],1,"4주차 3차시 학습요약.","pr12"],
+    ["W4","'프로젝트 팀이 수용할 수 있는 리스크 노출도의 수준'은?",["리스크 선호도","리스크 한계선","전체 리스크","리스크 대응 계획"],1,"리스크 선호도 = 리스크를 추구·회피하는 정도.","pr12"],
+    ["W4","리스크 대응 계획 수립 시 유의사항이 아닌 것은?",["비용 대비 효율적","적시에 수립","실현 가능하고 현실적","PM 혼자 결정해 비밀로 유지"],3,"이해관계자 합의를 얻고 책임질 수 있는 사람이 관리.","pr12"],
+    ["W4","복원력의 정의로 옳은 것은?",["변화하는 상황에 대응하는 능력","충격을 흡수하고 실패로부터 신속하게 회복하는 능력","리스크를 사전에 모두 예방하는 능력","일정을 단축하는 능력"],1,"적응성은 변화하는 상황에 대응하는 능력.","pr12"],
+    ["W4","미래 목표 달성을 위한 변화 원칙에 대한 설명으로 옳은 것은?",["톱다운 변화관리는 장기적으로 성공 확률이 높다","짧은 시간에 많은 변화를 시도할수록 좋다","변화 피로감은 저항으로 이어질 수 있다","이해관계자 공감은 필요 없다"],2,"톱다운은 단기 성공처럼 보여도 장기 실패 확률이 높다.","pr12"],
+    ["W4","7판 8개 성과영역에 속하지 않는 것은?",["이해관계자","불확실성","측정","거버넌스"],3,"거버넌스는 8판 성과영역. 7판: 이해관계자·팀·개발방식과 생애주기·기획·프로젝트 작업·인도·측정·불확실성.","pr-pd"],
+    ["W4","8판 6원칙 중 '선제적' 마인드셋에 묶이는 두 원칙은?",["가치 중심·지속 가능성 통합","책임감 있는 리더 되기·권한 위임의 문화 구축","전체론적 관점 채택·품질 내재화","가치 중심·품질 내재화"],2,"가치 지향 / 주인 의식 / 선제적.","pr8"],
+    ["W4","8판 '주인 의식' 마인드셋에 속하는 원칙은?",["가치 중심","권한 위임의 문화 구축","품질 내재화","지속 가능성 통합"],1,"주인 의식 = 책임감 있는 리더 되기 + 권한 위임의 문화 구축.","pr8"],
+    ["W4","팀이 함께 합의하는 완료 조건을 뜻하는 것은?",["수용 기준","작업 완료 기준(DoD)","사용 적합성","기준선"],1,"수용 기준은 인도물마다 정하는 승인 조건(이해관계자가 정함).","pr8"],
+    ["W4","5주차가 말한 프로젝트와 운영의 관계로 옳은 것은?",["프로젝트가 직접 매월 가치를 낸다","프로젝트는 가치를 낼 수단을 만들고, 운영이 그 수단으로 가치를 낸다","운영은 시작과 끝이 있다","인계하면 효과 확인은 끝난다"],1,"효과 확인은 인계 뒤에도 이어진다.","pr-gov"],
+    ["W6","현저성 모델에서 권력·긴급성·합법성을 모두 가진 이해관계자는?",["지배적인","위험한","의존하는","가장 중요한"],3,"권력+합법성=지배적, 권력+긴급성=위험한, 긴급성+합법성=의존하는.","st-sal"],
+    ["W6","현저성 모델의 세 속성이 아닌 것은?",["권력","긴급성","합법성","관심도"],3,"관심도는 우선순위 결정 스키마(권력×관심도)의 축.","st-sal"],
+    ["W6","권력은 높고 관심도는 낮은 이해관계자에 대한 대응은?",["집중 관리","만족 상태 유지","정보 제공","최소한으로 모니터링"],1,"권력↑관심↑ 집중 관리, 권력↓관심↑ 정보 제공.","st-pri"],
+    ["W6","권력은 낮고 관심도는 높은 이해관계자에 대한 대응은?",["집중 관리","만족 상태 유지","정보 제공","최소한으로 모니터링"],2,"Keep Informed.","st-pri"],
+    ["W6","식별은 했지만 이해관계 분석은 못한 경우로, 법무·품질·구매 지원부서가 주로 해당하는 유형은?",["Known Known","Known Unknown","Unknown Known","Unknown Unknown"],2,"Known Unknown은 식별할 수 있었는데 놓친 경우.","st-id"],
+    ["W6","착수 시점에 식별하기 힘들고 수행 도중 식별 가능한 유형은?",["Known Known","Known Unknown","Unknown Known","Unknown Unknown"],3,"예상하지 못한 이슈와 관련된 이해관계자.","st-id"],
+    ["W6","이해관계자 관리대장의 정보 구분이 아닌 것은?",["기본 정보","평가 정보","유형 정보","급여 정보"],3,"기본(성명·직위…) / 평가(관심사항·영향력) / 유형(중립·지지·반대).","st-id"],
+    ["W6","의사소통 모델에 대한 설명으로 옳은 것은?",["수신 확인은 동의를 뜻한다","메시지 전송에는 잡음이 없다","피드백이 발신자 의도와 일치함을 확인한 뒤 종료된다","암호화는 수신 데이터를 유용한 형식으로 바꾸는 것이다"],2,"수신 데이터를 바꾸는 것은 '해독'.","st-com"],
+    ["W6","자신에게 유리한 쪽으로 정보를 지각하는 다문화 소통 장애 요인은?",["내용 해석의 오류","선택적 지각","감정 상태","상대방의 지식 수준"],1,"개인의 경험이 영향을 미친다.","st-com"],
+    ["W6","브로이스와 프라이스 모델에서 '단일시간(Monochronic)' 문화의 특징은?",["협력적 관계 중시","장기 중시","엄격한 일정 준수·과업지향","종합적·암묵적 지식 제공"],2,"복합시간은 관계 중시·장기·유연 통제.","st-com"],
+    ["W6","명확한 작업 지시를 선호하는 의사소통 문화는?",["고맥락","저맥락","위계","집단"],1,"고맥락은 종합적이고 비전 중심의 정보 공유를 선호.","st-com"],
+    ["W6","위계(Hierarchy) 문화의 특징은?",["참여·분산형 계획","개인의 자율 중시","중앙집중형 계획, 관리자 지시 선호","관리자와 협의해 업무 수행"],2,"평등 문화는 참여·분산형, 협의.","st-com"],
+    ["W6","가장 많은 정보를 신속하게, 암묵지까지 협의할 수 있는 의사소통 수단은?",["이메일","문서","화이트보드를 활용한 대면 대화","전화"],2,"문서·이메일은 단순 사실 공유에 국한.","st-com"],
+    ["W6","이해관계자 참여계획서를 다룰 때 주의할 점은?",["모든 이해관계자에게 배포한다","민감 정보가 많아 이해관계자에게 배포되지 않도록 한다","착수 후 수정하지 않는다","PM만 작성한다"],1,"이해관계자 관점에서 민감한 정보가 명시되는 경우가 많다.","st-plan"],
+    ["W6","참여평가 매트릭스의 참여 수준을 낮은 순서대로 나열한 것은?",["저항→비인지→중립→지원→주도","비인지→저항→중립→지원→주도","비인지→중립→저항→주도→지원","중립→비인지→저항→지원→주도"],1,"Unaware→Resistant→Neutral→Supportive→Leading.","st-plan"],
+    ["W6","이해관계자 성과영역과 다른 성과영역의 상호작용으로 옳지 않은 것은?",["이해관계자는 변경요청의 주체다","PMO는 개발방식 결정에 영향을 미친다","이해관계자는 불확실성을 줄이기만 한다","이해관계자는 인도물의 승인 기준을 정의한다"],2,"불확실성을 줄이기도 하지만 만들기도 한다.","st-inter"],
+    ["W6","이해관계자들이 변경을 많이 요청하는 상황이 뜻할 수 있는 것은?",["목적과 가치에 공감하지 않는 상황","참여 수준이 이상적인 상황","리스크가 없는 상황","팀 성과가 높은 상황"],0,"반대로 무관심해서 요청이 없을 수도 있다.","st-inter"],
+    ["W6","'올바른 일을 하는 것(Do the Right Things)'에 해당하는 것은?",["관리","리더십","통제","중앙집중형 관리"],1,"관리는 Do Things Right.","tm-lead"],
+    ["W6","관리와 리더십 비교로 옳은 것은?",["관리는 장기 목표, 리더십은 단기 목표","관리는 현 상황 도전, 리더십은 현 상황 유지","관리는 방법과 시기를, 리더십은 대상과 이유를 묻는다","리더십은 직위·권력으로 지시한다"],2,"관리: how/when, 리더십: what/why.","tm-lead"],
+    ["W6","섬김형 리더십의 행동으로 교안에 없는 것은?",["장애물 제거","외부 업무로부터 팀 보호","팀원 격려와 동기부여","모든 결정을 PM이 단독으로 내림"],3,"PMP 시험은 거의 모든 상황에서 섬김형이 효과적이라고 본다.","tm-servant"],
+    ["W6","허시-블랜차드 모델에서 역량은 미흡하지만 의지가 있을 때 적합한 리더십은?",["지시형","설득형","참여형","위임형"],1,"역량↓의지↓ 지시형, 역량↑의지↓ 참여형, 둘 다 충분 위임형.","tm-hb"],
+    ["W6","허시-블랜차드 모델에서 역량은 있으나 의지가 미흡할 때 적합한 리더십은?",["지시형","설득형","참여형","위임형"],2,"참여형(Participating): 아이디어 공유.","tm-hb"],
+    ["W6","6주차 교안이 제시한 프로젝트 진행 단계별 리더십으로, 후반부에 적합한 것은?",["지시형","설득형","참여형","위임형"],3,"중반 이전 설득형 → 중반 이후 참여형 → 후반부 위임형.","tm-hb"],
+    ["W6","프로젝트 팀이 익숙한 유형의 프로젝트일수록 적합한 리더십은?",["지시형","위임형","독재형","통제형"],1,"생소할수록 지시형.","tm-servant"],
+    ["W6","지역적으로 분산된 프로젝트 팀을 부르는 말은?",["홀 팀","가상팀(Virtual team)","사일로 팀","CCB"],1,"화상회의·협업도구·개인 성과지표 명확화가 도움.","tm-servant"],
+    ["W6","감성지능에서 '자기 조절'로도 알려진 요소는?",["자기 인식","자기 관리","사회적 인식","사회적 기술"],1,"파괴적인 감정과 충동을 통제하는 능력.","tm-ei"],
+    ["W6","영향력 있는 경영층이 먼저 의견을 제시하면 그 의견만 나오는 현상은?",["집단사고","확증편향","닻 효과","선택적 지각"],2,"집단사고는 동일한 목소리를 강요하는 분위기로 잘못 결정하는 현상.","tm-dec"],
+    ["W6","집단사고를 예방하는 방법으로 교안이 제시한 것은?",["한 자리에서 즉시 만장일치로 결정","분산을 통해 다양한 의견을 수집한 뒤 토의로 좁혀 결정","경영층 의견을 먼저 듣는다","대책 없는 문제 제기를 금지한다"],1,"대책 없는 문제도 중요시해야 한다.","tm-dec"],
+    ["W6","과거 경험이나 처음 접한 정보에 현혹돼 자기 의견을 고집하는 현상은?",["확증편향","닻 효과","집단사고","선택적 지각"],0,"비판적 사고에서 주의할 점.","tm-skill"],
+    ["W6","갈등의 순기능이 아닌 것은?",["혁신적 풍토 조성","협업하는 팀워크","품질 문제 조기 발견","집단 간 파벌의식"],3,"파벌의식은 역기능(침묵, 수직적 지시 의존도 역기능).","tm-conf"],
+    ["W6","갈등의 역기능을 줄이기 위한 유의사항으로 옳지 않은 것은?",["상대를 존중하는 의사소통","과거가 아닌 현재와 미래에 집중","문제가 아닌 사람에 집중","함께 대안 모색"],2,"사람이 아닌 문제에 집중한다.","tm-conf"],
+    ["W6","외재적 동기에 대한 교안의 설명은?",["외재적 동기에 의존할수록 프로젝트 수행이 쉬워진다","외재적 동기에 의존할수록 프로젝트 수행은 어려워질 수 있다","내재적 동기는 승진·보너스에서 온다","동기는 PM에게만 필요하다"],1,"내재적 동기는 일의 성취에서 오는 만족감.","tm-skill"],
+    ["W6","프로젝트 비전에 대한 설명으로 옳은 것은?",["대부분 프로젝트 팀이 직접 만든다","대부분 팀이 만드는 것이 아니라 주어진다","한 번 정하면 조직 비전보다 자주 바뀌지 않는다","길고 상세할수록 좋다"],1,"좋은 비전은 짧은 문구로 목표를 요약한다.","tm-skill"],
+    ["W6","고성과팀의 특징으로 교안에 없는 것은?",["열린 소통","오너십 공유","권한 위임","엄격한 상명하복"],3,"열린 소통·오너십 공유·신뢰·협업·적응성·복원력·권한 위임·인정.","tm-dev"],
+    ["W6","팀 문화 구축 요소 중 '나쁜 소식을 이해관계자에게 신속·정확하게 알리는 것'은?",["투명성","정직함과 윤리의식","용기","지원"],1,"윤리의식은 잠재 리스크·환경 영향을 정확히 공개하는 것.","tm-culture"]
+  ];
+
+  var box=document.getElementById('qs'), scoreEl=document.getElementById('score');
+  var scopeSel=document.getElementById('q-scope'), countSel=document.getElementById('q-count');
+  var summary=document.getElementById('summary'), sumText=document.getElementById('sum-text');
+  var current=[], answered=0, correct=0, wrong=[];
+  document.getElementById('pool-info').textContent='문제은행 '+Q.length+'문항에서 매번 무작위로 뽑고 보기 순서도 섞습니다';
+  function pool(){var sc=scopeSel.value;return Q.filter(function(q){return sc==='all'||q[0]===sc;});}
+  function updateScore(){scoreEl.textContent=correct+' / '+answered+' 정답 · '+current.length+'문항';}
+  function renderSet(set){
+    current=set; answered=0; correct=0; wrong=[]; box.innerHTML=''; summary.hidden=true;
+    set.forEach(function(q,i){
+      var order=shuffle([0,1,2,3]);
+      var d=document.createElement('div'); d.className='q';
+      d.innerHTML='<div class="qn"></div><div class="qt"></div><div class="opts"></div><div class="exp" hidden></div>';
+      d.querySelector('.qn').textContent='Q'+String(i+1).padStart(2,'0');
+      var t=document.createElement('span'); t.className='tagwk'; t.textContent=WK[q[0]]; d.querySelector('.qn').appendChild(t);
+      d.querySelector('.qt').textContent=q[1];
+      var opts=d.querySelector('.opts'), mark=['①','②','③','④'];
+      var rightPos=order.indexOf(q[3]);
+      order.forEach(function(oi,pos){
+        var b=document.createElement('button'); b.type='button'; b.className='opt';
+        b.textContent=mark[pos]+' '+q[2][oi];
+        b.addEventListener('click',function(){
+          var all=opts.querySelectorAll('.opt');
+          all.forEach(function(x){x.disabled=true;});
+          all[rightPos].classList.add('right');
+          var ok=oi===q[3];
+          if(ok) correct++; else {b.classList.add('wrong'); wrong.push(q);}
+          answered++;
+          var ex=d.querySelector('.exp'); ex.hidden=false; ex.innerHTML='';
+          ex.className='exp '+(ok?'is-right':'is-wrong');
+          var v=document.createElement('span'); v.className='verdict';
+          v.textContent=ok?'정답입니다':'오답 · 정답은 '+mark[rightPos]+' '+q[2][q[3]];
+          ex.appendChild(v);
+          if(!ok){var pk=document.createElement('span');pk.className='picked';pk.textContent='내가 고른 답: '+mark[pos]+' '+q[2][oi];ex.appendChild(pk);}
+          var why=document.createElement('span'); why.className='why'; why.textContent='해설 · '+q[4]; ex.appendChild(why);
+          ex.appendChild(gotoBtn(q[5],'quiz','관련 내용 보기 →'));
+          updateScore();
+          if(answered===current.length){
+            summary.hidden=false;
+            sumText.innerHTML='<b>'+correct+' / '+current.length+'</b> 정답';
+            document.getElementById('retry-wrong').hidden=wrong.length===0;
+          }
+        });
+        opts.appendChild(b);
+      });
+      box.appendChild(d);
+    });
+    updateScore();
+  }
+  function newSet(){
+    var p=shuffle(pool()), n=parseInt(countSel.value,10);
+    renderSet(n>0?p.slice(0,n):p);
+  }
+  document.getElementById('new-set').addEventListener('click',newSet);
+  document.getElementById('new-set-2').addEventListener('click',function(){newSet();document.getElementById('quiz').scrollIntoView();});
+  document.getElementById('retry-wrong').addEventListener('click',function(){renderSet(shuffle(wrong));document.getElementById('quiz').scrollIntoView();});
+  scopeSel.addEventListener('change',newSet); countSel.addEventListener('change',newSet);
+  newSet();
+
+  /* ---------- 서술형 문제은행: [범위, 문제, 모범답안, 핵심어] ---------- */
+  var E=[
+    ["W2","프로세스 그룹과 수명주기의 단계가 다른 이유를 설명하시오.","수명주기(단계)는 일을 어떻게 나누고 어디서 끊을지를 정하고(예: 업무 분석 → 시범 운영 → 확대 적용), 프로세스 그룹(착수·계획·실행·감시 및 통제·종료)은 진행을 어떻게 관리할지를 묶은 활동의 묶음이다. 프로세스 그룹은 순서대로 밟는 단계가 아니며, 한 단계 안에서도 계획·실행·감시 및 통제가 되먹임으로 반복된다. 둘을 한 줄로 이으면 서로 다른 축이 섞인다.","활동의 묶음, 되먹임, 한 단계 안의 관리 활동","life-pm"],
+    ["W2","경비 정산 개선에서 개발 접근법을 고르고 근거를 대시오.","회계 기준(지출 인정 범위·증빙 요건·승인 권한)은 임의로 바꿀 수 없고 명확하므로 예측형으로 먼저 고정하고, 입력 화면과 안내 문구는 써 봐야 사용감을 알 수 있으므로 적응형으로 진행한다(하이브리드). 근거는 요구 명확성·피드백 가능성·변경 영향이다. 'IT라서 애자일'은 근거가 아니며, 월말 참여 불가 같은 제약이 생기면 피드백 시점·시범 범위·일정을 조정한다.","요구 명확성, 피드백 가능성, 변경 영향, 하이브리드","life-v8"],
+    ["W2","시스템 개통(완료)과 가치 실현이 다른 이유를 설명하시오.","완료 판정은 만든 것(개통·교육·인계)을 종료 승인 시점에 보고, 효과 판정은 나아진 것(처리시간·재작업·사용자 부담·장기 운영)을 종료 뒤에 본다. 프로젝트는 가치를 만들 수단을 만들고 그 수단으로 가치를 내는 것은 운영이므로, 양식을 새로 만들어도 예전 방식으로 신청하면 효과는 그대로다. 그래서 효과를 확인할 담당자와 시점을 미리 정해야 한다.","완료 판정 vs 효과 판정, 수단과 운영, 확인 담당자·시점","ch-docs"],
+    ["W2","비즈니스 케이스, 프로젝트 헌장, 프로젝트관리계획을 비교하시오.","비즈니스 케이스는 '왜' 할 가치가 있는가(편익·비용편익분석)에 답하지만 자원 사용 권한은 주지 않는다. 헌장은 '무엇을 어떤 권한으로 시작하는가'에 답하며 프로젝트 존재를 공식 승인하고 PM에게 자원 사용 권한을 준다(상세 일정은 없음). 관리계획은 '어떻게 수행·관리하는가'에 답하는 가장 중심 문서로 보조 계획과 기준선을 통합한다(시작 여부 판단은 없음).","왜 / 무엇을 어떤 권한으로 / 어떻게","ch-docs"],
+    ["W2","한 부서의 효율 향상이 전체 개선이 아닐 수 있는 이유를 시스템 사고로 설명하시오.","시스템 사고는 하위시스템 효율보다 전체 효율에 주의를 둔다. 정산 시스템으로 회계 확인은 건당 10분→4분으로 줄었지만 신청자 입력은 5분→12분으로 늘어 세 역할 합계는 18분→19분이 됐다. 다만 작업시간 합계는 대기 포함 처리기간과 다르고 오류·재요청이 줄었을 수 있으므로 재요청률·대기시간·이용자 부담을 함께 봐야 한다.","전체 최적, 하위 효율, 재요청률·대기시간","org-commit"],
+    ["W2","반복 수명주기와 증분 수명주기의 차이를 예를 들어 설명하시오.","반복은 같은 범위를 되풀이해 다듬는다(1차 초안 → 2차 항목 정리 → 3차 안내 문구). 증분은 쓸 수 있는 부분을 나누어 내놓아 범위를 늘린다(경비 한 종류를 신청부터 정산까지 → 다른 유형 추가 → 예외 처리 추가). 증분의 각 회차 결과는 그 자체로 쓰이며, 적응형은 이 둘의 혼합이다.","다듬기 vs 쓸 수 있는 범위 확대","life-types"],
+    ["W2","기업환경요인(EEF)과 조직 프로세스 자산(OPA)을 비교하시오.","EEF는 팀의 통제 밖에서 프로젝트에 영향·제한·지시를 주는 조건으로 내부(조직문화·소프트웨어·인프라)와 외부(사회·문화, 법적 제한, 물리적 환경)로 나뉜다. OPA는 조직 고유의 계획·프로세스·정책·절차·지식기반으로 조직 내부만 다루며, 프로세스와 정책 및 절차 / 기업 지식 베이스 / 팀 및 주제 전문가로 분류되고 프로젝트 중 계속 업데이트된다.","통제 밖, 내부·외부 vs 내부만, 업데이트","ch-charter"],
+    ["W2","조직구조 유형별로 PM의 권한과 예산 통제자가 어떻게 달라지는지 설명하시오.","기능 조직은 PM 권한이 적거나 없고 예산은 기능관리자가 통제하며 PM은 파트타임이다. 약한 매트릭스는 권한이 제한적이고 예산은 기능관리자, 균형 매트릭스는 낮음~보통에 예산은 혼합형이며 PM은 풀타임이다. 강한 매트릭스와 프로젝트 전담 조직은 PM이 예산을 통제하고 권한이 보통~높음, 높음~거의 전체다. 3주차는 어느 구조도 언제나 낫지 않다고 본다.","기능관리자 / 혼합형 / PM","org-struct"],
+    ["W4","통합관리와 거버넌스는 같은 변경 요청을 어떻게 다르게 보는가?","통합관리는 '무엇에 영향을 주는가'(범위·일정·비용·품질·자원·인수조건)를 모아 계획들의 정합성을 맞춘다. 거버넌스는 '누가 정하는가'(담당자 재량인지 승인권자 결정인지, 어떤 조직 기준이 적용되는지, 누가 책임지고 설명하는지)를 묻는다. 영향만 모으면 결정할 사람이 없어 멈추고, 결정 구조만 있으면 결정할 재료가 없다.","정합성, 결정 기준·권한·평가","pr-gov"],
+    ["W4","통합 변경통제 수행의 흐름과 결과 처리를 설명하시오.","변경 요청이 들어오면 변경로그에 기록하고 범위·일정·자원·품질·리스크 영향을 분석한 뒤 승인권자(필요하면 CCB)가 결정한다. 승인되면 계획·문서를 갱신하고 담당을 배정해 작업 지시 및 관리에서 구현하며 관계자에게 통보하고 결과를 확인한다. 보류는 보완 자료와 재검토 시점을 정하고, 기각은 사유를 기록해 요청자에게 통보한다. 변경로그는 항상 영향을 받는다.","변경로그, 영향 분석, 승인·보류·기각, 범위 확장 방지","pr-cc"],
+    ["W4","작업성과데이터, 작업성과정보, 작업성과보고서의 흐름을 설명하시오.","작업성과데이터는 작업 지시 및 관리에서 파악된 원시 측정값이다. 이것이 여러 통제 프로세스에서 수집되고 맥락을 고려해 분석되면 작업성과정보가 되고, 작업 모니터링 및 통제는 이를 의사결정·조치를 위해 편집해 작업성과보고서로 만든다. 보고서는 이해관계자에게 제공되고 통합 변경통제에서도 참고된다.","데이터 → 정보 → 보고서","pr-table"],
+    ["W4","형식지와 암묵지를 구분하고, 지식관리와 정보관리 기법이 각각 무엇을 돕는지 설명하시오.","형식지는 단어·그림·숫자로 코드화해 공유할 수 있는 지식(매뉴얼·사양서·설계도)이고, 암묵지는 신념·경험·통찰처럼 코드화가 어려워 관찰·모방·경험으로 얻는 지식이다. 지식관리 기법은 사람과 사람을 연결해 암묵지를 공유하고, 정보관리 기법은 사람과 정보를 연결해 형식지 공유를 돕는다. 핵심 아웃풋은 교훈 등록부다.","코드화 가능 여부, 사람↔사람 vs 사람↔정보, 교훈 등록부","pr-km"],
+    ["W4","PMBOK 6판·7판·8판의 차이를 설명하시오.","6판은 10 지식영역·49 프로세스로 무엇을 어떤 순서로 할지(ITTO)를 설명했지만 처방적이라는 평가를 받았다. 7판은 12 원칙·8 성과영역으로 마인드셋과 가치를 강조했지만 추상적이었다. 8판은 6 원칙·7 성과영역·40 프로세스로 원칙과 실행 사이에 조정을 두고 비처방적 프로세스 지침을 다시 결합했다. 뒤 판이 앞 판을 버린 것이 아니라 설명하는 자리가 달라졌다.","10·49 / 12·8 / 6·7·40, 조정","pmi-ed"],
+    ["W4","7판과 8판의 프로젝트 정의 변화를 설명하시오.","7판은 '고유한 제품·서비스·결과물을 만들기 위한 한시적 노력(endeavor)'으로 고유성이 결과물에 있고 성공은 요구사항 충족이었다. 8판은 '가치를 창출하기 위해 고유한 상황에서 추진하는 한시적 활동(initiative)'으로 고유성이 목표·환경·접근 방식·이해관계자 같은 상황에 있고 성공은 의도한 가치 충족이다. 한시적이라는 점은 유지된다.","initiative, unique context, create value","pmi-def"],
+    ["W4","8판의 세 마인드셋과 여섯 원칙을 짝지어 설명하시오.","가치 지향(어떤 목표로 수행하는가): 가치 중심, 지속 가능성 통합. 주인 의식(어떤 자세로 책임지는가): 책임감 있는 리더 되기, 권한 위임의 문화 구축. 선제적(어떻게 미리 관리하는가): 전체론적 관점 채택, 프로세스 및 인도물에 품질 내재화. 여섯 원칙은 서로 겹치고 한 결정에 함께 작용한다.","가치 지향 / 주인 의식 / 선제적","pr8"],
+    ["W4","권한(authority)과 리더십의 차이를 설명하시오.","권한은 직위와 함께 주어져 행동을 요구하고 정해진 범위에서 결정한다. 리더십은 직위에 매이지 않고 다른 사람의 자발적 행동을 이끌어 내며 팀원 누구나 발휘할 수 있다. 리더십 없는 권한은 실패하기 쉽지만 권한 없는 리더십은 성공할 수 있다. 스튜어드십(정직·투명·존중)이 리더십의 기본 요건이다.","직위 vs 자발성, 누구나 발휘","pr12"],
+    ["W4","스튜어드십의 의미와 구성요소를 설명하시오.","스튜어드십은 윤리를 지키는 범위에서 조직 내부와 외부 이해관계자의 이익을 추구하는 관리 활동이다. 청렴성·돌봄·신뢰성·규정 준수를 포함하고 재무·사회·지속가능한 환경에 대한 기여를 함께 고려한다. 내부적으로는 전략 연계·팀원 성장·자원 절약, 외부적으로는 지구환경 보호·지역사회 배려·파트너와 공정한 관계를 지킨다.","청렴성·돌봄·신뢰성·규정 준수, 재무·사회·환경","pr12"],
+    ["W4","조직 거버넌스와 프로젝트 거버넌스의 관계를 설명하시오.","조직 거버넌스는 투자 규모별 승인 절차, 승인이 필요한 변경 기준, 교훈 등록 절차, 개인정보 관리 프로세스 같은 방향과 기준을 준다. 프로젝트 거버넌스는 그 기준 안에서 성공 기준, 변경 요청 접수·검토·통보 방식, 이슈 보고 경로와 주기 같은 관리 방법을 정한다. 조정은 조직 기준 안에서 하며, 기준 자체를 바꾸려면 정한 쪽과 협의한다.","방향·기준 vs 관리 방법, 최소 기준","pr-gov"],
+    ["W6","이해관계자를 착수 이후에도 지속적으로 모니터링해야 하는 이유는?","초반에 식별하지 못한 이해관계자가 생길 수 있고(Known Unknown, Unknown Unknown), 기존 이해관계자의 영향력과 관심사항이 진행 수준에 따라 달라지기 때문이다. 관리대장을 계속 업데이트하고, 참여평가 매트릭스로 현재 수준과 목표 수준(비인지·저항·중립·지원·주도)의 차이를 보고 소통으로 줄인다.","식별 매트릭스, 참여평가 매트릭스","st-id"],
+    ["W6","현저성 모델과 우선순위 결정 스키마를 비교해 설명하시오.","현저성 모델은 권력·긴급성·합법성 세 속성의 조합으로 이해관계자를 분류한다(셋 다 가지면 가장 중요한, 권력+합법성은 지배적, 권력+긴급성은 위험한 등). 우선순위 결정 스키마는 권력과 관심도 두 축으로 대응을 정한다. 둘 다 높으면 집중 관리, 권력만 높으면 만족 상태 유지, 관심만 높으면 정보 제공, 둘 다 낮으면 최소한으로 모니터링한다.","권력·긴급성·합법성 / 권력×관심도","st-sal"],
+    ["W6","관리와 리더십의 차이를 설명하시오.","관리는 직위·권력으로 지시하고 계획 수립과 통제, 단기 목표, 현 상황 유지, 운영 이슈 해결에 집중하며 방법과 시기를 묻는다(Do Things Right). 리더십은 개인적 역량으로 영향력을 행사해 자발적 동기를 이끌고 인간관계와 혁신, 장기 목표, 현 상황 도전, 비전과 변화에 집중하며 대상과 이유를 묻는다(Do the Right Things).","Do Things Right vs Do the Right Things","tm-lead"],
+    ["W6","허시-블랜차드 상황 리더십 모델을 설명하시오.","팀원의 역량과 의지에 따라 리더십을 바꾼다. 역량·의지가 모두 미흡하면 지시형(지침 제시), 역량은 미흡하나 의지가 있으면 설득형(결정 내용 설명), 역량은 있으나 의지가 미흡하면 참여형(아이디어 공유), 둘 다 충분하면 위임형(의사결정 위임)이다. 교안은 진행 단계별로 중반 이전 설득형, 중반 이후 참여형, 후반부 위임형을 제시한다.","Telling·Selling·Participating·Delegating","tm-hb"],
+    ["W6","갈등의 순기능과 역기능, 관리 방법을 설명하시오.","갈등은 한 쪽의 목표를 다른 쪽이 방해할 때 생긴다. 적정 수준의 갈등은 혁신적 풍토, 협업하는 팀워크, 품질 문제 조기 발견 같은 순기능을 낳지만, 관리되지 않으면 파벌의식, 팀원 침묵, 수직적 지시 의존 같은 역기능을 낳는다. 상대를 존중하는 의사소통, 현재와 미래에 집중, 사람이 아닌 문제에 집중, 함께 대안 모색으로 관리한다.","순기능 3 / 역기능 3 / 유의사항 4","tm-conf"],
+    ["W6","프로젝트 팀 의사결정 시 유의사항을 설명하시오.","의사결정 결과를 실행하는 것은 팀원이므로 참여를 통해 수용성을 높인다. 영향력 있는 사람의 첫 의견만 나오는 닻 효과를 막고 다양한 의견을 모은다. 팀원의 시간과 비용을 고려해 신속한 기법을 쓴다. 동일한 목소리를 강요하는 집단사고를 피하려고 분산해 의견을 모은 뒤 토의로 좁힌다. 대책 없는 문제 제기도 중요하게 다룬다.","수용성, 닻 효과, 집단사고","tm-dec"]
+  ];
+  var eScope=document.getElementById('e-scope'), eNum=document.getElementById('e-num'), eQ=document.getElementById('e-q');
+  var eDraft=document.getElementById('e-draft'), eAns=document.getElementById('e-ans'), eKw=document.getElementById('e-kw'), eProg=document.getElementById('e-progress');
+  var deck=[], pos=-1, seen=0;
+  document.getElementById('essay-info').textContent='문제은행 '+E.length+'문항에서 한 문제씩 무작위로 나옵니다. 먼저 답을 써 보고 모범답안과 비교하세요.';
+  function newDeck(){var sc=eScope.value;deck=shuffle(E.filter(function(e){return sc==='all'||e[0]===sc;}));pos=-1;seen=0;}
+  function nextEssay(){
+    if(pos>=deck.length-1) newDeck();
+    pos++; seen++;
+    var e=deck[pos];
+    eNum.textContent='서술 '+seen+' · '+WK[e[0]];
+    eQ.textContent=e[1]; eDraft.value=''; eAns.hidden=true; eKw.hidden=true;
+    eAns.textContent=e[2]; eKw.textContent='핵심어: '+e[3]+'  ';
+    eKw.appendChild(gotoBtn(e[4],'essay','관련 노트 보기 →'));
+    document.getElementById('e-show').textContent='모범답안 보기';
+    eProg.textContent=(pos+1)+' / '+deck.length+' (한 바퀴 돌면 다시 섞음)';
+  }
+  document.getElementById('e-show').addEventListener('click',function(){
+    var open=eAns.hidden; eAns.hidden=!open; eKw.hidden=!open;
+    this.textContent=open?'모범답안 숨기기':'모범답안 보기';
+  });
+  document.getElementById('e-next').addEventListener('click',nextEssay);
+  eScope.addEventListener('change',function(){newDeck();nextEssay();});
+  newDeck(); nextEssay();
+})();
+</script>

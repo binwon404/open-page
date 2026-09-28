@@ -1,0 +1,1919 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>조직경영 중간고사 노트</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Nanum+Myeongjo:wght@700;800&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{
+  --bg:#F4F6F8; --surface:#FFFFFF; --ink:#1B2230; --muted:#5A6476; --line:#DCE1E8;
+  --accent:#2A57A0; --accent-soft:#E6EDF8; --mark:#F6DB74; --mark-ink:#1B2230;
+  --blank:#CBD3DF; --ok:#1F7A4D; --ok-soft:#E3F3EA; --bad:#B23A3A; --bad-soft:#F8E5E5;
+  --warn:#8A5A00; --warn-soft:#FBF1D9;
+  --serif:"Nanum Myeongjo",Georgia,"Apple SD Gothic Neo",serif;
+  --sans:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#11151C; --surface:#1A2029; --ink:#E3E8EF; --muted:#9AA5B6; --line:#2C3542;
+    --accent:#86A9E6; --accent-soft:#1F2D45; --mark:rgba(246,219,116,.30); --mark-ink:#F3F5F8;
+    --blank:#3A4555; --ok:#6CCB97; --ok-soft:#173226; --bad:#EE8B8B; --bad-soft:#3A1F22;
+    --warn:#E6BD63; --warn-soft:#342A15;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#11151C; --surface:#1A2029; --ink:#E3E8EF; --muted:#9AA5B6; --line:#2C3542;
+  --accent:#86A9E6; --accent-soft:#1F2D45; --mark:rgba(246,219,116,.30); --mark-ink:#F3F5F8;
+  --blank:#3A4555; --ok:#6CCB97; --ok-soft:#173226; --bad:#EE8B8B; --bad-soft:#3A1F22;
+  --warn:#E6BD63; --warn-soft:#342A15;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15.5px;line-height:1.7;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:20px;padding-block:28px 80px;display:grid;grid-template-columns:220px minmax(0,1fr);gap:40px}
+@media (max-width:880px){.wrap{grid-template-columns:minmax(0,1fr);gap:16px;padding-inline:16px}}
+nav.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 20px);align-self:start;font-size:13.5px}
+nav.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+nav.toc a{display:block;color:var(--muted);text-decoration:none;padding:5px 10px;border-radius:6px}
+nav.toc a:hover,nav.toc a:focus-visible{background:var(--accent-soft);color:var(--ink);outline:none}
+nav.toc .wk{font-family:var(--mono);font-size:11px;color:var(--accent);margin-right:6px}
+@media (max-width:880px){
+  nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:8px;border-bottom:1px solid var(--line)}
+  nav.toc ol{display:flex;overflow-x:auto;gap:4px;scrollbar-width:none}
+  nav.toc a{white-space:nowrap;border:1px solid var(--line)}
+  nav.toc .toolbar{display:none}
+}
+.toolbar{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);display:grid;gap:8px}
+.toolbar p{margin:0;font-size:12.5px;color:var(--muted);line-height:1.5}
+button{font:inherit;cursor:pointer}
+.btn{border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:7px 12px;border-radius:8px;font-size:13.5px;font-weight:600}
+.btn[aria-pressed="true"]{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.mobile-tools{display:none}
+@media (max-width:880px){.mobile-tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:13px;color:var(--muted)}}
+
+main{min-width:0}
+header.top{padding-bottom:22px;border-bottom:2px solid var(--ink);margin-bottom:8px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--accent);text-transform:uppercase}
+h1{font-family:var(--serif);font-weight:800;font-size:clamp(28px,4.4vw,40px);line-height:1.25;margin:6px 0 10px;text-wrap:balance}
+.lede{color:var(--muted);max-width:62ch;margin:0}
+section{padding-block:34px 10px;border-bottom:1px solid var(--line);scroll-margin-top:70px}
+h2{font-family:var(--serif);font-weight:800;font-size:26px;line-height:1.3;margin:0 0 4px;text-wrap:balance}
+.src{font-size:13px;color:var(--muted);margin:0 0 18px}
+.src b{font-family:var(--mono);font-weight:500;color:var(--accent)}
+h3{font-size:17px;font-weight:700;margin:28px 0 8px}
+h4{font-size:15px;font-weight:700;margin:18px 0 6px}
+p,li{max-width:72ch}
+ul,ol{padding-left:1.3em;margin:6px 0 12px}
+li{margin:3px 0}
+.k{background:linear-gradient(transparent 55%,var(--mark) 55%);color:var(--mark-ink);font-weight:600;padding:0 1px;border-radius:2px}
+body.blank .k{background:var(--blank);color:transparent;cursor:pointer;border-radius:4px;user-select:none}
+body.blank .k.show{background:linear-gradient(transparent 55%,var(--mark) 55%);color:var(--mark-ink);cursor:default;user-select:auto}
+.tbl{overflow-x:auto;margin:10px 0 16px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:520px}
+th,td{padding:9px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:var(--accent-soft);font-weight:700;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.c,th.c{text-align:center}
+.note{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:12px 16px;margin:14px 0}
+.note .tag{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;font-weight:500;display:inline-block;margin-bottom:4px}
+.note.exam{background:var(--warn-soft);border-color:transparent}
+.note.exam .tag{color:var(--warn)}
+.note.v8{background:var(--accent-soft);border-color:transparent}
+.note.v8 .tag{color:var(--accent)}
+.note.fix{background:var(--bad-soft);border-color:transparent}
+.note.fix .tag{color:var(--bad)}
+.note p{margin:4px 0}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:10px 0}
+.grid2 > div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.grid2 h4{margin-top:0}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:10px 0;font-size:14px}
+.flow span{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:4px 10px}
+.flow i{font-style:normal;color:var(--muted)}
+.mono{font-family:var(--mono);font-size:13px}
+
+/* 분류 */
+.sort{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:14px}
+.pack{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px}
+.pack h4{margin:0 0 8px;font-size:15px}
+.pack .files{display:grid;gap:4px;font-size:13.5px}
+.pack .files div{display:flex;gap:8px;align-items:baseline}
+.pack .arrow{color:var(--muted);font-size:12.5px;margin:8px 0 4px}
+.pill{font-family:var(--mono);font-size:11px;padding:1px 7px;border-radius:99px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+.pill.solo{background:var(--warn-soft);color:var(--warn)}
+
+/* 퀴즈 */
+.quiz-head{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:10px}
+.score{font-family:var(--mono);font-size:14px;font-variant-numeric:tabular-nums}
+.q{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:12px 0}
+.q .qn{font-family:var(--mono);font-size:12px;color:var(--accent)}
+.q .qt{font-weight:600;margin:2px 0 10px}
+.opts{display:grid;gap:6px}
+.opt{text-align:left;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;padding:8px 12px;font-size:14.5px}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.opt:disabled{cursor:default}
+.opt.right{background:var(--ok-soft);border-color:var(--ok);color:var(--ink)}
+.opt.wrong{background:var(--bad-soft);border-color:var(--bad);color:var(--ink)}
+.exp{margin-top:10px;font-size:14px;color:var(--muted)}
+.exp b{color:var(--ink)}
+details.essay{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin:10px 0}
+details.essay summary{cursor:pointer;font-weight:600}
+details.essay summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+details.essay .ans{margin-top:10px;font-size:14.5px}
+[hidden]{display:none!important}
+nav.toc a[aria-current="page"]{background:var(--accent);color:var(--bg)}
+nav.toc a[aria-current="page"] .wk{color:var(--bg);opacity:.8}
+main > section{border-bottom:none}
+.pager{display:flex;justify-content:space-between;gap:10px;margin-top:28px;padding-top:16px;border-top:1px solid var(--line);flex-wrap:wrap}
+.pager button{max-width:48%;text-align:left}
+.pager .next{margin-left:auto;text-align:right}
+.pager small{display:block;font-size:11.5px;color:var(--muted);font-weight:500}
+.quiz-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.summary{background:var(--accent-soft);border-radius:12px;padding:14px 16px;margin:14px 0;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.summary b{font-size:18px}
+.q .qn .tagwk{color:var(--muted);margin-left:8px}
+.ecard{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:12px 0}
+.ecard .qn{font-family:var(--mono);font-size:12px;color:var(--accent)}
+.ecard .qt{font-weight:700;font-size:16.5px;margin:4px 0 12px;text-wrap:balance}
+.ecard textarea{width:100%;min-height:130px;font:inherit;font-size:14.5px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;resize:vertical}
+.ecard textarea:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.ecard .row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.ecard .ans{margin-top:12px;padding:12px 14px;border-radius:8px;background:var(--ok-soft);font-size:14.5px}
+.ecard .kw{margin-top:8px;font-size:13px;color:var(--muted)}
+main [id]{scroll-margin-top:80px}
+.exp{border-radius:8px;padding:10px 14px;background:var(--bg);border:1px solid var(--line);color:var(--ink)}
+.exp.is-wrong{background:var(--bad-soft);border-color:transparent}
+.exp.is-right{background:var(--ok-soft);border-color:transparent}
+.exp .verdict{font-weight:700}
+.exp .picked{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+.exp .why{display:block;margin-top:6px}
+.goto{margin-top:8px;border:none;background:none;padding:0;color:var(--accent);font-weight:600;font-size:13.5px;text-decoration:underline;text-underline-offset:3px}
+.goto:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.flash{outline:3px solid var(--mark);outline-offset:6px;border-radius:6px;transition:outline-color 1.6s}
+.flash.fade{outline-color:transparent}
+.backbar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:10;box-shadow:0 6px 20px rgba(0,0,0,.18);background:var(--ink);color:var(--bg);border:none;padding:10px 18px;border-radius:99px;font-weight:600;font-size:14px}
+.backbar:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+/* 시험 직전 요약 */
+nav.toc a.cram-link{color:var(--ink);font-weight:600}
+.cram-nums{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin:10px 0 6px}
+.cram-nums > div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px;line-height:1.35}
+.cram-nums b{display:block;font-family:var(--mono);font-weight:500;font-size:19px;color:var(--accent);margin-bottom:4px;font-variant-numeric:tabular-nums}
+.cram-nums b .k{color:var(--accent)}
+.cram-nums span{font-size:13.5px}
+.cram-nums small{font-size:12px;color:var(--muted)}
+.cram-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:12px;margin:10px 0}
+.ccard{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.ccard h4{margin:0 0 6px;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.ccard .wkt{font-family:var(--mono);font-size:11px;font-weight:500;color:var(--accent);margin-right:8px}
+.ccard ul{margin:0;padding-left:1.1em;font-size:14px;line-height:1.6}
+.ccard li{margin:5px 0}
+.ref{border:none;background:none;padding:0;color:var(--accent);font-weight:600;font-size:12.5px;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.ref:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+#cram .tbl table{min-width:480px}
+/* 2x2 상황판 */
+.quad{overflow-x:auto;margin:14px 0}
+.quad table{border-collapse:separate;border-spacing:6px;width:100%;min-width:460px;table-layout:fixed}
+.quad th{border:none;background:none;font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.03em;color:var(--muted);text-align:center;vertical-align:middle;white-space:normal;padding:2px}
+.quad th:first-child{width:64px}
+.quad td{border:1px solid var(--line);border-radius:10px;padding:12px 14px;vertical-align:top}
+.quad td b.qn{display:block;font-size:14.5px;font-weight:700;margin-bottom:5px;color:var(--ink)}
+.quad td small{display:block;color:var(--muted);font-size:10.5px;margin:-2px 0 6px}
+.quad td ul{margin:0;padding-left:1.05em;font-size:13px;line-height:1.55}
+.quad td li{margin:2px 0}
+.quad td.qa{background:var(--accent-soft)}
+.quad td.qb{background:var(--ok-soft)}
+.quad td.qc{background:var(--warn-soft)}
+.quad td.qd{background:var(--bad-soft)}
+/* 3원 벤다이어그램 */
+.venn3{position:relative;width:100%;max-width:360px;aspect-ratio:1/1;margin:26px auto 30px}
+.venn3 .circ{position:absolute;width:58%;aspect-ratio:1;border-radius:50%}
+.venn3 .cA{left:2%;top:0;background:var(--accent);opacity:.16}
+.venn3 .cB{right:2%;top:0;background:var(--warn);opacity:.16}
+.venn3 .cC{left:22%;bottom:0;background:var(--ok);opacity:.16}
+.venn3 .clabel{position:absolute;z-index:2;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.02em}
+.venn3 .rlabel{position:absolute;z-index:2;transform:translate(-50%,-50%);text-align:center;font-size:11px;font-weight:600;color:var(--ink);width:78px;line-height:1.25}
+.venn3 .rlabel small{display:block;font-weight:500;color:var(--muted);font-size:10px;letter-spacing:.01em}
+.venn3 .rlabel.core{font-size:12.5px;font-weight:800;color:var(--accent);width:64px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+
+<div class="wrap">
+<nav class="toc" aria-label="목차">
+  <ol>
+    <li><a href="#sort"><span class="wk">00</span>자료 분류</a></li>
+    <li><a href="#cram" class="cram-link"><span class="wk">★</span>시험 직전 요약</a></li>
+    <li><a href="#gl"><span class="wk">1강</span>목표의 관점·통합</a></li>
+    <li><a href="#gt"><span class="wk">1강</span>목표 유형·충돌·변동</a></li>
+    <li><a href="#mb"><span class="wk">1강+</span>SMART·MBO·OKR</a></li>
+    <li><a href="#ef"><span class="wk">1강</span>유효성 접근법</a></li>
+    <li><a href="#cv"><span class="wk">1강</span>경쟁가치·문화진단</a></li>
+    <li><a href="#ds"><span class="wk">2강</span>구조·설계 기본</a></li>
+    <li><a href="#dv"><span class="wk">2강</span>분업화(분할)</a></li>
+    <li><a href="#ig"><span class="wk">2강</span>통합화·조정</a></li>
+    <li><a href="#ct"><span class="wk">2강</span>통제·분권·현대 양식</a></li>
+    <li><a href="#sf"><span class="wk">3강</span>상황요인</a></li>
+    <li><a href="#tc"><span class="wk">3강</span>조직기술</a></li>
+    <li><a href="#en"><span class="wk">3강</span>환경 불확실성</a></li>
+    <li><a href="#quiz"><span class="wk">Q</span>객관식 퀴즈</a></li>
+    <li><a href="#essay"><span class="wk">Q</span>서술형 예상</a></li>
+  </ol>
+  <div class="toolbar">
+    <button class="btn blank-toggle" type="button" aria-pressed="false">빈칸 암기 모드</button>
+    <p>켜면 형광펜 친 핵심어가 가려져요. 가려진 칸을 누르면 하나씩 열립니다.</p>
+  </div>
+</nav>
+
+<main>
+<div class="mobile-tools">
+  <button class="btn blank-toggle" type="button" aria-pressed="false">빈칸 암기 모드</button>
+  <span>가려진 칸을 누르면 열립니다</span>
+</div>
+<header class="top" id="top-header">
+  <div class="eyebrow">2026-2 조직경영과 성과관리 · 중간고사 대비 1~3강</div>
+  <h1>조직경영과 성과관리 중간고사 노트</h1>
+  <p class="lede">왼쪽 목차에서 파트를 고르면 그 파트만 보입니다. 형광펜은 외울 말, 노란 상자는 시험 포인트, 파란 상자는 정보영 교수님 강의자료(증강판)가 더한 관점, 빨간 상자는 두 자료끼리 어긋나는 부분입니다.</p>
+</header>
+
+<!-- 00 분류 -->
+<section id="sort">
+  <h2>자료 분류</h2>
+  <p class="src">폴더 안 PDF 5개(교안 3개 + 교수님 증강판 2개)를 끝까지 읽고 대조한 결과</p>
+  <p>이 과목 자료는 여러 차시를 묶은 합본이 아니라 <b>강 단위로 짝을 이루는 두 종류</b>입니다. ① 한국공학대 양식의 <b>교안</b>(표지 정동열, dyjung@) — 기본 개념과 표 위주. ② 정보영 교수님 명의의 <b>증강판</b>(byjung@, 9/12·9/13) — 같은 강 제목이지만 문장을 새로 쓰고 SMART·MBO·OKR·BSC·OCAI, 2024~2026 사례(AI·ESG·Holacracy·SAFe)를 더한 자료입니다. 줄 단위로 겹치는 문장은 거의 없고, 학자 정의표(2강)처럼 같은 내용을 다시 풀어쓴 부분만 겹칩니다.</p>
+  <div class="sort">
+    <div class="pack">
+      <h4>1강 짝 <span class="pill">교안 22p + 증강 32p</span></h4>
+      <div class="files">
+        <div><span class="pill">22p</span>1강_조직목표와 조직유효성 (교안)</div>
+        <div><span class="pill">32p</span>조직목표와_조직유효성 · 9/12 (증강판)</div>
+      </div>
+      <div class="arrow">증강판만 있는 것: 목표의 5기능, SMART·MBO·OKR, AI·ESG, 효율 vs 유효, 이해관계자·BSC, 하이브리드 근무, CVF 문화유형·OCAI</div>
+    </div>
+    <div class="pack">
+      <h4>2강 짝 <span class="pill">교안 25p + 증강 32p</span></h4>
+      <div class="files">
+        <div><span class="pill">25p</span>2강_조직설계의 기본적 구성요소 (교안)</div>
+        <div><span class="pill">32p</span>조직설계의_기본적_구성요소 · 9/13 (증강판)</div>
+      </div>
+      <div class="arrow">증강판만 있는 것: 구조≠설계, 구조의 4효과, 수평분할 4기준, 조정 메커니즘 5, 매트릭스, 위임·분산 의사결정, Holacracy·스킬기반·SAFe, 5양식 비교, 함정 5</div>
+    </div>
+    <div class="pack">
+      <h4>3강 단독 <span class="pill solo">증강판 없음</span></h4>
+      <div class="files">
+        <div><span class="pill">28p</span>3강_조직설계와 영향요인 (교안)</div>
+      </div>
+      <div class="arrow">3강 증강판은 폴더에 없습니다. 교안 그대로 공부할 범위입니다(그림 슬라이드의 표까지 노트에 옮겨 두었습니다).</div>
+    </div>
+  </div>
+  <div class="note fix"><span class="tag">확인 필요 · 강 제목 예고</span>
+    <p>증강판 1강 끝의 예고는 “제2강 조직구조와 디지털 전환”, 증강판 2강 끝의 예고는 “제3강 조직구조의 전형과 변형(기능형·사업부제·매트릭스·하이브리드)”입니다. 실제 교안 2강·3강 제목(조직설계의 기본적 구성요소 / 조직설계와 영향요인)과 다릅니다. 3강 증강판이 나오면 범위가 달라질 수 있으니 교수님께 확인해 보세요.</p>
+  </div>
+</section>
+
+<!-- ★ 시험 직전 요약 -->
+<section id="cram">
+  <h2>시험 직전 요약</h2>
+  <p class="src">시험장 들어가기 전 10분용. 형광펜만 훑어도 되고, <b>빈칸 암기 모드</b>를 켜면 숫자·핵심어가 가려져 셀프 테스트가 됩니다. 각 카드의 <b>노트 →</b>를 누르면 자세한 설명으로 갑니다.</p>
+
+  <h3 id="cram-num">숫자로 외우기</h3>
+  <div class="cram-nums">
+    <div><b><span class="k">3</span></b><span>개인·조직 목표 통합 모형<br><small>교환·교화·수용</small></span></div>
+    <div><b><span class="k">5</span></b><span>조직목표의 기능<br><small>정당성·방향·의사결정·성과평가·동기부여</small></span></div>
+    <div><b><span class="k">3</span></b><span>목표합의 과정<br><small>타협과 협상·반강제적 통제·재조정</small></span></div>
+    <div><b><span class="k">4</span></b><span>목표 변동<br><small>교체(승계)·추가 / 왜곡·수단 전도</small></span></div>
+    <div><b><span class="k">4</span></b><span>목표설정이론 변인<br><small>구체성·난이도·피드백·약속</small></span></div>
+    <div><b><span class="k">1954</span></b><span>MBO (Drucker)</span></div>
+    <div><b><span class="k">0.6~0.7</span></b><span>OKR 좋은 분기 달성도</span></div>
+    <div><b><span class="k">3</span></b><span>OKR이 MBO와 다른 점<br><small>평가 분리·투명 공개·도전적 분기</small></span></div>
+    <div><b><span class="k">4</span></b><span>BSC 관점<br><small>재무·고객·내부프로세스·학습성장</small></span></div>
+    <div><b><span class="k">3</span></b><span>경쟁가치 차원<br><small>구조/제도·운영 초점·수단과 목표</small></span></div>
+    <div><b><span class="k">6</span> · <span class="k">100</span>점</b><span>OCAI 진단 차원 · 네 유형에 배분</span></div>
+    <div><b><span class="k">1/3</span></b><span>하이브리드 근무 이직률 감소<br><small>생산성은 그대로</small></span></div>
+    <div><b><span class="k">3</span></b><span>조직구조 특성<br><small>복잡성·공식화·집권화</small></span></div>
+    <div><b><span class="k">4</span></b><span>조직설계 요소<br><small>업무할당·위계·통제범위·조정장치</small></span></div>
+    <div><b><span class="k">4</span> / <span class="k">4</span></b><span>수평 분할 기준 / 수직 층위<br><small>기능·산출물·고객·지역</small></span></div>
+    <div><b><span class="k">3</span></b><span>통합화 수단 (교안)<br><small>공식화·표준화·상호 조정</small></span></div>
+    <div><b><span class="k">5</span> / <span class="k">5</span></b><span>연결 메커니즘(교안) / 조정 메커니즘(증강)</span></div>
+    <div><b><span class="k">3</span></b><span>표준화 범위<br><small>투입물·과정·산출물</small></span></div>
+    <div><b><span class="k">4</span></b><span>분권화 수준 결정 요인<br><small>가치관·기술 복잡성·환경 변화·실무자 능력</small></span></div>
+    <div><b><span class="k">5</span> / <span class="k">5</span></b><span>현대 구조 양식 / 설계 함정</span></div>
+    <div><b><span class="k">6</span></b><span>상황요인<br><small>규모·연혁·목표·전략·문화·권력</small></span></div>
+    <div><b><span class="k">4</span></b><span>매개변수<br><small>과업 다양성·난이도·불확실성·의존성</small></span></div>
+    <div><b><span class="k">n(n−1)/2</span></b><span>인간관계 수<br><small>10명 → 45개</small></span></div>
+    <div><b><span class="k">3</span> · <span class="k">4</span> · <span class="k">3</span></b><span>우드워드 생산기술 · 퍼로우 유형 · 톰슨 의존성</span></div>
+    <div><b><span class="k">3</span> / <span class="k">4</span></b><span>불확실성 측면 / 환경 유형<br><small>상태·결과·반응</small></span></div>
+  </div>
+
+  <h3 id="cram-part">파트별 핵심 키워드</h3>
+  <div class="cram-cards">
+    <div class="ccard">
+      <h4><span><span class="wkt">1강</span>목표의 관점·통합</span><button type="button" class="ref" data-ref="gl-model">노트 →</button></h4>
+      <ul>
+        <li>목표의 역할: <span class="k">활동의 동기 · 판단기준 · 존재가치 지표</span></li>
+        <li>합리적 관점 = 목표 달성 <span class="k">극대화</span> / 자연적 관점 = 상황 적응, <span class="k">생존·유지</span> 우선</li>
+        <li>조화의 계기 = 기여에 대한 <span class="k">보상</span>(물질적 + 비물질적)</li>
+        <li><span class="k">교환</span> = 외재적 보상 · <span class="k">교화</span> = 가치 내면화 · <span class="k">수용</span> = 조직이 개인목표 인정(자율)</li>
+      </ul>
+    </div>
+    <div class="ccard">
+      <h4><span><span class="wkt">1강</span>목표 유형·충돌·변동</span><button type="button" class="ref" data-ref="gt-chg">노트 →</button></h4>
+      <ul>
+        <li>공식목표 = <span class="k">사명</span>, 추상·포괄 / 운영목표 = 측정 가능·단기·<span class="k">자원배분</span></li>
+        <li>공언(Stated) vs 실제(Real) 목표 불일치 → 갈등</li>
+        <li>하위목표 많을수록 <span class="k">갈등 가능성↑</span> · 합의: 타협과 협상 / 반강제적 통제 / 재조정(정치적 행동)</li>
+        <li>교체 = 기존 목표가 <b>달성됐거나 달성 불가</b>일 때 · 추가 = 부수 목표 병행</li>
+        <li>왜곡(단체장 재선) · <span class="k">수단 전도</span>(병상 가동률) = 증강판의 <span class="k">목표전환</span></li>
+      </ul>
+    </div>
+    <div class="ccard">
+      <h4><span><span class="wkt">1강+</span>SMART·MBO·OKR</span><button type="button" class="ref" data-ref="mb-okr3">노트 →</button></h4>
+      <ul>
+        <li>Locke &amp; Latham: <span class="k">구체적이고 도전적인 목표</span> → 성과 (단, 수용되어야)</li>
+        <li>SMART = Specific·Measurable·Achievable·Relevant·Time-bound</li>
+        <li>MBO: <span class="k">성과와 평가 직접 연결</span> → 한계 <span class="k">목표 부풀리기</span></li>
+        <li>OKR: <span class="k">평가에서 분리 · 투명 공개 · 도전적 분기</span>, 하나라도 빠지면 "MBO의 변주"</li>
+        <li>AI: 직무가 아닌 <span class="k">과업(task)</span> 단위 · ESG: <span class="k">두 번째 KPI 트리</span>, 그린워싱 위험</li>
+      </ul>
+    </div>
+    <div class="ccard">
+      <h4><span><span class="wkt">1강</span>유효성 접근법</span><button type="button" class="ref" data-ref="ef-map">노트 →</button></h4>
+      <ul>
+        <li>유효성 = 조직이 <span class="k">얼마나 잘 기능하는지</span> 판단 기준, 지금은 목표·과정·결과 전반</li>
+        <li>목표달성 전제 = 운영목표의 <span class="k">계량화</span> · 한계 = 목표 상충, 주관성 / "좋은 목표인가"는 안 물음</li>
+        <li>시스템적 = 투입→변환→산출 전체 · 하위 두 갈래 <span class="k">자원기준 · 내부프로세스</span></li>
+        <li>자원기준: 자원 보유 ≠ 효과적 사용 · 내부프로세스: <span class="k">외부 평가자가 측정 어려움</span></li>
+        <li>통합적: 이해관계자 접근법 + <span class="k">BSC</span>(Kaplan &amp; Norton)</li>
+      </ul>
+    </div>
+    <div class="ccard">
+      <h4><span><span class="wkt">1강</span>경쟁가치·문화진단</span><button type="button" class="ref" data-ref="cv-4">노트 →</button></h4>
+      <ul>
+        <li>구성원 = <span class="k">내부지향</span>, 조직 = <span class="k">외부지향</span></li>
+        <li>네 모형·네 문화는 아래 "한 장 요약" 표로</li>
+        <li>OCAI: 6차원 × <span class="k">현재 vs 5년 뒤 선호</span>, 100점 배분</li>
+        <li>Kasa(2025) <span class="k">혼합 하위문화</span></li>
+        <li>정합 실패 3: <span class="k">전략↔문화 · 문화↔지표 · 전략↔지표</span></li>
+      </ul>
+    </div>
+    <div class="ccard">
+      <h4><span><span class="wkt">2강</span>구조·설계 기본</span><button type="button" class="ref" data-ref="ds-vs">노트 →</button></h4>
+      <ul>
+        <li>Blau = 지위 배분(<span class="k">위계</span>) · Gerloff = <span class="k">지도</span> · Child = 관리 <span class="k">메커니즘</span> · Ranson 등 = <span class="k">상호작용</span></li>
+        <li>설계 = 잘 나누고(<span class="k">differentiation</span>) 잘 통합(<span class="k">integration</span>)</li>
+        <li>구조 = <span class="k">상태</span>·결과 / 설계 = <span class="k">과정</span>·결정의 묶음 (교안은 "같은 의미")</li>
+        <li>역할: 분업·조정과 통합(일) / 의사결정과 통제(사람)</li>
+        <li>과업구조 <span class="k">sub-structure</span> / 부서구조 <span class="k">super-structure</span></li>
+      </ul>
+    </div>
+    <div class="ccard">
+      <h4><span><span class="wkt">2강</span>분업화</span><button type="button" class="ref" data-ref="dv-hv">노트 →</button></h4>
+      <ul>
+        <li>수평적 = <b>같은 수준</b>에서 나눔 · 수직적 = <b>관리와 실천</b> 분리</li>
+        <li>직위가 <span class="k">올라갈수록 분업 최소화</span> · <span class="k">반복·단순 기술일수록 분업 용이</span></li>
+        <li>지나친 분업: 반복으로 <span class="k">오히려 효율 저하</span>, <span class="k">연결비용</span>, 부서 갈등</li>
+        <li>적정 수준 = <span class="k">이득과 손실의 균형점</span></li>
+        <li>분할 단위: 고정 직무 → <span class="k">재구성 가능한 스킬 단위</span></li>
+      </ul>
+    </div>
+    <div class="ccard">
+      <h4><span><span class="wkt">2강</span>통합화·조정</span><button type="button" class="ref" data-ref="ig-def">노트 →</button></h4>
+      <ul>
+        <li>공식화는 <span class="k">양이 아니라 얼마나 지켜지는지</span> · 과하면 융통성·창의성↓, 비인간화</li>
+        <li>투입물 표준화 = 훈련·교육(<span class="k">making</span>) · 자격자 선발(<span class="k">buying</span>)</li>
+        <li>상호 조정 = <span class="k">위계적 권한 없이</span> 조정 · <span class="k">연결핀</span>(liaison) = 중재자</li>
+        <li>증강판 조정 5: 직접감독 → 규칙절차 → 목표설정 → 상호조정 문화 → <span class="k">전담 통합자</span> (갈수록 무겁고 깊음)</li>
+        <li>매트릭스 = <span class="k">두 매니저에게 보고</span>, 충돌·시간 두 배</li>
+      </ul>
+    </div>
+    <div class="ccard">
+      <h4><span><span class="wkt">2강</span>통제·분권·현대 양식</span><button type="button" class="ref" data-ref="ct-cd">노트 →</button></h4>
+      <ul>
+        <li>통제 = <span class="k">권한</span> + 의사결정권이 누구에게 있는가 · 주체·대상·방식</li>
+        <li>집권화 = 업무가 <b>긴밀히 연결</b>, 신속 결정 · 분권화 = <b>외부 변화 빠를 때</b></li>
+        <li>통제 범위 ≠ 위임 · 위임 = <span class="k">책임의 재배치</span> · 실패 신호: 권한은 내려가고 책무는 남음</li>
+        <li>Holacracy = 권한이 <span class="k">역할</span>에 · 스킬 기반 = 일을 사람의 스킬에 맞춤</li>
+        <li>기능형(안정·규모의 경제) · 사업부제(다중 시장) · 매트릭스(복잡 환경, 사일로)</li>
+      </ul>
+    </div>
+    <div class="ccard">
+      <h4><span><span class="wkt">3강</span>상황요인</span><button type="button" class="ref" data-ref="sf-sum">노트 →</button></h4>
+      <ul>
+        <li><span class="k">상황적합성(Contingency)</span>: 구조는 상황에 따라 달라진다</li>
+        <li>규모↑ → 공식화·표준화 · 연혁↑ → 관료화(<span class="k">복지부동</span>)</li>
+        <li>안정 목표 → 기계적 / 혁신 목표 → 유기적 · 권위주의 문화 → 기계적 / 참여적 → 유기적</li>
+        <li><span class="k">Structure follows Strategy</span> (반대도 발생) · 원가우위 → 기계적, 차별화 → 유기적</li>
+        <li>홉스테드: 상하거리감↑ → <b>집권·높은 계층</b>, 불확실성 회피↑ → <b>공식화·경직</b></li>
+        <li>매개변수: 과업 불확실성↑ → <span class="k">유기적</span> · 의존성↑ → <span class="k">통합기제 강화</span></li>
+      </ul>
+    </div>
+    <div class="ccard">
+      <h4><span><span class="wkt">3강</span>조직기술</span><button type="button" class="ref" data-ref="tc-wwt">노트 →</button></h4>
+      <ul>
+        <li>우드워드 = <span class="k">기술결정론</span>, one best way · 복잡성 단위 <b>낮음</b> → 연속공정 <b>높음</b></li>
+        <li>단위·연속공정 = <span class="k">유기적</span>, 대량생산만 <span class="k">기계적</span> (U자)</li>
+        <li>관리계층·관리자 비율 최다 = <span class="k">연속공정</span> · 통제범위 최대 = <span class="k">대량생산</span></li>
+        <li>퍼로우 = <span class="k">다양성 × 분석가능성</span>, <b>부서 단위</b> · 장인 = 작업경험 / 공학 = 공식적 훈련</li>
+        <li>톰슨: <span class="k">집합적–중개형</span> · <span class="k">순차적–연속형</span> · <span class="k">교호적–집약형</span> (조정수단 누적)</li>
+      </ul>
+    </div>
+    <div class="ccard">
+      <h4><span><span class="wkt">3강</span>환경 불확실성</span><button type="button" class="ref" data-ref="en-4">노트 →</button></h4>
+      <ul>
+        <li>불확실성 3: <span class="k">상태 · 결과 · 반응</span> (비 올까 / 할 수 있을까 / 어떻게 할까)</li>
+        <li>단순/안정 &lt; 복잡/안정 &lt; 단순/동태 &lt; 복잡/동태</li>
+        <li>기계적 = 명령·지시, 권한 <span class="k">최고층</span> / 유기적 = 충고·자문, 권한 <span class="k">능력 있는 곳</span></li>
+        <li>Lawrence &amp; Lorsch: <b>동태성</b> → 기계/유기, <b>복잡성</b> → 변경조직 수</li>
+        <li>불확실성↑ → 차별화와 통합방법 <span class="k">둘 다 증가</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 id="cram-cvf">경쟁가치 한 장</h3>
+  <div class="tbl"><table>
+    <tr><th>축 조합</th><th>교안 유효성 모형</th><th>CVF 문화유형</th><th>목적</th><th>적합 단계</th></tr>
+    <tr><td>유연성 + 조직(외부)</td><td><span class="k">개방체계</span></td><td><span class="k">Adhocracy</span> 혁신지향</td><td>성장, 자원 획득</td><td>창업기·변화기</td></tr>
+    <tr><td>통제 + 조직(외부)</td><td><span class="k">합리적목표</span></td><td><span class="k">Market</span> 과업지향</td><td>생산성, 능률, 이윤</td><td>생산성 향상기</td></tr>
+    <tr><td>통제 + 구성원(내부)</td><td><span class="k">내부프로세스</span></td><td><span class="k">Hierarchy</span> 위계지향</td><td>팀워크, 안정 유지</td><td>안정화 단계</td></tr>
+    <tr><td>유연성 + 구성원(내부)</td><td><span class="k">인간관계</span></td><td><span class="k">Clan</span> 관계지향</td><td>인적 자원 개발</td><td>문화·사기 진작기</td></tr>
+  </table></div>
+
+  <h3 id="cram-pair">헷갈리는 짝</h3>
+  <div class="tbl"><table>
+    <tr><th>A</th><th>B</th><th>가르는 기준</th></tr>
+    <tr><td>합리적 관점</td><td>자연적 관점</td><td>목표 달성 극대화 vs 상황 적응·생존 우선</td></tr>
+    <tr><td>교환모형</td><td>교화모형</td><td><span class="k">외재적 보상</span> vs 가치 <span class="k">내면화</span>(설득·교육)</td></tr>
+    <tr><td>공식목표</td><td>운영목표</td><td>사명·추상·정당성 vs 측정 가능·단기·자원배분</td></tr>
+    <tr><td>목표의 교체</td><td>목표의 추가</td><td>기존 목표를 <b>대체</b> vs 기존 목표에 <b>병행</b></td></tr>
+    <tr><td>목표전환 (displacement)</td><td>목표 대치 (inversion)</td><td>수단이 목적이 됨 vs 하위 목표가 상위 목표를 추월</td></tr>
+    <tr><td>MBO</td><td>OKR</td><td>성과–평가 <b>직접 연결</b> vs 평가에서 <b>분리</b>·공개·0.6~0.7</td></tr>
+    <tr><td>efficiency</td><td>effectiveness</td><td><span class="k">산출 ÷ 투입</span> vs <span class="k">목표에 맞는가</span> (한국어 라벨은 자료마다 다름)</td></tr>
+    <tr><td>자원기준 접근법</td><td>내부프로세스 접근법</td><td><b>투입</b>(끌어올 수 있는가) vs <b>변환 과정</b>(내부 건강)</td></tr>
+    <tr><td>조직구조</td><td>조직설계</td><td>상태·결과 vs 과정·의도적 결정</td></tr>
+    <tr><td>과업구조</td><td>부서구조</td><td>sub-structure(개별 과업) vs super-structure(부서 묶음·보고체계)</td></tr>
+    <tr><td>수평적 분업</td><td>수직적 분업</td><td>같은 수준에서 세분 vs 관리와 실천 분리</td></tr>
+    <tr><td>공식화</td><td>표준화</td><td>규정·<b>문서</b>대로 vs 실제 <b>작업 방식·산출물</b>을 통일</td></tr>
+    <tr><td>수평적 통합</td><td>수직적 통합</td><td>과업 간 조정 vs 계획·실행·피드백·지시보고</td></tr>
+    <tr><td>공식적 통합</td><td>비공식적 통합</td><td>보이는 약속(의례가 되면 얕아짐) vs 보이지 않는 결합(빠지면 복구 어려움)</td></tr>
+    <tr><td>통제 범위</td><td>위임</td><td>몇 명을 직접 보나 vs 결정 권한을 어디까지 내리나</td></tr>
+    <tr><td>전략적 통제</td><td>운영통제</td><td>장기 방향·전략 자원 vs 과업 실행</td></tr>
+    <tr><td>장인적 기술</td><td>공학적 기술</td><td>경험·직관, <b>작업경험</b> vs 과학적 원리, <b>공식적 훈련</b></td></tr>
+    <tr><td>순차적 의존</td><td>교호적 의존</td><td>컨베이어(연속형) vs 병원·레스토랑(집약형, 직접대면)</td></tr>
+    <tr><td>핵심조직</td><td>변경조직</td><td>환경 영향 적음 vs 환경 영향 큼(boundary)</td></tr>
+    <tr><td>기계적 조직</td><td>유기적 조직</td><td>안정·집권·명령 vs 동태·분권·자문</td></tr>
+  </table></div>
+
+  <h3 id="cram-trap">함정 문장 (보기에 나오면 틀린 말)</h3>
+  <div class="tbl"><table>
+    <tr><th>✕ 틀린 말</th><th>○ 바른 말</th></tr>
+    <tr><td>통제 + 구성원 지향 = 인간관계모형</td><td><span class="k">내부프로세스모형</span> (인간관계는 유연성 + 구성원)</td></tr>
+    <tr><td>유연성 + 조직 지향 = 합리적목표모형</td><td><span class="k">개방체계모형</span> (합리적목표는 통제 + 조직)</td></tr>
+    <tr><td>우드워드: 대량생산은 유기적 구조가 적합</td><td>대량생산만 <b>기계적</b>, 양 끝이 유기적</td></tr>
+    <tr><td>관리계층이 가장 많은 건 단위소량생산</td><td>표 기준 <span class="k">연속공정</span> (교안 요약 문구는 오기로 보임)</td></tr>
+    <tr><td>복잡/안정 환경이 단순/동태보다 불확실하다</td><td>동태성이 더 크게 작용: 복잡/안정 "크지 않다" &lt; 단순/동태 "높다"</td></tr>
+    <tr><td>시스템적 접근법의 두 갈래는 목표·자원</td><td><span class="k">자원기준 · 내부프로세스</span></td></tr>
+    <tr><td>OKR 점수는 보상에 직접 연결한다</td><td>평가·보상에서 <b>분리</b>, 연결하면 MBO의 변주</td></tr>
+    <tr><td>OKR은 100% 달성이 좋은 분기</td><td><span class="k">0.6~0.7</span>이 좋은 분기</td></tr>
+    <tr><td>규정이 많을수록 공식화 정도가 높다</td><td>양이 아니라 <b>얼마나 지켜지는지</b></td></tr>
+    <tr><td>분업화는 많을수록 좋다 / 직위가 높을수록 분업↑</td><td>적정 수준(이득=손실)이 있음 / 직위↑ → 분업 <b>최소화</b></td></tr>
+    <tr><td>하이브리드 근무는 생산성을 떨어뜨린다</td><td>생산성 그대로, 이직률 약 <span class="k">1/3</span> 감소</td></tr>
+    <tr><td>위임은 신뢰의 표현이다</td><td>위임 = <b>책임의 재배치</b>, 책무성이 함께 가야 함</td></tr>
+    <tr><td>과업 불확실성이 높으면 규칙·절차 중심으로</td><td>불확실성↑ → <b>유기적</b>, 낮으면 기계적</td></tr>
+    <tr><td>불확실성이 높으면 차별화는 늘고 통합은 줄인다</td><td>차별화와 통합방법 <b>둘 다</b> 늘어남</td></tr>
+    <tr><td>퍼로우 모형은 조직 전체에 한 유형을 적용한다</td><td><b>부서 단위</b>로 기술 유형이 다름</td></tr>
+  </table></div>
+</section>
+
+<!-- 1강 목표의 관점·통합 -->
+<section id="gl">
+  <h2>조직목표의 이해 · 두 관점 · 개인과 조직의 통합</h2>
+  <p class="src"><b>1강 교안 3~7쪽</b> + <b>증강판 6쪽 목표의 5기능</b></p>
+
+  <h3 id="gl-lv">조직 안에는 여러 목표가 있다</h3>
+  <p>조직은 목표 달성을 위해 부서를 만들고, 전체 목표를 <span class="k">하위목표(세부목표)</span>로 나눠 할당합니다. 그래서 한 조직 안에 많은 목표가 있고, 나뉜 목표끼리 <b>상충</b>하기도 합니다.</p>
+  <div class="flow"><span>회사 수준 목표 (전략적)</span><i>→</i><span>부서 수준 목표 (Unit A·B)</span><i>→</i><span>개인 수준 목표</span></div>
+  <p>목표의 역할(교안 도식): <span class="k">조직활동의 동기</span> · <span class="k">의사결정 시 판단기준</span> · <span class="k">조직 존재가치의 판단 지표</span>.</p>
+
+  <h3 id="gl-view">목표추구의 두 차원: 합리적 관점 vs 자연적 관점</h3>
+  <div class="tbl"><table>
+    <tr><th>구분</th><th>합리적 관점</th><th>자연적 관점</th></tr>
+    <tr><td>핵심</td><td>효율적·체계적 계획·절차로 목표 달성을 <span class="k">극대화</span></td><td>구성원의 자연스러운 활동과 <span class="k">상황 적응</span>에 따라 목표가 형성·변화</td></tr>
+    <tr><td>방법</td><td>과학적 관리, 환경 분석, 구조 설계 등 최적화 방법. 인과관계·효율성 최대화</td><td>상황 변화로 원래 목표가 수정되거나 새 목표로 대체</td></tr>
+    <tr><td>구성원</td><td>각 부서·구성원이 목표를 완벽히 이해하고 협력하도록 설계</td><td>공식 목표보다 <b>자신에게 유리한 방향</b>으로 행동하기도 함</td></tr>
+    <tr><td>목표의 위치</td><td>목표 = 조직의 핵심 기준. 모든 활동을 목표에 맞춰 조정</td><td>목표 달성보다 <span class="k">조직의 생존과 유지</span>가 우선될 수 있음</td></tr>
+    <tr><td>개인 목표</td><td>—</td><td>개인목표와 조직목표의 <b>불일치</b>가 많고, 이것이 운영의 중요한 변수</td></tr>
+  </table></div>
+
+  <h3 id="gl-gap">개인목표와 조직목표의 불일치와 균형</h3>
+  <p>개인은 <b>개인의 목적</b>에 맞춰 조직에 가입합니다. 구성원은 공식 목표 외에 사적 욕구·이익과 관련된 개인 목표를 갖고, 공식 목표와 불일치하면 <b>갈등</b>이 생깁니다.</p>
+  <p>조화의 계기는 <span class="k">개인이 조직에 기여한 노력에 대한 보상</span>. 보상은 <span class="k">물질적</span>(급여, 승진)뿐 아니라 <span class="k">비물질적</span>(성취감, 인정, 봉사 보람)도 포함합니다. 핵심은 개인의 목표 달성이 조직목표 달성에 기여하도록 유도하는 것.</p>
+
+  <h3 id="gl-model">개인·조직 목표 통합 모형 3가지</h3>
+  <p>차이를 완화하고 공동 목표를 달성하는 방식. <b>개인과 조직 중 어느 편의 요구를 더 들어주느냐</b>에 따라 나뉩니다.</p>
+  <div class="tbl"><table>
+    <tr><th>모형</th><th>개념</th><th>특징</th><th>예시</th></tr>
+    <tr><td><span class="k">교환모형</span><br><span class="mono">exchange</span></td><td>개인은 시간·재능 제공, 조직은 물질적 보상 제공</td><td>금전·승진 등 <span class="k">외재적 보상</span> 중심, 상호 이익 교환</td><td>열심히 일한 직원에게 임금 인상·성과급</td></tr>
+    <tr><td><span class="k">교화모형</span><br><span class="mono">socialization</span></td><td>조직이 기대하는 행동을 개인이 당연하게 받아들이도록 설득·교육</td><td>가치·신념 <span class="k">내면화</span>로 목표 일치 유도</td><td>군 복무자가 국가 충성심을 내면화해 헌신</td></tr>
+    <tr><td><span class="k">수용모형</span><br><span class="mono">accommodation</span></td><td>조직이 개인의 목표를 인정·지원해 달성하게 함</td><td>개인목표 존중 + 조직목표와 연결, <span class="k">유연성</span> 중시</td><td>자율성을 원하는 직원에게 자율권 보장</td></tr>
+  </table></div>
+  <div class="note exam"><span class="tag">시험 포인트</span>
+    <p>교환 = 보상(외재적), 교화 = 내면화(설득·교육), 수용 = 조직이 개인에 맞춰 줌(자율). 사례를 주고 모형을 고르게 하는 문제가 나오기 쉽습니다. <b>교화 ≠ 교환</b> 글자 헷갈림 주의.</p>
+  </div>
+
+  <h3 id="gl-fn">조직목표의 다섯 가지 기능</h3>
+  <div class="note v8"><span class="tag">증강판 6쪽</span>
+    <p>목표는 단지 “해야 할 일”이 아니라 조직이 자기 자신을 읽고 정렬하는 장치.</p>
+    <ol>
+      <li><span class="k">정당성 부여</span> — 사회에 존재할 이유를 외부·내부에 제시, 이해관계자의 신뢰 확보</li>
+      <li><span class="k">방향 제시</span> — 에너지가 흩어지지 않게 모아주는 나침반</li>
+      <li><span class="k">의사결정 기준</span> — 일상 결정에서 무엇을 우선할지 판단하는 잣대</li>
+      <li><span class="k">성과평가 기준</span> — 목표 없는 평가는 “점수만 매기는” 일</li>
+      <li><span class="k">동기부여</span> — “왜 일하는가”에 답을 줌. 단, 잘 설계되었을 때만</li>
+    </ol>
+  </div>
+</section>
+
+<!-- 1강 목표 유형 -->
+<section id="gt">
+  <h2>조직목표의 유형 · 충돌 · 변동</h2>
+  <p class="src"><b>1강 교안 8~12쪽</b> + <b>증강판 5·7·8쪽</b></p>
+
+  <h3 id="gt-of">공식목표 vs 운영목표</h3>
+  <div class="tbl"><table>
+    <tr><th>구분</th><th>공식목표 (official goal)</th><th>운영목표 (operative goal)</th></tr>
+    <tr><td>의미</td><td>설립 초기에 탄생한 <span class="k">궁극적 목적</span>. <span class="k">사명(Mission)</span>. 존재의 근거와 가치</td><td>공식목표를 구체적으로 달성하기 위한 <span class="k">세부 목표</span></td></tr>
+    <tr><td>성격</td><td>활동의 방향·범위 규정, <b>제약 요소</b>로도 작용. 추상적·포괄적이라 행동지침으로 바로 연결 어려움</td><td>절차·순서·방법이 명확, <span class="k">측정 가능</span>. <b>단기적</b>, 실질적 행동지침</td></tr>
+    <tr><td>예</td><td>대학의 전인교육, 홍익인간 육성</td><td>수익률 목표, 인재 확보, 생산성 향상, 신제품 개발</td></tr>
+    <tr><td>주의</td><td>—</td><td>운영목표 간 <b>균형과 조화</b> 필요. 과도·불균형하면 조직 존립 위협</td></tr>
+  </table></div>
+  <div class="note v8"><span class="tag">증강판 5쪽 · Perrow, Etzioni</span>
+    <p>공식목표 = 외부에 선언된 목표(정관·선언문·IR 자료). 용도: <span class="k">정당성(legitimacy)</span> 확보, 이해관계자에게 방향 제시, 외부 정체성의 기준점.</p>
+    <p>운영목표 = 조직이 실제로 쫓는 목표(부서별 KPI, 예산 배분, 인력 충원의 실제 방향). 용도: 일상 의사결정 기준, <span class="k">자원배분</span>과 우선순위, 실제 영향력을 가지는 목표. 공식목표와 <b>일치하지 않을 수 있다</b>.</p>
+  </div>
+
+  <h3 id="gt-etc">조직목표의 기타 유형</h3>
+  <div class="tbl"><table>
+    <tr><th>유형</th><th>의미</th><th>예시</th></tr>
+    <tr><td>상위목표 / 하위목표</td><td>상위: 조직 전체의 일반적·포괄적 목표(추상적·<b>장기적</b>). 하위: 부문별·구체적 목표(<b>단기적</b>·실행 중심). 하위목표 간 조정·우선순위 설정이 중요</td><td>기업 — 상위: 시장점유율 확대 / 하위: 신제품 개발, 생산성 향상</td></tr>
+    <tr><td><span class="k">주목표 / 부목표</span></td><td>주: 조직이 원래 추구하는 핵심 목적. 부: 주목표를 보조하거나 조직 유지·운영에 필요한 활동</td><td>대학 — 주: 연구·교육 / 부: 동아리 지원, 시설관리</td></tr>
+    <tr><td><span class="k">공언목표 / 실제목표</span></td><td>공언(Stated): 공식적으로 표명. 실제(Real): 실제로 달성하려는 목표. 불일치 시 갈등</td><td>공식적으로 ‘고객만족도 향상’ / 실제로 ‘단기 매출 극대화’</td></tr>
+  </table></div>
+
+  <h3 id="gt-axis">목표를 나누는 세 가지 축</h3>
+  <div class="note v8"><span class="tag">증강판 7쪽</span>
+    <div class="tbl"><table>
+      <tr><th>축</th><th>한쪽</th><th>다른 쪽</th></tr>
+      <tr><td>01 선언 vs 운영</td><td>공식목표(official) — 미션·정관</td><td>운영목표(operative) — 자원배분·평가를 실제로 움직임</td></tr>
+      <tr><td>02 전체 vs 부문</td><td>전체목표(strategic) — 사명·비전·전략적 의제</td><td>부문목표(unit) — 부서·팀·개인 단위 KPI·OKR</td></tr>
+      <tr><td>03 시간 범위</td><td>단기 — 분기·연 단위, 운영 효율·실행력 점검</td><td>장기 — <span class="k">3~10년</span>, 비전·포지셔닝·역량 축적, ESG 포함</td></tr>
+    </table></div>
+  </div>
+
+  <h3 id="gt-chain">목표위계와 수단-목표 연쇄</h3>
+  <div class="note v8"><span class="tag">증강판 8쪽</span>
+    <div class="flow"><span>TIER 01 사명·존재 이유</span><i>→</i><span>TIER 02 전략적 목표</span><i>→</i><span>TIER 03 부문·팀 목표</span><i>→</i><span>TIER 04 개인·과업 목표</span></div>
+    <p>위 목표는 아래 목표의 <b>수단</b>이 되고, 상위 목표는 하위 목표의 <b>정당성</b>을, 하위 목표는 상위 목표의 <b>실행</b>을 빚집니다. 이 연쇄가 끊어지면:</p>
+    <ul>
+      <li><span class="k">목표전환(goal displacement)</span> — 수단이 목적이 되어버림. 숫자·절차를 달성하느라 본래 가치를 잃음</li>
+      <li><span class="k">목표 대치(means-ends inversion)</span> — 하위 목표가 상위 목표를 추월. 충성·자원·시간이 실제 이슈가 아닌 곳에 몰림</li>
+    </ul>
+  </div>
+
+  <h3 id="gt-multi">다원목표 간의 충돌과 조화</h3>
+  <p><b>다원목표</b>: 한 조직 안에 다수 이해관계자와 그들의 목표가 공존. 하위목표가 많을수록 <span class="k">갈등 가능성 증가</span>, 상충 시 우선순위 조정 필요.</p>
+  <ul>
+    <li>합리적 관점: 조직 유효성을 위해 목표 <b>통일·합의</b> 필요 / 실제 상황: 이해관계자 다양성으로 <b>충돌 불가피</b></li>
+    <li>예1) 종업원 높은 임금 ↔ 경영진 인건비 절감 · 예2) 영업부 매출 증대 ↔ 회계부 채권 회수 안정</li>
+  </ul>
+  <h4 id="gt-agree">목표합의 과정 3가지</h4>
+  <div class="grid2">
+    <div><h4><span class="k">타협과 협상</span></h4><p>달성 순서·조정 등을 통해 합의</p></div>
+    <div><h4><span class="k">반강제적 통제</span></h4><p>지배력의 크기에 의해 순서 결정(한편은 유리, 한편은 불리)</p><p class="src">교안 원문은 “한편은 분리” — ‘불리’의 오기로 보임</p></div>
+    <div><h4><span class="k">재조정</span></h4><p>상황 변화로 합의 내용을 변경·재조정(<b>정치적 행동</b> 발생)</p></div>
+  </div>
+
+  <h3 id="gt-chg">조직목표의 변동</h3>
+  <p>외부 환경 변화, 내부 상황, 압력 등으로 목표를 변경합니다. 기존 목표 달성이 어려울 때 새 목표를 도입하고, 상황 변화나 부서 간 합의 실패로 <b>목표 왜곡</b>이 생기기도 합니다.</p>
+  <div class="tbl"><table>
+    <tr><th>구분</th><th>하위 구분</th><th>내용</th><th>예시</th></tr>
+    <tr><td rowspan="2">새로운 목표의<br>승계와 추가</td><td><span class="k">목표의 교체(승계)</span></td><td>기존 목표를 새 목표로 대체해 적응. 기존 목표가 <b>달성되었거나 달성 불가능</b>할 때</td><td>국내시장점유율 확대 → 해외 시장 개척</td></tr>
+    <tr><td><span class="k">목표의 추가</span></td><td>기존 목표 외에 부수적 목표를 병행해 활동 범위 확대</td><td>대학: 연구·교육 → 지역사회 봉사 추가</td></tr>
+    <tr><td rowspan="2">목표 자체의<br>변질</td><td><span class="k">목표의 왜곡</span></td><td>합의 도출 실패, 권력집단에 유리한 하위목표 부각, 구성원 인기 영합</td><td>지자체: 지역발전 → 단체장 재선 전략</td></tr>
+    <tr><td><span class="k">목표와 수단의 전도</span></td><td>목표는 잊고 수단 달성에만 주력. 각 부서가 자기 ‘수단’ 목표에만 충실</td><td>병원: 환자 치료 → 병상 가동률 최대화</td></tr>
+  </table></div>
+  <div class="note fix"><span class="tag">두 자료의 용어 차이</span>
+    <p>교안은 수단이 목적을 밀어내는 현상을 <b>목표와 수단의 전도</b>라고 부르고, 증강판은 같은 현상을 <b>목표전환(goal displacement)</b>과 <b>목표 대치(means-ends inversion)</b>로 나눠 설명합니다. 답안에는 “목표와 수단의 전도(=목표전환)”처럼 둘 다 적는 게 안전합니다.</p>
+  </div>
+</section>
+
+<!-- 1강+ 목표관리 -->
+<section id="mb">
+  <h2>목표설정이론 · SMART · MBO · OKR · AI · ESG</h2>
+  <p class="src"><b>증강판 1강 9~14쪽</b> (교안에는 없는 범위)</p>
+
+  <h3 id="mb-gs">목표설정이론 (Locke &amp; Latham, 1990/2002)</h3>
+  <p>“<span class="k">구체적이고 도전적인 목표</span>는 추상적 목표보다 성과로 이어진다.” 핵심 변인 네 가지:</p>
+  <div class="tbl"><table>
+    <tr><th>변인</th><th>내용</th></tr>
+    <tr><td>① <span class="k">구체성</span> specificity</td><td>“더 잘하자”보다 “오류를 15% 줄이자”가 행동으로 이어짐</td></tr>
+    <tr><td>② <span class="k">난이도</span> difficulty</td><td>도전적 목표가 쉬운 목표보다 높은 성과. 단, <b>수용되어야</b></td></tr>
+    <tr><td>③ <span class="k">피드백</span> feedback</td><td>진행 상황에 대한 구체적 피드백이 있어야 목표-행동-결과가 연결</td></tr>
+    <tr><td>④ <span class="k">약속</span> commitment</td><td>본인이 받아들였을 때 효과가 가장 큼. 강제된 목표의 효과는 작음</td></tr>
+  </table></div>
+
+  <h3 id="mb-smart">SMART — 이론을 점검표로</h3>
+  <div class="flow"><span><b>S</b> Specific 구체적인가</span><span><b>M</b> Measurable 측정되는가</span><span><b>A</b> Achievable 도달 가능한가</span><span><b>R</b> Relevant 의미 있는가</span><span><b>T</b> Time-bound 기한이 있는가</span></div>
+
+  <h3 id="mb-mbo">MBO — Management by Objectives</h3>
+  <p><span class="k">Drucker(1954)</span> 이후 가장 오래된 목표경영 체계. 평가와 맞물리면서 한계에 부딪힘.</p>
+  <div class="grid2">
+    <div><h4>네 가지 원리</h4><ol>
+      <li><span class="k">상향 + 하향의 결합</span> — 상위 목표를 부문·개인으로 분해하고 합의</li>
+      <li>구체적이고 측정 가능 — “매출 12% 성장”처럼</li>
+      <li>정기적 점검과 피드백</li>
+      <li><span class="k">성과와 평가의 직접 연결</span> — 보상·승진·개발의 근거</li>
+    </ol></div>
+    <div><h4>네 가지 한계</h4><ul>
+      <li>정량화하기 어려운 목표를 잘 다루지 못함</li>
+      <li>단기·측정 가능한 항목만 남고 학습·문화는 사라짐</li>
+      <li>평가와 맞물리면 <span class="k">목표 부풀리기</span></li>
+      <li>외부 환경 변화에 대한 적응이 느림</li>
+    </ul></div>
+  </div>
+
+  <h3 id="mb-okr">MBO에서 OKR로</h3>
+  <p><b>O</b>(Objective) = 방향과 의도를 한 문장으로(질적, 기억에 남는). <b>KR</b>(Key Results) = 측정 가능한 결과 세 줄.</p>
+  <div class="tbl"><table>
+    <tr><th>예시</th><th>내용</th></tr>
+    <tr><td>O</td><td>“신규 사용자가 첫 10분 안에 가치를 느끼게 한다.”</td></tr>
+    <tr><td>KR 1</td><td>첫 세션에서 핵심 기능을 완성한 신규 사용자 비율 <span class="mono">35 → 60%</span></td></tr>
+    <tr><td>KR 2</td><td>일주일 이상 머무는 신규 코호트 <span class="mono">22 → 40%</span></td></tr>
+    <tr><td>KR 3</td><td>신규 코호트 NPS <span class="mono">12 → 35</span> (분기 종료 시점)</td></tr>
+  </table></div>
+  <h4 id="mb-okr3">MBO와의 세 가지 차이</h4>
+  <ol>
+    <li><span class="k">평가·보상에서 분리</span> — 점수가 보상에 직접 연결되지 않음. 신호는 “의도가 무엇이었나”</li>
+    <li><span class="k">투명하게 공개</span> — 누구의 OKR이든 볼 수 있음. 정렬과 학습의 장치</li>
+    <li><span class="k">도전적이되 분기 단위</span> — <span class="k">0.6~0.7</span> 달성이 좋은 분기. stretch + 안전 토양</li>
+  </ol>
+  <div class="note exam"><span class="tag">시험 포인트</span>
+    <p>형식만 도입하고 <b>평가 분리 · 투명성 · 도전성</b> 중 하나라도 빠뜨리면 OKR은 빠르게 “MBO의 변주”가 된다. MBO = 성과와 평가를 직접 연결 ↔ OKR = 평가에서 분리. 이 대비가 핵심.</p>
+  </div>
+
+  <h3 id="mb-ai">AI 도입과 조직목표의 재설계</h3>
+  <p>“목표” 단위가 <b>산출량 지표 → 역량·재설계 지표</b>로 바뀜.</p>
+  <ol>
+    <li><b>업무 단위의 분해</b> — 직무(job)가 아니라 <span class="k">과업(task)</span> 단위로 목표 재정의. AI가 대체할 단위와 보조할 단위를 분리</li>
+    <li><b>스킬 기반 조직</b> — 고정 직무에서 “보유 스킬 + 재학습 속도”로. 직급보다 능력이 사람을 정의</li>
+    <li><b>새로운 KR</b> — AI 활용률, 업무 재설계 비율, 자동화 시간 비율. “얼마나 들였나”보다 “어디를 다시 설계했나”</li>
+    <li><b>함정</b> — AI 이용 빈도만 측정하면 목표가 “더 많이 쓰기”로 흘러내림. 학습·품질·재설계 결과가 함께 가야 함</li>
+  </ol>
+
+  <h3 id="mb-esg">ESG와 목표의 제도화</h3>
+  <p>지속가능성 = 재무와 병렬로 운영되는 <span class="k">두 번째 KPI 트리</span>.</p>
+  <div class="grid2">
+    <div><h4>01 비재무 목표의 병렬 운영</h4><p>E·S·G 목표가 재무 KPI와 같은 트리에서 운영. 별도 CSR 폴더가 아님</p></div>
+    <div><h4>02 공시 의무화</h4><p><span class="k">ISSB IFRS S1·S2</span>, EU <span class="k">CSRD</span>, 한국 KSSB 초안. “보여줄 의무”가 생기면 “측정할 의무”가 따라옴</p></div>
+    <div><h4>03 감사 가능한 목표</h4><p>“탄소 중립 지향” 같은 추상 약속은 점수가 낮아짐. 측정 가능한 KPI로</p></div>
+    <div><h4>04 그린워싱 위험</h4><p>선언과 실행이 어긋날수록 평판·규제·투자자 신뢰 비용. 목표와 보상이 같은 수식 안에</p></div>
+  </div>
+
+  <h3 id="mb-case">목표체계 사례 3</h3>
+  <div class="tbl"><table>
+    <tr><th>회사</th><th>방식</th><th>시사점</th></tr>
+    <tr><td><span class="k">Google</span></td><td>OKR 운영의 시조. 분기 단위 도전적 목표, 전사 투명성, 좋은 분기 = 0.6~0.7</td><td>공개성과 “100%는 비현실적”이라는 합의가 함께 작동할 때 OKR은 학습 장치</td></tr>
+    <tr><td><span class="k">Microsoft</span></td><td>KPI + BSC형 넓은 목표체계. 정기 리뷰로 목표-평가-보상 사이클 가시화, 일부 OKR 병행</td><td>큰 조직은 영역별로 다른 형식이 공존. 핵심은 정렬과 가시성</td></tr>
+    <tr><td><span class="k">Maersk</span></td><td>ESG 임베디드 전략. GHG 감축 목표를 사업 운영과 결합, 연례 보고로 공시</td><td>ESG가 “커뮤니케이션”에서 “측정 목표 + 공시”로 가면 평판 비용이 낮아짐</td></tr>
+  </table></div>
+</section>
+
+<!-- 1강 유효성 -->
+<section id="ef">
+  <h2>조직유효성의 판단 · 접근법</h2>
+  <p class="src"><b>1강 교안 13~18쪽</b> + <b>증강판 16~23쪽</b></p>
+
+  <h3 id="ef-def">조직유효성의 개념 · 용도 · 판단기준</h3>
+  <p>조직이 목표를 효과적으로 달성해야 조직 안정과 유지가 가능. 조직유효성 = <span class="k">조직이 얼마나 잘 기능하고 있는지를 판단하는 기준</span>. 조직의 복잡성과 다양한 활동을 고려해 평가해야 합니다.</p>
+  <ul>
+    <li><b>용도</b>: ① 잘하고 있는지·효율적인지 판단 ② <span class="k">조직 선택 시 의사결정 기준</span>(취업할 회사, 투자할 기업) ③ 과거 성과로 <b>미래 개선 방향</b> 제시</li>
+    <li><b>판단기준</b>: 생산성, 능률, 이익, 성장성, 재무건전성, 직무만족, 유연성, 상호일치성 등 다양. 연구자마다 중시하는 가치·관점이 달라 결과가 달라짐. 목표 달성 여부만이 아니라 <b>평가 기준·기간·관점</b>에 따라 판단이 달라짐 (“좋은 교수는? 좋은 학교는?”)</li>
+    <li><b>무엇으로 볼 것인가</b>: 초기 의견 = 조직목표가 유효성 판단의 조건(→ 누구의 목표? 단기? 장기? 부서? 전체?) / 현재 방향 = <span class="k">목표, 과정, 결과 전반</span>에 대해 판단</li>
+  </ul>
+
+  <h3 id="ef-vs">효율성 vs 유효성</h3>
+  <div class="note v8"><span class="tag">증강판 16쪽</span>
+    <div class="tbl"><table>
+      <tr><th>구분</th><th>효율성 Efficiency</th><th>유효성 Effectiveness</th></tr>
+      <tr><td>질문</td><td>“더 적은 자원으로 더 많은 산출을 내는가”</td><td>“의도한 결과에 도달했는가 — <span class="k">올바른 일</span>을 했는가”</td></tr>
+      <tr><td>공식</td><td><span class="k">산출 ÷ 투입</span> = 효율 비율</td><td>설정한 목표의 달성 정도 (바람직한 영향까지 포함)</td></tr>
+    </table></div>
+    <p>둘은 다르다. 효율적인 조직이 잘못된 목표를 빠르게 추구할 수 있고, 의미 있는 목표를 가진 조직이 비효율적일 수 있다.</p>
+  </div>
+  <div class="note fix"><span class="tag">용어 충돌 · 3강 교안</span>
+    <p>증강판 1강은 <b>효율성 = efficiency</b>, <b>유효성 = effectiveness</b>. 그런데 3강 교안 17쪽(조직기술의 두 차원)은 “<b>효율성(effectiveness)</b>: 조직목표에 가장 적합한 기술 / <b>능률성(efficiency)</b>: 작은 input을 큰 output으로”라고 적습니다. 영어 뜻은 두 자료가 같고(effectiveness = 목표 적합, efficiency = 투입 대비 산출) <b>한국어 라벨만 다릅니다</b>. 영어로 기억하고, 3강 문제에서는 교안 표기를 따르세요.</p>
+  </div>
+
+  <h3 id="ef-map">접근법 전체 지도 — 두 자료의 분류 차이</h3>
+  <div class="tbl"><table>
+    <tr><th>교안 (3가지)</th><th>증강판 (전통 3 + 통합)</th></tr>
+    <tr><td>1. 목표달성 접근법</td><td>목표접근법</td></tr>
+    <tr><td>2. 시스템적 접근법 → <b>자원기준</b> / <b>내부프로세스</b> (하위 두 갈래)</td><td>시스템자원접근법 · 내부프로세스접근법 (각각 독립)</td></tr>
+    <tr><td>3. 경쟁가치 접근법</td><td>통합적 접근: 이해관계자 접근법 + BSC / 경쟁가치모형은 3섹션 문화진단</td></tr>
+  </table></div>
+  <div class="note fix"><span class="tag">분류 차이</span>
+    <p>교안은 자원기준·내부프로세스를 <b>시스템적 접근법의 하위</b>로 묶고, 증강판은 목표·시스템자원·내부프로세스를 <b>세 개의 전통적 접근</b>으로 나란히 둡니다. “시스템적 접근법의 두 갈래는?” → 자원기준·내부프로세스. “전통적 세 접근은?” → 목표·시스템자원·내부프로세스.</p>
+  </div>
+
+  <h3 id="ef-goal">① 목표달성 접근법 — 성과의 측정</h3>
+  <p><b>의미</b>: 목표를 얼마나 달성했는가로 유효성 판단. <b>전제조건</b>: 운영목표의 <span class="k">계량화(수치화)</span>, 측정 가능한 목표, 달성 가능한 목표.</p>
+  <div class="grid2">
+    <div><h4>한계 (교안)</h4><ul>
+      <li><span class="k">목표들 간의 상충</span> — 누구를 위한 목표?(주주-종업원, 사원-고객)</li>
+      <li><span class="k">주관성의 문제</span> — 평가자마다 주관이 다름</li>
+      <li>과거 업적 기준으로 미래 업적 예측?</li>
+    </ul></div>
+    <div><h4>시사점 (교안)</h4><ul>
+      <li>목표 선택 시 전체 관련자 의견 수렴</li>
+      <li>구성원 행동과 직접 관련 있는 목표</li>
+      <li><b>장기목표에 공헌할 수 있는 단기목표</b></li>
+      <li>유형적이고 측정 가능한 목표</li>
+      <li>목표는 고정이 아니라 상황에 따라 변화</li>
+    </ul></div>
+  </div>
+  <div class="note v8" id="ef-goal2"><span class="tag">증강판 17쪽 · Etzioni·Daft 계열</span>
+    <p>가장 직관적이지만 가장 자의적인 정의. 지표: 매출 성장률, 시장점유율, 달성률, KPI·OKR·BSC의 “목표 vs 실적”. 강점: 명료, 같은 방향, 측정 가능.</p>
+    <p>네 가지 한계: 목표 자체가 옳다고 <b>가정</b> · 다중 목표의 가중 비교가 어려움 · 측정이 쉬운 목표만 남음 · 외부 환경 변화 미반영. → <span class="k">“좋은 목표일까”라는 질문이 비어 있다</span>.</p>
+  </div>
+
+  <h3 id="ef-sys">② 시스템적 접근법</h3>
+  <p><b>가정</b>: 목표달성 접근법은 결과물에만 초점 → <b>부정한 방식이나 의외의 결과</b>도 높이 평가. <b>의미</b>: <span class="k">투입(input) → 변환(transformation) → 산출(output)</span> 과정 전체를 하나의 시스템으로 평가. 부분 간 연결성과 전체 효율을 함께 고려 — 특정 부문만 잘해도 다른 부문이 낮으면 전체에 부정적.</p>
+  <div class="tbl"><table>
+    <tr><th>구분</th><th>자원기준 접근법</th><th>내부프로세스 접근법</th></tr>
+    <tr><td>의미</td><td><span class="k">투입(input)</span> 측면에 초점</td><td><span class="k">변환·산출 과정</span>에서 현재 단계의 효율성에 초점</td></tr>
+    <tr><td>평가 초점</td><td>보유·획득한 자원의 가치와 활용 가능성</td><td>업무구조 설계, 내부 프로세스의 원활한 작동</td></tr>
+    <tr><td>판단 기준</td><td>외부 자원의 가치 인지·판별 능력 / 중요 자원을 찾아내는 능력 / 확보 자원을 통합·활용하는 능력</td><td>부서·직위 간 의사소통·협조 / 업무과정 간 연계·통합 / 신뢰와 협력 분위기</td></tr>
+    <tr><td>장점</td><td>좋은 자원 보유 = 유효. <b>자원 획득 능력이 곧 경쟁력</b></td><td>내부 협력·소통으로 효율적 운영. 내부 안정성·조직문화와 밀접</td></tr>
+    <tr><td>한계</td><td>자원이 실제 목표 달성으로 연결 안 될 수 있음. 환경 변화 시 자원 가치 하락</td><td><span class="k">외부 평가자에게 측정 어려움</span>. 인간관계 의존 → 주관적 평가</td></tr>
+    <tr><td>평가 지표</td><td>자원 가치 인지, 탐색·확보, 통합·활용 능력</td><td>강한 기업문화·좋은 분위기, 충성심·팀워크, 신뢰·소통, 정보교류·갈등해결</td></tr>
+  </table></div>
+  <div class="note v8" id="ef-res"><span class="tag">증강판 18쪽 · Yuchtman &amp; Seashore</span>
+    <p>유효한 조직 = 생존에 필요한 자원을 안정적으로 얻는 조직. 유효성은 “무엇을 만들었나”가 아니라 <span class="k">“무엇을 끌어올 수 있는가”</span>.</p>
+    <p>① <b>투입 자원</b>(인력·자본·설비·원자재) ② <b>능력 자원</b>(지식·기술·조직학습·데이터) ③ <b>관계 자원</b>(신뢰·평판·네트워크·브랜드). 잘 보는 것: 장기 생존력, 외부 의존도. 한계: 자원이 많다고 효과적이라는 보장은 없음.</p>
+  </div>
+  <div class="note v8" id="ef-ip"><span class="tag">증강판 19쪽</span>
+    <p>가정: 내부가 건강하면 외부 성과는 따라온다. 보는 것: ① 결속과 신뢰(심리적 안전감) ② 의사소통의 질 ③ 구성원의 안정(이직률·결근·학습 참여) ④ 운영 절차의 신뢰성(일관성·오류율·재작업).</p>
+    <p>함정: 외부 변화 신호를 놓침 · “잘 맞는 조직” ≠ “맞는 일을 하는 조직” · 평온함 = 건강이라는 착각. <b>“평온한 곳”이 “좋은 곳”이 아닐 때, 이 접근은 침묵한다.</b></p>
+  </div>
+
+  <h3 id="ef-cmp">세 전통적 접근법 비교</h3>
+  <div class="tbl"><table>
+    <tr><th>접근</th><th>초점</th><th>측정 지표</th><th>장점</th><th>한계</th></tr>
+    <tr><td>목표접근법</td><td>사전 목표의 달성 정도</td><td>매출·성장률·KPI 달성률</td><td>명료, 측정 가능, 방향 정렬</td><td><span class="k">목표의 옳음을 묻지 않음</span></td></tr>
+    <tr><td>시스템자원</td><td>필요 자원의 흡수 능력</td><td>인력·자본·자원의 안정적 확보</td><td>장기 생존력에 민감</td><td><span class="k">자원 보유 ≠ 효과적 사용</span></td></tr>
+    <tr><td>내부프로세스</td><td>내부 건강과 안정</td><td>결속·신뢰·이직률·내부 소통</td><td>운영의 일관성과 안정</td><td><span class="k">외부 환경 적응을 놓침</span></td></tr>
+  </table></div>
+
+  <h3 id="ef-bsc">통합적 접근 — 이해관계자 접근법과 BSC</h3>
+  <div class="note v8"><span class="tag">증강판 21쪽</span>
+    <p><b>이해관계자 접근법</b>: “누구를 위한 조직인가”. 유효성 = 다양한 이해관계자(주주·고객·임직원·협력사·사회)가 <span class="k">가치를 받아갈 수 있는 능력</span>. 키워드: 다중 목소리 · 가치 분배.</p>
+    <p><b>BSC (Kaplan &amp; Norton)</b> 네 관점:</p>
+    <div class="tbl"><table>
+      <tr><th>관점</th><th>의미</th><th>지표</th></tr>
+      <tr><td><span class="k">재무</span> Financial</td><td>주주가 보는 성과</td><td>매출·수익성·현금흐름</td></tr>
+      <tr><td><span class="k">고객</span> Customer</td><td>고객이 보는 가치</td><td>만족·유지·점유율</td></tr>
+      <tr><td><span class="k">내부프로세스</span> Process</td><td>탁월한 운영의 절차</td><td>속도·품질·비용</td></tr>
+      <tr><td><span class="k">학습·성장</span> Learning</td><td>미래를 만드는 사람과 역량</td><td>사람·시스템·문화</td></tr>
+    </table></div>
+  </div>
+
+  <h3 id="ef-new">하이브리드 근무와 유효성 지표의 확장</h3>
+  <div class="note v8"><span class="tag">증강판 22·23쪽 · Bloom, Han &amp; Liang (2024) Nature</span>
+    <ul>
+      <li>하이브리드 근무: <span class="k">생산성은 그대로</span>(유의한 부(-) 효과 없음) + 직무만족 상승</li>
+      <li>자발적 <span class="k">이직률 약 1/3 감소</span> — 유지 효과의 가장 직접적 신호</li>
+      <li>Stanford SIEPR: 공공부문 일부 조직 <span class="k">12% 생산성 향상</span></li>
+      <li>So what: 유효성 지표는 “근무 일수”가 아니라 <b>산출·만족·유지율</b></li>
+    </ul>
+    <p>지표 확장 4: ① 인적자본 공시 ② 이직·유지·몰입·웰빙 ③ 학습·적응력(조직 민첩성 — “내년에도 다시 잘할 수 있다”) ④ People Analytics(숫자가 “의미보다 측정 가능한 것”을 선호하지 않도록 주의).</p>
+  </div>
+</section>
+
+<!-- 1강 경쟁가치 -->
+<section id="cv">
+  <h2>경쟁가치 접근법 · 조직문화 진단</h2>
+  <p class="src"><b>1강 교안 19~21쪽</b> + <b>증강판 25~31쪽</b></p>
+
+  <h3 id="cv-dim">경쟁가치 접근법의 기본 생각</h3>
+  <p>한 가지 가치 기준만으로 평가하면 안 되고, <span class="k">서로 다른 가치들이 경쟁·갈등하는 상황</span>을 고려. 생산중심/인간중심, 유연성/통제, 개인/조직 이익 등을 균형 있게 반영.</p>
+  <div class="tbl"><table>
+    <tr><th>차원</th><th>한쪽</th><th>다른 쪽</th></tr>
+    <tr><td><span class="k">구조/제도</span> 차원</td><td><b>유연성</b>(flexibility): 유연·개혁적, 권한위임, 변화 추구</td><td><b>통제</b>(control): 질서유지와 통제, 명령과 지휘, 예외가 없는 조직</td></tr>
+    <tr><td><span class="k">운영 초점</span> 차원</td><td><b>구성원</b>(people): 구성원 욕구 충족, 개인의 발전 — <span class="k">내부지향</span></td><td><b>조직</b>(organization): 조직 자체의 이익과 발전 — <span class="k">외부지향</span></td></tr>
+    <tr><td><span class="k">수단과 목표</span> 차원</td><td><b>목표</b>(ends): 목표가 달성되면 유효</td><td><b>수단</b>(means): 과정이 더 중요</td></tr>
+  </table></div>
+  <p class="src">교안 19쪽 표 머리가 “구분 / 내부프로세스 접근법”으로 되어 있는데 앞 쪽 표를 복사한 오기로 보입니다(내용은 경쟁가치의 세 차원).</p>
+
+  <h3 id="cv-4">경쟁가치에 따른 네 가지 유효성 모형</h3>
+  <p>유연성/통제 × 조직/구성원 지향 두 축으로 4개 모형. 수단/목적은 모형별로 제시. <b>네 모형 모두 중요하나 상황에 따라 강조점이 다름.</b></p>
+  <div class="quad"><table>
+    <tr><th></th><th>구성원 지향</th><th>조직 지향</th></tr>
+    <tr><th>유연성</th>
+      <td class="qa"><b class="qn">인간관계모형</b><ul><li>구성원 개발·팀워크·사기 진작</li><li>수단: 응집력, 신뢰와 사기</li><li>목적: <span class="k">인적 자원의 개발·성장</span></li></ul></td>
+      <td class="qb"><b class="qn">개방체계모형</b><ul><li>변화·혁신·적응력, 자원 확보</li><li>수단: 적응력, 위기대응력</li><li>목적: <span class="k">성장, 자원 획득</span></li></ul></td>
+    </tr>
+    <tr><th>통제</th>
+      <td class="qc"><b class="qn">내부프로세스모형</b><ul><li>안정성·질서·정보관리·절차 준수</li><li>수단: 정보관리, 의사소통</li><li>목적: <span class="k">팀워크, 안정의 유지</span></li></ul></td>
+      <td class="qd"><b class="qn">합리적목표모형</b><ul><li>명확한 목표·생산성·이윤 극대화</li><li>수단: 기획, 목표달성</li><li>목적: <span class="k">생산성, 능률화, 이윤</span></li></ul></td>
+    </tr>
+  </table></div>
+  <div class="note exam" id="cv-stage"><span class="tag">시험 포인트 · 조직 단계별 적합 모형</span>
+    <div class="flow"><span>창업기·변화기 → <span class="k">개방체계</span></span><span>생산성 향상기 → <span class="k">합리적 목표</span></span><span>안정화 단계 → <span class="k">내부프로세스</span></span><span>조직문화·사기 진작기 → <span class="k">인간관계</span></span></div>
+    <p>축 조합을 거꾸로 묻는 문제 대비: “통제 + 구성원”은 인간관계가 아니라 <b>내부프로세스</b>. “유연성 + 조직”은 합리적 목표가 아니라 <b>개방체계</b>.</p>
+  </div>
+  <h4 id="cv-radar">경쟁가치 레이더 그림 (교안 21쪽)</h4>
+  <p>12개 축(유연성·적응력·자원획득/성장·조직관점·중장기계획·생산성·통제·안정성·정보관리·인간관계·인력개발·응집력) 위에 네 모형을 색으로 나눈 그림. 두 조직의 선이 대비됩니다: ① <b>폐쇄적이고 합리성은 덜 강조하면서 구성원 개발과 인간존중 경영</b>을 하는 조직(인간관계 쪽으로 치우침) ② <b>구성원 개발과 내부관리보다 창의적·진취적이며 개인보다 조직 중심 경영</b>을 하는 조직(개방체계 쪽으로 치우침).</p>
+
+  <h3 id="cv-cvf">경쟁가치모형(CVF)과 네 문화유형</h3>
+  <div class="note v8"><span class="tag">증강판 25쪽 · Quinn &amp; Rohrbaugh(1983), Cameron &amp; Quinn</span>
+    <p>“문화를 묘사하는 두 축과 네 개의 결.” 두 축 = <span class="k">유연성 vs 통제</span> · <span class="k">내부 vs 외부</span>.</p>
+    <div class="tbl"><table>
+      <tr><th>위치</th><th>문화유형</th><th>특징</th><th>교안 모형과 대응</th></tr>
+      <tr><td>유연성 + 내부</td><td><span class="k">CLAN 관계지향</span></td><td>가족 같은 결속, 사람 중심, 내부 신뢰</td><td>인간관계모형</td></tr>
+      <tr><td>유연성 + 외부</td><td><span class="k">ADHOCRACY 혁신지향</span></td><td>실험과 도전, 외부 변화 흡수</td><td>개방체계모형</td></tr>
+      <tr><td>통제 + 내부</td><td><span class="k">HIERARCHY 위계지향</span></td><td>절차와 안정성, 통제 중심, 내부 일관성·효율 운영</td><td>내부프로세스모형</td></tr>
+      <tr><td>통제 + 외부</td><td><span class="k">MARKET 과업지향</span></td><td>결과와 성과, 경쟁·달성</td><td>합리적목표모형</td></tr>
+    </table></div>
+    <p class="src">마지막 열(대응 관계)은 교안의 “구성원=내부지향, 조직=외부지향” 정의로 두 자료를 맞춰 본 것입니다.</p>
+  </div>
+
+  <h3 id="cv-crit">네 문화유형이 정의하는 “좋은 조직”</h3>
+  <div class="tbl"><table>
+    <tr><th>유형</th><th>효과의 기준</th><th>잘 측정하는 신호</th></tr>
+    <tr><td>관계지향 Clan</td><td>사람 간 신뢰, 결속, 학습 분위기</td><td>심리적 안전감, 정착률, 학습 참여</td></tr>
+    <tr><td>혁신지향 Adhocracy</td><td>새 아이디어, 외부 변화 흡수 속도</td><td>신규 출시 비율, 적응 시간, 실패에서 학습</td></tr>
+    <tr><td>위계지향 Hierarchy</td><td>안정적 운영, 낮은 오류율, 예측 가능성</td><td>사고율, SLA 준수, 결재 라운드 수</td></tr>
+    <tr><td>과업지향 Market</td><td>시장점유율, 달성률, 매출 성장</td><td>점유율, 거래 전환율, 경쟁 포지션 변화</td></tr>
+  </table></div>
+
+  <h3 id="cv-ocai">OCAI로 진단하기</h3>
+  <div class="note v8"><span class="tag">증강판 27·28쪽</span>
+    <p><span class="k">OCAI</span> = Cameron &amp; Quinn이 CVF를 측정 도구로 옮긴 것. <span class="k">여섯 개 차원</span>에서 <b>현재 vs 선호</b> 문화를 나란히 봅니다.</p>
+    <div class="grid2">
+      <div><h4>6개 진단 차원</h4><ol>
+        <li>핵심 신조 — 우리는 어떤 조직인가</li>
+        <li>리더십 스타일</li>
+        <li>구성원 관리</li>
+        <li>결속의 결 — 무엇이 묶어주는가</li>
+        <li>전략적 강조점</li>
+        <li>성공의 기준</li>
+      </ol></div>
+      <div><h4>방법</h4><ol>
+        <li>각 차원에서 <span class="k">100점을 네 유형에 배분</span> → 현재 조직 청사진</li>
+        <li><span class="k">5년 뒤 선호</span> 분포와 나란히 봄. 선호 = “되어야 할”이 아니라 “의도적으로 가고자 하는” 미래</li>
+      </ol></div>
+    </div>
+    <p><b>Kasa et al.(2025)</b>: 평균 대신 개인 수준에서 <span class="k">혼합 하위문화(blended subculture)</span> — 한 구성원이 여러 유형을 동시에 떠안는 현상 — 를 포착. 적용: 병원(임상 vs 행정 문화 차이), 공공부문(위계·관계 사이 긴장). 주의: 문화를 “정답”처럼 다루면 진단이 아니라 규범이 됨.</p>
+  </div>
+
+  <h3 id="cv-fit">문화·목표·유효성의 정합 실패 3가지</h3>
+  <div class="tbl"><table>
+    <tr><th>실패</th><th>모양</th><th>관찰 신호</th></tr>
+    <tr><td>01 전략 ↔ 문화</td><td>혁신을 선언하면서 보수적 위계문화 유지</td><td>발언은 “실험하자”, 의사결정은 과거 사례</td></tr>
+    <tr><td>02 문화 ↔ 지표</td><td>관계지향 문화인데 평가는 단기 매출로만</td><td>학습·협업은 평가받지 못하고 숫자만 점수화</td></tr>
+    <tr><td>03 전략 ↔ 지표</td><td>장기 ESG 전환 전략인데 KPI는 단기 성과</td><td>지속가능성 투자가 KPI 어디에도 없음</td></tr>
+  </table></div>
+  <div class="note exam" id="cv-recap"><span class="tag">증강판 30쪽 · 1강 다섯 줄 요약</span>
+    <ol>
+      <li>목표는 선언과 운영으로 갈라진다 — 운영을 함께 읽는다</li>
+      <li>MBO는 시작, OKR은 평가에서 분리한 다음 단계 — AI·ESG는 목표의 단위를 다시 쓴다</li>
+      <li>“효과적”은 목표·자원·내부·이해관계자 어느 하나로 환원되지 않는다</li>
+      <li>CVF 네 유형은 보편 정답이 아니라 <b>상황적 정합의 지도</b></li>
+      <li><b>전략·문화·지표</b>가 같은 줄에 놓여야 유효성이 일관된 모양을 갖는다</li>
+    </ol>
+  </div>
+</section>
+
+<!-- 2강 기본 -->
+<section id="ds">
+  <h2>조직구조와 조직설계의 기본 개념</h2>
+  <p class="src"><b>2강 교안 3~8쪽</b> + <b>증강판 5~8쪽</b></p>
+
+  <h3 id="ds-st">조직구조(organizational structure)</h3>
+  <p>과업이 분리되고 연결되며, 집단이 모여 부서를 이루고 다시 부서들이 연결된 상태.</p>
+  <div class="flow"><span>과업이 분리되고</span><i>→</i><span>분리된 과업이 연결되고</span><i>→</i><span>과업 집단이 모여 부서를 이루고</span><i>→</i><span>부서끼리 연결된 상태</span></div>
+  <div class="tbl"><table>
+    <tr><th>학자</th><th>정의</th><th>증강판 렌즈</th></tr>
+    <tr><td><span class="k">P. Blau</span></td><td>구성원들의 역할관계에 영향을 미치는 <b>사회적 지위를 배분</b>하는 것. 노동의 분화, 서열·신분, 계층 관계 → 상이한 규칙·규정·행동이 정해짐</td><td>분화와 서열의 배분 — <span class="k">위계</span></td></tr>
+    <tr><td><span class="k">E. A. Gerloff</span></td><td>여러 활동·과정이 어떻게 배열·연결되어 있는지 보여 주는 <b>지도</b></td><td>활동이 배열된 <span class="k">지도</span></td></tr>
+    <tr><td><span class="k">J. Child</span></td><td>공식적 작업역할의 할당, 공식 경계를 가로지르는 작업 활동의 통제·통합을 위한 <b>관리 메커니즘</b></td><td>역할 할당과 통합의 <span class="k">메커니즘</span></td></tr>
+    <tr><td><span class="k">Ranson, Hinnings &amp; Greenwood</span></td><td>상호작용을 형성하는 복잡한 통제의 매개체. 구성원끼리 상호작용하며 <b>지속적으로 만들어지고 변동</b>하는 구성적 측면</td><td><span class="k">상호작용</span>의 매개체</td></tr>
+  </table></div>
+
+  <h3 id="ds-vs">조직설계(organizational design)</h3>
+  <p>교안: 조직(구조)설계는 <b>조직구조와 같은 의미</b>로, 구조를 생각하면서 설계가 이루어짐. 작업·담당자·부문을 전문화시켜 잘 나누고(<span class="k">differentiation</span>), 나눈 과업이 서로 연결되도록 잘 통합하는 것(<span class="k">integration</span>).</p>
+  <div class="note v8"><span class="tag">증강판 5쪽 · “구조”와 “설계”는 같은 말이 아니다</span>
+    <div class="tbl"><table>
+      <tr><th>구분</th><th>조직구조</th><th>조직설계</th></tr>
+      <tr><td>뜻</td><td>현재 조직이 보이는 모습 — 과업이 어떻게 나뉘고 이어지고 부서가 묶여 있는지</td><td>의도적으로 구조를 고르고 결정하는 일 — 왜 그런 답인지, 다른 답은 없었는지 묻는다</td></tr>
+      <tr><td>핵심 단어</td><td>분리·연결·부서화·보고선</td><td>선택·결정·비교·의도</td></tr>
+      <tr><td>성격</td><td><span class="k">상태(status)</span> — 조직의 골격</td><td><span class="k">과정(process)</span> — 결정의 흐름</td></tr>
+    </table></div>
+    <p><b>구조는 결과이고, 설계는 그 결과를 만드는 의사결정의 묶음이다.</b></p>
+  </div>
+  <div class="note fix"><span class="tag">두 자료가 반대로 말함</span>
+    <p>교안 5쪽은 “조직설계는 조직구조와 <b>같은 의미</b>”, 증강판 5쪽은 “구조와 설계는 <b>같은 말이 아니다</b>(상태 vs 과정)”. 서술형이라면 “교안은 같은 의미로 보나, 엄밀히는 구조=상태·결과, 설계=의도적 결정 과정”처럼 둘을 연결해 쓰는 게 안전합니다.</p>
+  </div>
+
+  <h3 id="ds-role">조직구조의 필요성과 역할</h3>
+  <p><b>필요성</b>: 조직 유효성을 판단·유지하는 기준. 구성원의 행위와 의사결정을 <span class="k">제약하고 조정·관리하는 틀</span>.</p>
+  <div class="tbl"><table>
+    <tr><th>역할</th><th>목적</th><th>교안 구분</th></tr>
+    <tr><td><span class="k">분업</span> division of labor</td><td>효율성 추구</td><td>일 관련</td></tr>
+    <tr><td><span class="k">조정과 통합</span> integration</td><td>부문 간 차이를 줄이고 목표 달성</td><td>일 관련</td></tr>
+    <tr><td><span class="k">의사결정과 통제</span> decision making &amp; control</td><td>목표 달성을 위한 행동 조정</td><td>사람 관련</td></tr>
+  </table></div>
+
+  <h3 id="ds-2d">조직설계의 두 차원: 과업, 부서</h3>
+  <div class="grid2">
+    <div><h4>과업구조 <span class="mono">sub-structure</span></h4><p>개별 구성원의 과업 단위 설계. 과업의 분화와 통합, 역할 배분의 문제</p></div>
+    <div><h4>부서구조 <span class="mono">super-structure</span></h4><p>상위조직구조의 설계. 과업 단위들의 묶음/분류, 보고·지휘·관리체계</p></div>
+  </div>
+  <p id="ds-3c">조직구조 특성을 파악하는 세 가지:</p>
+  <div class="tbl"><table>
+    <tr><th>특성</th><th>의미</th></tr>
+    <tr><td><span class="k">복잡성</span> complexity</td><td>단위의 세분화 정도</td></tr>
+    <tr><td><span class="k">공식화</span> formalization</td><td>규칙과 절차의 표준화 정도</td></tr>
+    <tr><td><span class="k">집권화</span> centralization</td><td>의사결정 권한의 집중 정도</td></tr>
+  </table></div>
+
+  <h3 id="ds-4">조직설계의 4가지 요소</h3>
+  <p>집을 지을 때 재료·창문 크기·간의 수와 폭·건물 방향을 정하듯, 구성요소를 어떻게 나누고 연결하느냐로 구조가 달라집니다.</p>
+  <ol>
+    <li>개인과 부서별 <span class="k">업무와 책임의 할당</span></li>
+    <li>부서 간 <span class="k">위계</span>와 개인 간 <span class="k">의사결정</span> 관련 배분</li>
+    <li><span class="k">통제범위</span>를 포함한 지시와 보고 체계</li>
+    <li>정보 교환과 <span class="k">조정·통합을 위한 장치</span></li>
+  </ol>
+
+  <h3 id="ds-3">구조는 세 가지 결정의 합</h3>
+  <div class="note v8"><span class="tag">증강판 7·8쪽</span>
+    <div class="grid2">
+      <div><h4>01 분할 Differentiation</h4><p>과업을 자르고, 조각을 묶어 부서를 만든다. “어디까지가 한 사람의 일인가”</p></div>
+      <div><h4>02 통합 Integration</h4><p>잘라낸 조각을 다시 잇는다. “다른 부서가 한 일과 어떻게 만나는가”</p></div>
+      <div><h4>03 통제 Control</h4><p>누가 누구에게 보고하고 권한이 어디까지 내려가는가. 위임과 책임의 그림</p></div>
+    </div>
+    <p id="ds-eff"><b>구조가 만들어내는 효과 4</b>: ① <span class="k">행동을 유도</span>(가까운 부서와 더 자주 협업) ② <span class="k">정체성을 만든다</span>(어디에 속해 있는가) ③ <span class="k">외부 인식을 만든다</span>(누구에게 응답하는가) ④ <span class="k">비용과 속도를 좌우</span>(의사결정 시간, 협업 비용).</p>
+  </div>
+</section>
+
+<!-- 2강 분업 -->
+<section id="dv">
+  <h2>조직설계 1. 분업화(과업의 분할)</h2>
+  <p class="src"><b>2강 교안 9~13쪽</b> + <b>증강판 10~14쪽</b></p>
+
+  <h3 id="dv-hv">수평적 분업과 수직적 분업</h3>
+  <p>과업을 나누어 맡기는 것 = <span class="k">분업(division of labor)</span> 또는 <span class="k">전문화(specialization)</span>.</p>
+  <div class="tbl"><table>
+    <tr><th>구분</th><th>내용</th><th>예</th></tr>
+    <tr><td><span class="k">수평적 분업</span></td><td><b>동일한 수준</b>에서 과업을 세부과업으로 나눔. 분업이 높을수록 한정된 부분만 담당 → 숙련도↑, 전체 조율 문제 발생 가능</td><td>자동차 조립: 엔진·도어·타이어 조립</td></tr>
+    <tr><td><span class="k">수직적 분업</span></td><td>분업 1: <b>관리(계획·감독)와 실천(집행) 분리</b><br>분업 2: 관리업무 자체를 분야별로 분리 — 관리직의 수평적 분업</td><td>경영진(기획) vs 직원(실행) / 기획 파트 세분화</td></tr>
+  </table></div>
+  <p>⇒ 규모가 <b>작은</b> 조직: 수평·수직 분업이 낮음, 한 사람이 다양한 역할. 규모가 <b>큰</b> 조직: 둘 다 강화 → 과업 세분화 + 관리층 다층화.</p>
+
+  <h3 id="dv-fac">분업화 정도에 영향을 미치는 요소</h3>
+  <p class="mono">분업화 정도 = 부서 특성 + 직위 수준 + 기술 수준 + 과업 성격</p>
+  <div class="tbl"><table>
+    <tr><th>요소</th><th>내용</th></tr>
+    <tr><td>부서의 특성</td><td>같은 조직이라도 부서별로 다름. <b>조립부서는 매우 세분화</b>, 회계부서는 덜 세분화</td></tr>
+    <tr><td>직위 수준</td><td>직위가 <span class="k">올라갈수록 분업은 최소화</span></td></tr>
+    <tr><td>기술 수준</td><td><span class="k">반복적·단순 기술일수록 분업화 용이</span>. 전문적·복잡한 기술은 과도한 분업 불가 → 통합 필요↑</td></tr>
+    <tr><td>연구·전문 영역</td><td>지적·창의적 업무는 지나친 분업화 부적합. 과업 간 통합과 협력이 중요</td></tr>
+  </table></div>
+  <p>적정 수준이 중요. 과도한 분업은 조정 비용·의사소통 문제 등 <b>비효율</b>을 초래.</p>
+
+  <h3 id="dv-cost">지나친 분업화의 문제점 (분화의 비용)</h3>
+  <div class="tbl"><table>
+    <tr><th>문제</th><th>내용</th></tr>
+    <tr><td>작업 범위 축소</td><td>맡는 과업이 지나치게 작아짐. 단순 반복, 다양성·보람 감소</td></tr>
+    <tr><td>효율성 저하</td><td>고정화(표준화)는 쉬워지지만 지나친 반복으로 숙련도가 높아져도 <span class="k">오히려 효율 저하</span></td></tr>
+    <tr><td>조율·연결 비용 증가</td><td>세분화된 과업을 다시 조합·연결하는 비용. 경제적 비용 + 시간·노력</td></tr>
+    <tr><td>부서 간 갈등</td><td>이해관계 충돌·목표 상충, 의사소통 어려움</td></tr>
+    <tr><td>무형의 비효율</td><td>부서 간 단절 심화 → 유연성 저하. 협력보다 분절적 행동</td></tr>
+  </table></div>
+  <p>요약: 작업방법 고정화 · 반복에 의한 낮은 효율 · <span class="k">연결비용</span>(경제적 비용, 갈등, 커뮤니케이션, 일의 지연).</p>
+
+  <h3 id="dv-opt">분업화의 적정 수준 (교안 13쪽 그래프)</h3>
+  <p>가로축 = 분업화 정도(적음 → 많음), 세로축 = 유형·무형의 이익과 손실. 분업화가 커질수록 한 곡선은 내려가고 한 곡선은 올라가며, 두 곡선이 만나는 지점 바로 위에 U자 곡선의 최저점이 놓입니다. 그 점이 <span class="k">적정 분업화 수준</span> — 분업화의 <b>이득과 손실이 균형</b>을 이루는 지점입니다. 분업은 “많을수록 좋다”가 아니라 적정 수준이 있다는 그림입니다.</p>
+  <p class="src">교안 그림의 곡선 라벨(“분업화에 의한 이득” / “분업화로 인한 손실”)이 어느 곡선에 붙는지 그림만으로는 모호합니다. 답안은 “이득과 손실의 균형점”으로 쓰면 안전합니다.</p>
+
+  <div class="note v8" id="dv-4"><span class="tag">증강판 10쪽 · 분할은 “더 잘하기 위한 포기”</span>
+    <div class="flow"><span>과업의 분할</span><i>→</i><span>집단의 형성(부서)</span><i>→</i><span>관계의 결정</span><i>→</i><span>차이의 누적</span></div>
+    <p>양면성: 전문성과 효율을 얻는 대신 <span class="k">통합 비용</span>이 발생. 잘 나눈 만큼 잘 연결해야 한다. 분할의 세 축 = <span class="k">수평 · 수직 · 공간/시간</span>.</p>
+  </div>
+
+  <h3 id="dv-cut">수평 분할 4기준 · 수직 분할 4층위</h3>
+  <div class="note v8"><span class="tag">증강판 11·12쪽</span>
+    <div class="tbl"><table>
+      <tr><th>수평 분할 기준</th><th>자르는 질문</th><th>예</th></tr>
+      <tr><td><span class="k">기능별</span></td><td>무엇을 잘하는가</td><td>마케팅·재무·HR·R&amp;D</td></tr>
+      <tr><td><span class="k">산출물별</span></td><td>무엇을 만드는가</td><td>제품 라인, 서비스 라인</td></tr>
+      <tr><td><span class="k">고객별</span></td><td>누구에게 가는가</td><td>기업·개인 고객, 산업별</td></tr>
+      <tr><td><span class="k">지역별</span></td><td>어디에서 일하는가</td><td>북미·유럽·아시아</td></tr>
+    </table></div>
+    <p>얻는 것: 전문성과 규모의 경제. 잃는 것: 다른 부서와 점점 말이 달라짐.</p>
+    <p><b>수직 분할 4층위</b>: 임원층(전략·자본·외부) → 중간관리(조정·번역·계획) → 1차 감독자(코칭·일상 결정) → 현장(실행·고객). 층이 <b>얕으면</b> 결재가 빠르지만 책임이 분산, 층이 <b>깊으면</b> 책임은 분명하지만 소통 과정이 길어짐.</p>
+    <p><span class="k">통제 범위(span of control)</span> = 한 관리자가 몇 명을 직접 보느냐. 일정 수준을 넘으면 가시화의 한계와 접촉 비용 증가.</p>
+  </div>
+
+  <h3 id="dv-new">공간·시간 분할, 그리고 2024~2026</h3>
+  <div class="note v8"><span class="tag">증강판 13·14쪽</span>
+    <p><b>장소</b>(같은 건물 vs 분산) · <b>시간</b>(동시·시차·비동기) · <b>하이브리드</b>(장소와 시간을 더 이상 묶지 않는 결정). 공간과 시간은 “기본값”이 아니라 설계 대상.</p>
+    <p>분할의 단위가 “고정 직무” → <span class="k">“재구성 가능한 스킬 단위”</span>로 이동(OECD skills-first). WEF Future of Jobs 2025: 2030까지 조직 변화의 주요 동력 = “브로드닝 디지털 액세스”, AI·정보처리 <span class="mono">86%</span>.</p>
+  </div>
+</section>
+
+<!-- 2강 통합 -->
+<section id="ig">
+  <h2>조직설계 2. 통합화: 분화된 과업의 통합·조정</h2>
+  <p class="src"><b>2강 교안 14~19쪽</b> + <b>증강판 15~19쪽</b></p>
+
+  <h3 id="ig-def">통합화의 의미와 수단</h3>
+  <p>나뉜 기능·작업집단이 다시 연결·통합되어야 목표 완수. <span class="k">통합화(integration)</span> = 분리된 과업과 부문 간 협동·상호 연계로 전체 목표 달성. 수평·수직으로 분화된 과업을 다시 조정·통합하는 과정.</p>
+  <ul>
+    <li><span class="k">수평적 통합</span>: 과업들 간의 조정(coordination)</li>
+    <li><span class="k">수직적 통합</span>: 계획, 실행, 피드백, 지시·보고가 원활</li>
+  </ul>
+  <div class="grid2">
+    <div><h4>수단 1 <span class="k">공식화</span></h4><p>규정·규율을 미리 정해 통합적으로 조화</p></div>
+    <div><h4>수단 2 <span class="k">표준화</span></h4><p>규정된 절차와 방법을 동일하게 적용</p></div>
+    <div><h4>수단 3 <span class="k">상호 조정</span></h4><p>당사자 간 상호 소통으로 조정</p></div>
+  </div>
+
+  <h3 id="ig-form">(수단 1) 공식화 — 업무 방식과 절차를 규정화</h3>
+  <p>분업된 과업들을 <b>문서화된 규정·절차</b>로 연결해 조정. ‘약속된 규칙’에 의해 협동·연결.</p>
+  <p>공식화와 문서화: 규정이 많아도 실제 집행에서 무시되거나 형식적이면 효과 없음 → 공식화 정도는 <span class="k">양이 아니라 얼마나 잘 지켜지는지</span>가 중요.</p>
+  <p id="ig-form-lim"><b>지나친 공식화의 한계</b>: ① <span class="k">융통성 감소</span>(상황 변화 대응 어려움) ② <span class="k">창의성 감소</span>(재량권 없음) ③ <span class="k">비인간화·인간 소외</span>(사기 저하).</p>
+
+  <h3 id="ig-std">(수단 2) 표준화 — 업무 방식과 생산과정의 통일</h3>
+  <p>각 부서의 작업 방식, 행동 양식, 연락 방법, 산출물의 품질·수준을 <b>사전에 통일</b>해 규정.</p>
+  <div class="note exam"><span class="tag">시험 포인트 · 공식화 vs 표준화</span>
+    <p>공식화 = 규정·규칙·<b>문서</b>에 따라 업무 수행. 표준화 = 실제 <b>작업 방식·절차를 동일하게</b> 맞춤. “규정만 있는 것이 공식화라면, 실제 작업 과정과 산출물이 통일되는 것이 표준화.”</p>
+  </div>
+  <div class="tbl"><table>
+    <tr><th>표준화 범위</th><th>내용</th><th>예</th></tr>
+    <tr><td><span class="k">투입물</span>의 표준화</td><td>원료·부품·작업자의 기술과 자격. 작업자 행동의 표준화: <b>훈련·교육(making)</b>, <b>자격자 선발(buying)</b></td><td>자격증 보유자 채용, 신입 교육</td></tr>
+    <tr><td><span class="k">과정</span>의 표준화</td><td>작업 수행 절차와 과정을 동일하게 규정</td><td>지침서, 절차 규정, 작업 매뉴얼</td></tr>
+    <tr><td><span class="k">산출물</span>의 표준화</td><td>최종 산출물이 동일한 품질·수준 유지</td><td>제품 규격, 서비스 품질 기준, 고객 응대 방식</td></tr>
+  </table></div>
+
+  <h3 id="ig-mut">(수단 3) 작업자 간 상호 조정</h3>
+  <p><span class="k">위계적 권한관계를 설정하지 않고도</span> 과업을 조정하는 방법. 생산 현장·팀 단위에서 서로 업무를 맞추는 <b>상호 조정(mutual adjustment)</b>. 기능·부서·계층 간 <b>지속적이고 비공식적인 커뮤니케이션</b>에 크게 의존.</p>
+  <div class="tbl"><table>
+    <tr><th>방식</th><th>내용</th></tr>
+    <tr><td>당사자 간 직접 대면</td><td>자주 만나 토의·협의. 물리적으로 가까운 공간 배치</td></tr>
+    <tr><td><span class="k">연결핀</span> (liaison role)</td><td>기능·부서 간 연결 담당자를 두어 협조·조정, <b>중재자</b> 역할</td></tr>
+    <tr><td>조직의 네트워크화</td><td>위계 대신 수평적 네트워크로 정보·아이디어 교환</td></tr>
+    <tr><td>팀 운영</td><td>긴밀한 협조가 필요할 때 팀 단위로 운영, 의사결정·조정 직접 수행</td></tr>
+  </table></div>
+
+  <h3 id="ig-link">분업화된 업무의 연결 메커니즘 5가지 (교안 19쪽 그림)</h3>
+  <ol>
+    <li><span class="k">담당자끼리 상호 조정과 교환</span>으로 (담당자 ↔ 담당자)</li>
+    <li><span class="k">관리·감독자가 중간에서 지휘 조정</span>으로 (관리자 → 담당자)</li>
+    <li><span class="k">투입실무자 기술</span>의 표준과 규정으로 (스탭·전문규정 → 투입기술 input)</li>
+    <li><span class="k">작업 방식과 절차</span>의 표준과 규정으로 (→ 작업 방식 process)</li>
+    <li><span class="k">산출물</span>의 표준과 규정으로 (→ 산출물 output)</li>
+  </ol>
+  <p class="src">그림 구조: 위에 관리자, 왼쪽 위에 스탭·전문규정, 가운데 두 담당자, 아래에 투입기술 → 작업 방식 → 산출물. Mintzberg의 조정 메커니즘(상호조정·직접감독·기술/작업과정/산출물 표준화)과 같은 틀입니다.</p>
+
+  <h3 id="ig-5">조정 메커니즘 다섯 가지 (증강판)</h3>
+  <div class="note v8"><span class="tag">증강판 16쪽 · Galbraith류 정리</span>
+    <p>통합이 약해질수록 더 무거운 메커니즘이 필요. 위로 갈수록 비용이 작고 빠르며, 아래로 갈수록 느리지만 결합이 깊다.</p>
+    <ol>
+      <li><span class="k">직접 감독</span> — 가장 단순하고 빠름. 통제 범위가 곧 한계</li>
+      <li><span class="k">규칙과 절차</span> — 예측 가능한 상황에서 작동. 표준·매뉴얼·승인 절차</li>
+      <li><span class="k">목표 설정</span> — 공통된 결과를 향해 정렬</li>
+      <li><span class="k">상호조정의 문화</span> — 시간이 들지만 결합이 깊음</li>
+      <li><span class="k">전담 통합자</span> — 특정 부서·역할이 “부서 사이의 연결”을 직업으로. 매트릭스의 PM</li>
+    </ol>
+  </div>
+  <div class="note fix"><span class="tag">목록이 세 가지 — 헷갈림 주의</span>
+    <p>① 교안 14쪽 <b>통합화 수단 3</b>: 공식화·표준화·상호 조정 ② 교안 19쪽 <b>연결 메커니즘 5</b>: 상호조정·관리감독자 지휘·투입기술 표준·작업방식 표준·산출물 표준 ③ 증강판 16쪽 <b>조정 메커니즘 5</b>: 직접감독·규칙절차·목표설정·상호조정 문화·전담 통합자. 문제에서 몇 개냐, 누구 목록이냐를 먼저 확인하세요. 증강판 참고문헌엔 Mintzberg “조정 다섯 메커니즘”과 Galbraith가 모두 있습니다.</p>
+  </div>
+
+  <h3 id="ig-fi">공식적 통합 vs 비공식적 통합</h3>
+  <div class="note v8"><span class="tag">증강판 15·17쪽</span>
+    <p>통합 = “선”을 만드는 일. 각 선은 누군가 비용을 치른다는 뜻. 두 질문: 다른 부서 일이 내 일과 어떻게 연결되는가 / 그 연결에 누가 책임지는가. 통합이 약하면 같은 고객을 여러 부서가 따로 만나고 책임이 빈 채로 흐름.</p>
+    <div class="tbl"><table>
+      <tr><th>구분</th><th>공식적 통합</th><th>비공식적 통합</th></tr>
+      <tr><td>만드는 것</td><td>조직도·직무기술서·보고선·회의체 — 보이는 약속</td><td>동호회·멘토링·잡담·우연한 만남 — 보이지 않는 결합</td></tr>
+      <tr><td>예</td><td>월례 부서장 회의, KPI 연동, SOP, 통합 PM</td><td>직무 커뮤니티, 호의의 네트워크</td></tr>
+      <tr><td>강점/약점</td><td>가시적이지만 <b>의례</b>가 되면 결합이 얕아짐</td><td>결합은 깊지만 <b>빠지면 다시 살리기 어려움</b></td></tr>
+    </table></div>
+    <p>두 통합은 경쟁하지 않는다 — 둘 다 의도적으로 다루는 게 설계의 과제.</p>
+  </div>
+
+  <h3 id="ig-mx">매트릭스 — 두 개의 보고선</h3>
+  <div class="note v8"><span class="tag">증강판 18쪽</span>
+    <p>한 사람이 <span class="k">두 매니저에게 보고</span>. 기능(엔지니어링·마케팅)과 산출물(제품 X·Y)을 동시에 자르고 동시에 잇는다.</p>
+    <p>얻는 것: 부서 사일로가 줄고 전문성 유지. 잃는 것: <span class="k">충돌 두 배, 시간 두 배</span> — “공짜의 장치”가 아님. 잘 작동하면 “끈적한” 조직, 실패하면 회의만 많아짐.</p>
+  </div>
+
+  <h3 id="ig-ai">AI-Native 운영 모델과 통합의 속도</h3>
+  <div class="note v8"><span class="tag">증강판 19쪽 · SAFe AI-Native(2026), WEF 2025</span>
+    <p>이전 병목 = <b>“빨리 짓는가”</b>(속도 자체가 목표, 핸드오프·회의·승인 축소) → 지금 병목 = <b>“무엇이 안전한가”</b>(무엇이 안전하고 보이며 가치 있는지 검증). 통합의 모양이 <span class="k">검토·거버넌스</span>를 포함하도록 다시 그려짐. 스킬 격차가 가장 큰 장벽, <span class="mono">85%</span>가 업스킬링을 우선순위로.</p>
+  </div>
+</section>
+
+<!-- 2강 통제 -->
+<section id="ct">
+  <h2>조직설계 3. 분권화: 통제와 위임 · 현대 구조 양식</h2>
+  <p class="src"><b>2강 교안 20~24쪽</b> + <b>증강판 21~31쪽</b></p>
+
+  <h3 id="ct-def">통제의 개념</h3>
+  <p>분업화·통합화된 활동을 지시·조정하는 과정. <span class="k">권한(authority)</span> 문제 = 누가 명령·지시하고 누가 따르는가. 통제는 권한 행사뿐 아니라 일을 할당·연결하고 이를 결정할 권한(<b>의사결정권</b>)이 누구에게 있는지 정하는 것. 구성원 행동을 <b>지시·유도·촉진·통제·금지</b>하는 모든 과정.</p>
+
+  <h3 id="ct-4">주요 통제 내용</h3>
+  <div class="tbl"><table>
+    <tr><th>질문</th><th>내용</th></tr>
+    <tr><td>1) <span class="k">주체</span> — 누가?</td><td>위계상 상급자(경영자·팀장) / 자기 통제·자기 규제 / 전문 감독자(조정팀·감사·감독기관) / 정보기술을 활용한 자동적 통제</td></tr>
+    <tr><td>2) <span class="k">대상</span> — 무엇을?</td><td><b>전략적 통제</b>: 전반적 활동·장기 방향·전략적 자원 활용 의사결정 / <b>운영통제</b>: 과업 실행 관련 지시·의사결정</td></tr>
+    <tr><td>3) <span class="k">방식</span> — 어떻게?</td><td>부정적(허가·보고) vs 긍정적(권장·전파) / 공식적(미리 정한 규정대로) vs 비공식적(대면·대인관계·설득·동의) / <b>피드백</b>(결과를 보고 시정) vs <b>예방적</b>(정보로 예측·예방)</td></tr>
+  </table></div>
+  <div class="tbl" id="ct-way"><table>
+    <tr><th>4) 대표적 통제 방식</th><th>내용</th></tr>
+    <tr><td>개인의 집권적 통제</td><td>리더 권한으로 직접 지시·보상·처벌</td></tr>
+    <tr><td><span class="k">관료제적 통제</span></td><td>규정·절차·규칙 기반, 상급자 결정·지시</td></tr>
+    <tr><td><span class="k">결과통제</span></td><td>산출물 달성 여부 평가 후 보상·처벌</td></tr>
+    <tr><td>전자적 감시</td><td>ICT로 기록·평가·비교 후 통제</td></tr>
+    <tr><td>인적자원관리</td><td>성과평가·훈련·보상·처벌 중심</td></tr>
+    <tr><td><span class="k">문화적 통제</span></td><td>조직목표와 개인목표 조화, 집단 자율성 활용</td></tr>
+  </table></div>
+
+  <h3 id="ct-cd">통제권과 의사결정권의 하향 위임 — 집권화 vs 분권화</h3>
+  <p>하향위임 = 통제권·의사결정권이 특정 단위에 집중되지 않고 하위로 내려가는 것. 권한의 집중 정도 = <span class="k">집권화(centralization)</span>, 반대 = <span class="k">분권화(decentralization)</span>. 현대 조직 구성원은 분권화를 더 원함.</p>
+  <div class="tbl"><table>
+    <tr><th>구분</th><th>장점·적합 상황</th></tr>
+    <tr><td>집권화</td><td>부서 간 조정·통합 원활, 권력을 중앙에서 집중 행사 / 업무 누락 방지, 의사소통·통제 용이, <b>업무가 긴밀히 연결될 때</b> / 신속한 의사결정이 필요할 때 강력한 리더십</td></tr>
+    <tr><td>분권화</td><td>한 개인이 모든 것을 알 수 없으니 권한을 나누는 게 합리적 / <b>외부의 빠른 변화·환경 적응</b>에 유리 / 현장 실무자가 더 정확·신속한 정보로 결정</td></tr>
+  </table></div>
+  <h4 id="ct-fac">분권화·집권화 수준을 결정하는 요인 4</h4>
+  <ol>
+    <li><span class="k">책임자의 가치관</span> — 상급자의 태도·가치관</li>
+    <li><span class="k">사용 기술의 복잡성</span> — 첨단·전문 기술일수록 현장이 권한</li>
+    <li><span class="k">환경 변화 정도</span> — 변화가 많을수록 현장에 권한</li>
+    <li><span class="k">실무자 능력</span> — 훈련·전문화된 실무자가 많을수록 분권화 용이</li>
+  </ol>
+
+  <h3 id="ct-span">통제 범위와 위임 · 분산형 의사결정</h3>
+  <div class="note v8"><span class="tag">증강판 21·22쪽</span>
+    <p><b>통제 범위</b>(몇 명을 직접 보느냐)와 <b>위임</b>(결정 권한을 어디까지 내리느냐)은 <span class="k">별개의 질문</span>. 통제 범위가 너무 넓으면 “감독의 감독”, 너무 좁으면 관리자가 늘어 관리 비용↑. 위임은 “신뢰”가 아니라 <span class="k">“책임의 재배치”</span>.</p>
+    <p>위임 실패 신호: ① 권한은 내려가고 <b>책무는 남는다</b>(가장 흔함) ② 통제 범위가 “명목”과 “실제”로 갈라짐.</p>
+    <p><b>분산형 의사결정</b>: 전제 “더 가까운 사람이 더 잘 안다”(속도·품질·동기). 네 장치: 결정 범위의 명문화 · 의사결정 기록의 가시화 · 예외 상황 에스컬레이션 · 사후 검토(post-hoc review). 주의: 책무성이 흐려지면 “모두가 결정하지만 아무도 책임지지 않는” 상태. <b>분산은 책무성과 함께하는 자유.</b></p>
+  </div>
+
+  <h3 id="ct-new">증강: 역할 기반 · 스킬 기반 · Agile/AI-Native</h3>
+  <div class="note v8"><span class="tag">증강판 23~25쪽</span>
+    <div class="tbl"><table>
+      <tr><th>흐름</th><th>핵심</th></tr>
+      <tr><td><span class="k">역할 기반 자기관리</span> (Holacracy)</td><td>① 권한은 “사람”이 아니라 <b>“역할”</b>에 붙음 ② <b>거버넌스 절차</b>로 끊임없이 갱신(제안·승인·재정의) ③ 책임과 자율이 역할 안에서 결합</td></tr>
+      <tr><td><span class="k">스킬 기반 조직</span></td><td>“사람을 직무에 맞추는” 대신 <b>“일을 사람의 스킬에 맞춘다”</b>. 함의: 스킬 인벤토리 가시화, 업·리스킬 동시 운영, 일의 단위가 과업으로 분해</td></tr>
+      <tr><td><span class="k">Agile · AI-Native</span> (SAFe)</td><td>“빠른 조직”이 아니라 <b>“빠르면서도 안전한 조직”</b>. 작은 팀 짧은 주기 + 큰 통합 구조가 정렬. AI가 의사결정을 보조해도 <b>책임은 여전히 사람</b>. 검증·감사·보안</td></tr>
+    </table></div>
+  </div>
+
+  <h3 id="ct-5">현대 다섯 가지 구조 양식 비교</h3>
+  <div class="tbl"><table>
+    <tr><th>양식</th><th>분할 단위</th><th>통합 장치</th><th>권한</th><th>잘 맞는 상황</th></tr>
+    <tr><td><span class="k">기능형</span></td><td>기능 단위 부서</td><td>규칙·보고선</td><td>계층적 위임</td><td>안정 운영, 규모의 경제</td></tr>
+    <tr><td><span class="k">사업부제</span></td><td>산출물·시장 단위</td><td>본부 통합 + 부서 자율</td><td>사업 단위 위임</td><td>다중 시장, 다중 제품</td></tr>
+    <tr><td><span class="k">매트릭스</span></td><td>기능 × 산출물</td><td>통합자·PM 역할</td><td>이중 보고선</td><td>복잡 환경, 사일로 우려</td></tr>
+    <tr><td>역할 기반</td><td>역할의 묶음</td><td>거버넌스 절차</td><td>역할 범위 자율</td><td>—</td></tr>
+    <tr><td>스킬 기반</td><td>스킬 묶음 + 과업</td><td>—</td><td>유동적 위임</td><td>—</td></tr>
+  </table></div>
+  <p class="src">증강판 26쪽 표의 역할 기반·스킬 기반 행은 칸이 합쳐져 있어 일부가 비어 있습니다. “역할 범위 자율”은 23쪽 내용으로 채웠습니다.</p>
+
+  <h3 id="ct-case">사례 3 — 어디를 강조했나</h3>
+  <div class="tbl"><table>
+    <tr><th>사례</th><th>구조</th><th>설계 관찰</th></tr>
+    <tr><td><span class="k">Spotify</span></td><td>스쿼드·트라이브·길드. 소형 자율 팀 + 크로스-팀 길드</td><td>큰 조직이 작은 팀의 자율성을 유지하는 한 답</td></tr>
+    <tr><td><span class="k">Haier</span></td><td>Rendanheyi(인단합일, 증강판 표기 Rendanreyi)·마이크로 엔터프라이즈. 수천 개 작은 사업 단위, 사용자 0거리</td><td><b>분할의 극단</b> — 위계가 사용자에게까지 가까이</td></tr>
+    <tr><td><span class="k">Scaled Agile</span></td><td>엔터프라이즈 단위 애자일 프레임워크</td><td>큰 통합을 “구조의 묶음”으로 푸는 시도</td></tr>
+  </table></div>
+
+  <h3 id="ct-fit">구조는 다른 결정과 함께 읽는다</h3>
+  <div class="tbl"><table>
+    <tr><th>조합</th><th>내용</th><th>함정</th></tr>
+    <tr><td>구조 × 전략</td><td><span class="k">비용우위 → 기능형</span>, <span class="k">차별화 → 사업부제</span>에 가까울 수 있음. 어느 쪽이 맞는지는 사업의 성격이 결정</td><td>전략만 바꾸고 구조를 두면 구조가 전략을 원래 자리로 끌어당김</td></tr>
+    <tr><td>구조 × 문화</td><td>혁신 지향 문화에 강한 위계를 겹치면 “혁신”은 회의록에만</td><td>문화만 바꾸려 해도 구조는 냉정한 제약</td></tr>
+    <tr><td>구조 × 목표</td><td>OKR을 선언했지만 구조가 팀 자율을 막으면 목표는 “기록”에 머묾</td><td>목표를 분기에만 걸면 한 시즌만 살아 있음</td></tr>
+  </table></div>
+
+  <h3 id="ct-pit">설계의 흔한 함정 다섯 가지</h3>
+  <div class="note exam"><span class="tag">증강판 29쪽 · “구조만”으로 해결하려는 환원의 오류</span>
+    <ol>
+      <li><span class="k">“다이어트” 설계</span> — 구조만 줄이면 남은 사람에게 짐이 실림</li>
+      <li><span class="k">“유행” 복사</span> — 다른 회사의 매트릭스를 맥락 없이 → 구조는 장식</li>
+      <li><span class="k">“공식만” 통합</span> — 회의·KPI·문서만, 서로의 작업을 모르면 결합은 표면에만</li>
+      <li><span class="k">“권한만” 내림</span> — 결정 권한은 주고 책무성은 본부에</li>
+      <li><span class="k">“기술만” 도입</span> — 협업 도구를 깔아도 무엇을 연결할지 안 정하면 도구만 남음</li>
+    </ol>
+    <p>2강 요약: 구조는 결과, 설계는 결정의 묶음 · 분할·통합·통제는 한쪽만 강해지면 다른 쪽이 비용을 치름 · 조정 메커니즘은 “무게” 순 · 2024~2026 흐름은 분할 단위를 더 작게, 통합의 무게중심을 “검증”으로 · 구조는 전략·문화·목표와 정합.</p>
+  </div>
+</section>
+
+<!-- 3강 상황요인 -->
+<section id="sf">
+  <h2>조직설계에 영향을 미치는 상황요인</h2>
+  <p class="src"><b>3강 교안 3~15쪽</b> (단독 자료)</p>
+
+  <h3 id="sf-def">상황요인과 상황적합성 이론</h3>
+  <p>전통 이론은 조직을 <b>보편적 원칙</b>으로 설계할 수 있다고 봤지만, 실제로는 내부·외부 상황요인을 고려하지 않으면 효과적 설계가 불가능 → <span class="k">상황적합성(Contingency) 이론</span>: “조직 구조는 상황에 따라 달라진다.” (contingency = ~에 따라서 같이 움직이다)</p>
+  <div class="grid2">
+    <div><h4>내부 요인</h4><p><span class="k">조직규모, 연혁, 기술, 목표, 전략</span> 등</p></div>
+    <div><h4>외부 요인</h4><p>시장 조건, 사회문화적 환경, 법규, 정부 규제, 경제 조건, 기술 수준 등</p></div>
+  </div>
+
+  <h3 id="sf-size">1. 조직규모</h3>
+  <p>규모가 커질수록 <b>공식화·분화·통합</b>이 요구되고, 균형을 못 잡으면 경직성과 비효율.</p>
+  <ul>
+    <li>인원 수 증가 → 인간관계 수가 기하급수적으로 증가 → 조정 필요성 확대. <span class="k mono">nC2 = n(n−1)/2</span> (예: 10명이면 45개 관계)</li>
+    <li>부서 수 증가 → 규정·규칙·공식화 강화, 조정 장치 필요 / 인원 증가 → 권한 위임과 공식화 확대</li>
+  </ul>
+  <div class="flow"><span>규모 증가</span><i>→</i><span>공식화</span><i>→</i><span>통제범위 확장</span><i>→</i><span>부서규모 증가</span></div>
+  <p>규모 확대 = 복잡성 증가 → <span class="k">공식화와 표준화 강화</span>. 그러나 지나친 공식화는 경직성·비효율.</p>
+
+  <h3 id="sf-age">2. 조직연혁</h3>
+  <p>오래될수록 <span class="k">관료화·공식화</span> 강화, 젊은 조직은 유연성·적응력이 높음.</p>
+  <ul>
+    <li>창업 초기: 작고 단순한 구조, 비공식적 운영 / 성장 이후: 부서 증가, 부서 간 의존성 증가 → 공식화·표준화 심화</li>
+    <li>과거 <b>성공 경험</b>이 누적되며 관행·절차에 의존, 새 방식 도입이 어려움 → 안정적이지만 혁신·도전에 둔감</li>
+    <li>연혁이 짧은 조직: 단순·유연, 빠른 적응 / 연혁이 긴 조직: 관료제적, 안정적이나 경직 위험(<span class="k">복지부동</span>)</li>
+  </ul>
+
+  <h3 id="sf-goal">3. 조직목표</h3>
+  <p>목표는 구조 설계의 기본 방향. <span class="k">안정 지향 → 기계적 구조</span>, <span class="k">혁신 지향 → 유기적 구조</span>.</p>
+  <ul>
+    <li>군대·테러조직: 개인보다 국가·집단 보호라는 상위 목표 / 기업: 이윤 극대화, 성장, 사회적 책임</li>
+    <li>안정적 목표 → 안정성·효율성 → 관료적·기계적 / 혁신적 목표 → 창의성·유연성 → 분권적·유기적</li>
+  </ul>
+
+  <h3 id="sf-str">4. 조직전략</h3>
+  <p>전략이 구조를 이끄는 <b>가장 중요한 요인</b>이며, 전략과 구조의 <span class="k">적합성</span>이 성과를 좌우. 부적합은 성과 저하.</p>
+  <p>“<span class="k">조직구조는 전략을 따른다(Structure follows Strategy)</span>” — 경영학의 고전적 명제. 단, 반대(<b>Strategy follows structure</b>)도 현실에서 자주 발생: 경직된 집권화 구조 → 관료화 → 방어적·안정적 전략 / 분권화된 조직 → 혁신적·진취적 전략.</p>
+  <div class="tbl" id="sf-str6"><table>
+    <tr><th>전략 (교안 10쪽)</th><th>적합한 구조</th></tr>
+    <tr><td><span class="k">공격형</span> 전략</td><td>유연하고 분권화된 자율 구조</td></tr>
+    <tr><td><span class="k">방어형</span> 전략</td><td>경직적이고 표준화된 통제형 구조</td></tr>
+    <tr><td><span class="k">분석형</span> 전략</td><td>유연하고 혁신적이며 분권화된 구조</td></tr>
+    <tr><td><span class="k">반응형</span> 전략</td><td>수시로 변동적인 <b>무형의 구조</b></td></tr>
+    <tr><td><span class="k">저가</span> 전략</td><td>철저한 집권화와 표준화된 관리</td></tr>
+    <tr><td><span class="k">차별화</span> 전략</td><td>느슨한 수평적 조정에 의한 관리</td></tr>
+  </table></div>
+  <div class="note v8"><span class="tag">2강 증강판 28쪽과 연결</span>
+    <p>증강판은 “비용우위 → 기능형, 차별화 → 사업부제에 가까울 수 있다”고 설명합니다. 3강 교안 종합표는 “원가우위 → 기계적, 차별화 → 유기적”. 같은 방향(원가 = 통제·표준, 차별화 = 유연·자율)입니다.</p>
+  </div>
+
+  <h3 id="sf-cul">5. 조직문화</h3>
+  <p>문화가 <span class="k">권위주의적이면 기계적</span>, <span class="k">참여적이면 유기적</span> 구조. 조직문화 = 구성원 행동에 영향을 미치는 공유된 가치·신념·규범·전통.</p>
+  <ul>
+    <li>위계질서적 조직(규칙·명령·통제) → 공식화·집권적 / 집단주의적 조직(협력·조화) → 참여적·분권적</li>
+    <li>국가와 사회의 문화적 특성을 고려하지 않으면 구조의 적합성이 떨어짐</li>
+  </ul>
+  <h4 id="sf-hof">홉스테드의 문화분류와 조직설계 (교안 12쪽)</h4>
+  <div class="quad"><table>
+    <tr><th></th><th>상하거리감 약함<br><span style="font-weight:400">평등주의</span></th><th>상하거리감 강함<br><span style="font-weight:400">수직주의</span></th></tr>
+    <tr><th>회피<br>약함</th>
+      <td class="qa"><b class="qn">시장문화</b><small>스칸디나비아</small><ul><li>분권화 · 비공식·자율성</li><li>융통성 · 낮은 계층</li></ul></td>
+      <td class="qb"><b class="qn">대가족 문화</b><small>아프리카</small><ul><li>집권화 · 공식 무시</li><li>유연성 · 높은 계층</li></ul></td>
+    </tr>
+    <tr><th>회피<br>강함</th>
+      <td class="qc"><b class="qn">기계 문화</b><small>독일</small><ul><li>분권화 · 공식화·규정화</li><li>경직성 · 낮은 계층</li></ul></td>
+      <td class="qd"><b class="qn">피라미드 문화</b><small>일본</small><ul><li>집권화 · 공식화·규정화</li><li>경직성 · 높은 계층</li></ul></td>
+    </tr>
+  </table></div>
+  <p class="src">세로축은 <b>불확실성 회피</b>(약함 = 모험 선호, 강함 = 모험 회피).</p>
+  <div class="note fix"><span class="tag">교안 표 라벨 확인</span>
+    <p>교안 12쪽 세로축은 “불확실성 선호도 — 강함(모험 선호) / 약함(모험 회피)”으로 적혀 있습니다. 홉스테드의 원래 차원은 <b>불확실성 회피</b>라서, 위 표는 “회피 약함 = 모험 선호”로 옮겼습니다. 칸 내용(시장·대가족 = 모험 선호, 기계·피라미드 = 모험 회피)은 교안과 같습니다. 규칙: <b>상하거리감 크면 집권화·높은 계층</b>, <b>불확실성 회피 강하면 공식화·경직성</b>.</p>
+  </div>
+
+  <h3 id="sf-pow">6. 권력관계</h3>
+  <p>권력은 조직구조의 <b>위계·집권화 수준</b>을 결정. 정치적 관계까지 고려해야 현실적 설계가 가능.</p>
+  <ul>
+    <li><b>공식적 권력</b>: 직급·직위로 부여 → 위계 강화, 보고 체계 명확</li>
+    <li><b>비공식적 권력</b>: 전문성·경험·정보 보유 → 공식 구조 외의 의사결정 경로</li>
+    <li>권력관계가 강할수록 <span class="k">수직적 구조(집권화·계층화)</span>, 권력 분산 시 <span class="k">분권적 구조</span></li>
+    <li>공식 구조만으로는 실제 운영을 설명하기 부족 → <b>비공식 권력 네트워크</b>까지 반영</li>
+  </ul>
+
+  <h3 id="sf-sum">상황요인 종합</h3>
+  <div class="tbl"><table>
+    <tr><th>요인</th><th>주요 내용</th><th>조직설계에의 영향</th></tr>
+    <tr><td>조직규모</td><td>인원·부서 수 증가 시 복잡성 확대</td><td>공식화·전문화 강화, 분화와 통합 장치</td></tr>
+    <tr><td>조직연혁</td><td>창업→성장→성숙→쇠퇴</td><td>길수록 관료화·안정성↑, 혁신성↓</td></tr>
+    <tr><td>조직목표</td><td>수익성·안정성·혁신성</td><td>안정 → 기계적 / 혁신 → 유기적</td></tr>
+    <tr><td>조직전략</td><td>기본 방향과 실행계획</td><td><span class="k">원가우위 → 기계적</span> / <span class="k">차별화 → 유기적</span></td></tr>
+    <tr><td>조직문화</td><td>공유된 가치·신념·규범, 국가문화</td><td>권위주의 → 집권·공식화 / 참여적 → 분권·유기적</td></tr>
+    <tr><td>권력관계</td><td>공식·비공식 권력, 정치적 영향</td><td>권력 집중 → 집권·계층 / 분산 → 분권·협의</td></tr>
+  </table></div>
+
+  <h3 id="sf-med">7. 상황변수에서의 매개변수</h3>
+  <p>상황요인이 곧바로 구조를 결정하는 게 아니라, 그 사이에서 작용하는 <span class="k">중간 기제(매개변수)</span>를 통해 구조가 달라짐. 상황과 구조를 잇는 <b>가교</b>.</p>
+  <div class="tbl"><table>
+    <tr><th>매개변수</th><th>의미</th><th>↑ 높을 때</th><th>↓ 낮을 때</th></tr>
+    <tr><td><span class="k">과업 다양성</span><br><span class="mono">variety</span></td><td>과업 종류가 얼마나 다양한가</td><td>부서 세분화, 분화 증가</td><td>단순·표준화 용이</td></tr>
+    <tr><td><span class="k">과업 난이도</span><br><span class="mono">difficulty</span></td><td>얼마나 어렵고 전문 기술이 필요한가</td><td>전문 인력, <b>분권화</b></td><td>표준화·단순화</td></tr>
+    <tr><td><span class="k">과업 불확실성</span><br><span class="mono">uncertainty</span></td><td>결과·수행 방법 예측이 어려운 정도</td><td>유연성·적응력, <b>유기적</b></td><td>규칙·절차, <b>기계적</b></td></tr>
+    <tr><td><span class="k">과업 의존성</span><br><span class="mono">interdependence</span></td><td>다른 과업·부서와 연결되는 정도</td><td>협력·조정 장치, <b>통합기제 강화</b></td><td>독립 처리, 자율성 확대</td></tr>
+  </table></div>
+</section>
+
+<!-- 3강 기술 -->
+<section id="tc">
+  <h2>조직기술에 따른 조직설계</h2>
+  <p class="src"><b>3강 교안 16~22쪽</b> (단독 자료)</p>
+
+  <h3 id="tc-def">조직기술이란</h3>
+  <p>과업을 수행하는 방법·절차·지식·도구 등을 포괄. 기계·장비만이 아니라 업무를 <span class="k">투입(Input) → 변환(Transformation) → 산출(Output)</span>으로 전환하는 모든 활동.</p>
+  <ul>
+    <li><b>두 차원</b>: <span class="k">효율성(effectiveness)</span> = 조직목표에 가장 적합한 기술 / <span class="k">능률성(efficiency)</span> = 작은 input을 큰 output으로 만드는 기술</li>
+    <li><b>분석 기준</b>: <span class="k">개인수준 · 부서수준 · 조직수준</span> (그림: 공장에서 원재료·정보·사람 → 제조·운영·교육 활동 → 제품·서비스·졸업생)</li>
+  </ul>
+  <div class="note fix"><span class="tag">용어 충돌</span>
+    <p>여기서 “효율성”은 effectiveness(목표 적합)입니다. 1강 증강판은 effectiveness를 <b>유효성</b>, efficiency를 <b>효율성</b>이라고 불렀습니다. 영어 기준으로 외우세요: effectiveness = 목표에 맞는가 / efficiency = 투입 대비 산출.</p>
+  </div>
+
+  <h3 id="tc-ww">1. 우드워드(Woodward): 생산기술이 구조를 결정</h3>
+  <p>기술에 따라 조직 적합성을 구현할 수 있다는 <b>최초의 주장</b>. 한 기술에 적합한 구조는 단 하나(<span class="k">one best way</span>)라는 <span class="k">기술결정론(technological imperative)</span>의 창시자.</p>
+  <p><b>복잡성(complexity)</b>: 1950년대 기계화 정도, 예측 가능성(고장의 이해·수리 가능 여부)으로 구분. 대부분 작업을 <b>기계</b>가 하면 복잡성 높음, <b>작업자</b>가 하면 낮음.</p>
+  <div class="flow"><span>단위(소량)생산 — 주문·단일제품, 복잡한 단위, 대규모 장치조립</span><i>→</i><span>대량생산 — 소량·대량 단위 부품</span><i>→</i><span>연속공정생산 — 대량, 연속공정, 기계 장치 생산</span></div>
+  <p>기술적 복잡성: 단위생산 <span class="k">낮음</span> → 연속공정 <span class="k">높음</span>.</p>
+  <div class="tbl" id="tc-wwt"><table>
+    <tr><th>조직구조</th><th class="c">단위소량생산</th><th class="c">대량생산</th><th class="c">연속공정생산</th></tr>
+    <tr><td>전반적 구조</td><td class="c"><span class="k">유기적</span>·인적 통제</td><td class="c"><span class="k">기계적</span>·비인적 통제</td><td class="c"><span class="k">유기적</span>·공정의 통제</td></tr>
+    <tr><td>작업자 수준</td><td class="c">높음</td><td class="c">낮음</td><td class="c">높음</td></tr>
+    <tr><td>공식화</td><td class="c">낮음</td><td class="c">높음</td><td class="c">낮음</td></tr>
+    <tr><td>집권화</td><td class="c">낮음</td><td class="c">높음</td><td class="c">낮음</td></tr>
+    <tr><td>구두 커뮤니케이션</td><td class="c">높음</td><td class="c">낮음</td><td class="c">높음</td></tr>
+    <tr><td>문서 커뮤니케이션</td><td class="c">낮음</td><td class="c">높음</td><td class="c">낮음</td></tr>
+    <tr><td>관리계층의 수</td><td class="c">하</td><td class="c">중</td><td class="c"><span class="k">상</span></td></tr>
+    <tr><td>상급자의 통제범위</td><td class="c">중간</td><td class="c"><span class="k">많고 넓음</span></td><td class="c">좁고 작음</td></tr>
+    <tr><td>관리자 비율</td><td class="c">적음</td><td class="c">중간</td><td class="c"><span class="k">많음</span></td></tr>
+  </table></div>
+  <div class="note exam"><span class="tag">시험 포인트</span>
+    <p>양 끝(단위·연속공정)은 <b>유기적</b>, 가운데(대량생산)만 <b>기계적</b> — “U자” 패턴. 대량생산은 공식화·집권화·문서 커뮤니케이션·통제범위가 가장 높음/넓음. 관리계층 수와 관리자 비율은 단위 → 대량 → 연속공정으로 갈수록 증가.</p>
+  </div>
+  <div class="note fix"><span class="tag">교안 내부 불일치</span>
+    <p>교안 19쪽 요약 문구는 “<b>복잡화(단위소량) → 많은 관리자 → 계층 증대</b>”인데, 같은 쪽 표와 18쪽 그림은 단위소량생산의 기술적 복잡성 <b>낮음</b>, 관리계층 <b>하</b>, 관리자 비율 <b>적음</b>입니다. 표(그리고 우드워드의 원래 연구)는 계층·관리자 비율이 가장 높은 쪽을 <b>연속공정</b>으로 봅니다. 문구는 “복잡화(연속공정)”의 오기일 가능성이 큽니다. 시험에서는 표를 기준으로 답하고, 교수님께 확인해 보세요.</p>
+    <p>나머지 두 문구는 표와 맞습니다: 대량조립생산 → 표준화·공식화·재량권 축소 / 연속공정기술 → 변화와 예외 → 자율권·분권화.</p>
+  </div>
+
+  <h3 id="tc-pr">2. 퍼로우(Perrow): 다양성과 분석가능성</h3>
+  <p>두 축: <span class="k">다양성</span>(예외성·일상성·반복성) × <span class="k">분석가능성</span>(해결 가능성·용이한 정도). 같은 조직 안에서도 부서마다 기술 유형이 다르므로 <b>부서 단위</b> 설계 기준을 제시.</p>
+  <div class="tbl"><table>
+    <tr><th>유형</th><th>의미</th><th>예시</th><th>적합 구조</th></tr>
+    <tr><td><span class="k">정형적(일상적) 기술</span> Routine</td><td>반복적·예측 가능, 절차·규칙으로 해결</td><td>자동차 조립, 대량 생산</td><td>공식화·집권화 높은 <b>기계적</b></td></tr>
+    <tr><td><span class="k">장인적 기술</span> Craft</td><td>범위는 좁지만 <b>경험과 직관</b>에 의존</td><td>외과 수술, 맞춤 제작</td><td>전문가 자율성·숙련도 의존</td></tr>
+    <tr><td><span class="k">공학적 기술</span> Engineering</td><td>다양한 문제를 <b>과학적 원리</b>로 해결</td><td>건축 설계, 항공기 설계</td><td>전문성·부서 간 조정</td></tr>
+    <tr><td><span class="k">비정형적(비일상적) 기술</span> Nonroutine</td><td>해결 불확실, 창의적 탐색 필요</td><td>기초 연구, 신제품 개발</td><td>유연·분권적 <b>유기적</b></td></tr>
+  </table></div>
+  <div class="tbl" id="tc-prt"><table>
+    <tr><th>구분</th><th class="c">일상적</th><th class="c">비일상적</th><th class="c">장인</th><th class="c">공학적</th></tr>
+    <tr><td>조직의 특성</td><td class="c">기계적</td><td class="c">유기적</td><td class="c">다소 유기적</td><td class="c">다소 유기적</td></tr>
+    <tr><td>공식화</td><td class="c">높음</td><td class="c">낮음</td><td class="c">중간</td><td class="c">중간</td></tr>
+    <tr><td>집권화</td><td class="c">높음</td><td class="c">낮음</td><td class="c">중간</td><td class="c">중간</td></tr>
+    <tr><td>스탭의 자격</td><td class="c">낮은 훈련·경험</td><td class="c">훈련과 경험</td><td class="c"><span class="k">작업경험</span></td><td class="c"><span class="k">공식적 훈련</span></td></tr>
+    <tr><td>감독범위</td><td class="c">넓음</td><td class="c">좁음</td><td class="c">중간</td><td class="c">중간</td></tr>
+    <tr><td>의사소통</td><td class="c">수직적, 문서</td><td class="c">수평적</td><td class="c">수평적, 언어</td><td class="c">문서, 언어</td></tr>
+    <tr><td>조정과 통제</td><td class="c">규칙, 예산, 보고서</td><td class="c">회의, 규범</td><td class="c">훈련, 모임</td><td class="c">보고서, 모임</td></tr>
+  </table></div>
+
+  <h3 id="tc-th">3. 톰슨(Thompson): 단위작업의 상호의존성</h3>
+  <div class="tbl"><table>
+    <tr><th>의존성</th><th>기술</th><th>조정·통제수단</th><th>예</th><th>의사소통 빈도</th></tr>
+    <tr><td><span class="k">집합적 의존</span> (pooled)</td><td><span class="k">중개형</span> 기술</td><td>표준화, 규정·공식</td><td>은행 지점, 패스트푸드 지점</td><td class="c">적음</td></tr>
+    <tr><td><span class="k">순차적 의존</span> (sequential)</td><td><span class="k">연속형</span> 기술</td><td>표준화, 규정·공식, 작업계획, 수직의사소통</td><td>대량 조립 공장, 컨베이어시스템</td><td class="c">중간</td></tr>
+    <tr><td><span class="k">교호적 의존</span> (reciprocal)</td><td><span class="k">집약형</span> 기술</td><td>+ 상호 조정, 회의 (처음부터 끝까지 의사소통, 직접대면)</td><td>레스토랑, 병원</td><td class="c">많음</td></tr>
+    <tr><td>팀 의존</td><td>—</td><td>+ 상호 조정, 팀워크</td><td>연구개발팀, 전략계획팀</td><td class="c">많음</td></tr>
+  </table></div>
+  <div class="note exam"><span class="tag">시험 포인트</span>
+    <p>짝 맞추기: 집합적 ↔ 중개형 ↔ 표준화·규정 / 순차적 ↔ 연속형 ↔ 빈번한 의사소통(계획) / 교호적 ↔ 집약형 ↔ 직접대면. 의존성이 커질수록 조정수단이 <b>누적</b>되고 의사소통 빈도가 늘어납니다. 톰슨 원래 3유형 + 교안 그림의 4번째 열 “팀 의존”.</p>
+  </div>
+</section>
+
+<!-- 3강 환경 -->
+<section id="en">
+  <h2>환경 불확실성과 조직설계</h2>
+  <p class="src"><b>3강 교안 23~27쪽</b> (단독 자료)</p>
+
+  <h3 id="en-def">환경 불확실성의 세 가지 측면</h3>
+  <p>충분한 정보가 없어 변화나 결과를 정확히 예측할 수 없는 상태. 미래 예측만이 아니라 <b>현재 상황조차 정확히 인식하지 못하는 경우</b>도 포함. 환경이 복잡하고 변화가 잦을수록 불확실성↑.</p>
+  <div class="tbl"><table>
+    <tr><th>측면</th><th>의미</th><th>예 (야외 팀빌딩)</th></tr>
+    <tr><td><span class="k">상태 불확실성</span></td><td>현재 환경의 상태를 제대로 인식 못함</td><td>“그날 비가 올지 안 올지 모르겠네?”</td></tr>
+    <tr><td><span class="k">결과 불확실성</span></td><td>상태는 알지만 조직에 미칠 결과를 예측 못함</td><td>“비가 오긴 오는데, 팀빌딩을 할 수 있을지 모르겠네?”</td></tr>
+    <tr><td><span class="k">반응 불확실성</span></td><td>변화와 결과를 알아도 어떻게 대응할지 모름</td><td>“취소할지, 연기할지, 실내로 바꿀지 결정을 못 하겠네.”</td></tr>
+  </table></div>
+
+  <h3 id="en-4">불확실성에 기준한 환경 유형 4</h3>
+  <div class="tbl"><table>
+    <tr><th>유형</th><th>불확실성</th><th>특징</th><th>예시</th></tr>
+    <tr><td>① 단순/안정</td><td><span class="k">매우 낮다</span></td><td>경쟁 적고 변화 거의 없음</td><td>음료수 병·캔 제조업</td></tr>
+    <tr><td>② 복잡/동태</td><td><span class="k">매우 높다(가장 높음)</span></td><td>요소가 많고 빠르게 변함</td><td>전자산업, 석유화학</td></tr>
+    <tr><td>③ 복잡/안정</td><td><span class="k">크지 않다</span> (다소 낮음)</td><td>요소는 많으나 변화 느림, 어느 정도 예측 가능</td><td>대학병원</td></tr>
+    <tr><td>④ 단순/동태</td><td><span class="k">높다</span> (다소 높음)</td><td>요소는 적지만 변화가 빠름</td><td>의류 산업(유행 주기 짧음)</td></tr>
+  </table></div>
+  <div class="note exam"><span class="tag">시험 포인트</span>
+    <p>순서: 단순/안정 &lt; 복잡/안정 &lt; 단순/동태 &lt; 복잡/동태. <b>변화 속도(동태성)가 복잡성보다 불확실성을 더 키운다</b>는 점이 함정 — 복잡/안정(대학병원)은 “크지 않다”, 단순/동태(의류)는 “높다”.</p>
+  </div>
+
+  <h3 id="en-mo">기계적 조직 vs 유기적 조직</h3>
+  <p><b>기계적</b>: 안정적 환경에서 위계와 규칙에 따라 운영되는 집권적·표준화 조직. <b>유기적</b>: 불확실한 환경에서 유연성과 협력을 중시하는 분권적·자율적 조직.</p>
+  <div class="tbl"><table>
+    <tr><th>구분</th><th>기계적 조직</th><th>유기적 조직</th></tr>
+    <tr><td>환경</td><td>안정적 환경</td><td>동태적 환경</td></tr>
+    <tr><td>작업의 분업화</td><td>높음</td><td>낮음</td></tr>
+    <tr><td>커뮤니케이션</td><td><span class="k">명령, 지시</span></td><td><span class="k">충고, 자문</span></td></tr>
+    <tr><td>권한의 위치</td><td>조직의 <span class="k">최고층에 집중</span></td><td><span class="k">능력과 기술을 가진 곳</span></td></tr>
+    <tr><td>갈등해결방식</td><td>상급자의 의사결정</td><td>토론, 기타 상호작용</td></tr>
+    <tr><td>정보의 흐름</td><td>제한되고 하향적</td><td>상하로 자유로움</td></tr>
+    <tr><td>공식화</td><td>높음</td><td>낮음</td></tr>
+  </table></div>
+
+  <h3 id="en-ll">Lawrence &amp; Lorsch — 환경 불확실성 유형에 따른 설계</h3>
+  <p>동일 조직 안에도 <b>부서에 따라</b> 환경 예측성·조직설계가 다를 수 있음. <span class="k">핵심조직</span>: 환경의 영향을 덜 받음 / <span class="k">변경(boundary)조직</span>: 환경 영향 높음.</p>
+  <div class="quad"><table>
+    <tr><th></th><th>복잡성 단순</th><th>복잡성 복잡</th></tr>
+    <tr><th>안정적</th>
+      <td class="qa"><b class="qn">낮은 불확실성</b><ul><li>기계적(공식적·집권적)</li><li>소수의 변경조직</li><li>아주 낮은 차별화·아주 적은 통합</li><li><b>생산지향적</b></li></ul></td>
+      <td class="qb"><b class="qn">다소 낮은 불확실성</b><ul><li>기계적(공식적·집권적)</li><li>다수의 변경조직</li><li>낮은 차별화·적은 통합</li><li>약간의 계획</li></ul></td>
+    </tr>
+    <tr><th>동태적</th>
+      <td class="qc"><b class="qn">다소 높은 불확실성</b><ul><li>유기적(비공식적·분권적)</li><li>소수의 변경조직</li><li>높은 차별화·많은 통합</li><li><b>계획지향적</b></li></ul></td>
+      <td class="qd"><b class="qn">높은 불확실성</b><ul><li>유기적(비공식적·분권적)</li><li>다수의 변경조직</li><li>아주 높은 차별화·아주 많은 통합</li><li><b>포괄적 계획·예측</b></li></ul></td>
+    </tr>
+  </table></div>
+  <div class="note exam"><span class="tag">시험 포인트 · 읽는 규칙</span>
+    <p><b>동태성</b>이 기계적/유기적을 가르고(안정 → 기계적, 동태 → 유기적), <b>복잡성</b>이 변경조직 수를 가릅니다(단순 → 소수, 복잡 → 다수). 불확실성이 높을수록 차별화와 통합방법이 <b>둘 다</b> 늘어납니다 — 분화가 커지면 통합도 더 필요하다는 2강 논리와 연결.</p>
+  </div>
+</section>
+
+<!-- 퀴즈 -->
+<section id="quiz">
+  <h2>객관식 퀴즈</h2>
+  <p class="src" id="pool-info">문제은행에서 매번 무작위로 뽑고 보기 순서도 섞습니다</p>
+  <div class="quiz-head">
+    <div class="quiz-bar">
+      <label for="q-scope" class="mono">범위</label>
+      <select id="q-scope" class="btn">
+        <option value="all">전체</option>
+        <option value="L1">1강</option>
+        <option value="L2">2강</option>
+        <option value="L3">3강</option>
+      </select>
+      <label for="q-count" class="mono">문항</label>
+      <select id="q-count" class="btn">
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="0">전부</option>
+      </select>
+      <button class="btn" id="new-set" type="button">새 문제 뽑기</button>
+    </div>
+    <span class="score" id="score"></span>
+  </div>
+  <div id="qs"></div>
+  <div class="summary" id="summary" hidden>
+    <span id="sum-text"></span>
+    <span class="quiz-bar">
+      <button class="btn" id="retry-wrong" type="button">틀린 문제만 다시</button>
+      <button class="btn" id="new-set-2" type="button">새 문제 뽑기</button>
+    </span>
+  </div>
+</section>
+
+<!-- 서술형 -->
+<section id="essay">
+  <h2>서술형 예상 문제</h2>
+  <p class="src" id="essay-info">문제은행에서 한 문제씩 무작위로 나옵니다. 먼저 답을 써 보고 모범답안과 비교하세요.</p>
+  <div class="quiz-bar">
+    <label for="e-scope" class="mono">범위</label>
+    <select id="e-scope" class="btn">
+      <option value="all">전체</option>
+        <option value="L1">1강</option>
+        <option value="L2">2강</option>
+        <option value="L3">3강</option>
+    </select>
+    <span class="score" id="e-progress"></span>
+  </div>
+  <div class="ecard" id="ecard">
+    <div class="qn" id="e-num"></div>
+    <div class="qt" id="e-q"></div>
+    <label for="e-draft" class="mono" style="color:var(--muted)">내 답안</label>
+    <textarea id="e-draft" placeholder="핵심어를 넣어 3~5문장으로 써 보세요"></textarea>
+    <div class="row">
+      <button class="btn" id="e-show" type="button">모범답안 보기</button>
+      <button class="btn" id="e-next" type="button">다른 문제</button>
+    </div>
+    <div class="ans" id="e-ans" hidden></div>
+    <div class="kw" id="e-kw" hidden></div>
+  </div>
+</section>
+</main>
+</div>
+
+<script>
+(function(){
+  /* ---------- 빈칸 모드 ---------- */
+  var KEY='om-midterm-blank';
+  var btns=document.querySelectorAll('.blank-toggle');
+  function setBlank(on){
+    document.body.classList.toggle('blank',on);
+    btns.forEach(function(b){b.setAttribute('aria-pressed',on?'true':'false');b.textContent=on?'빈칸 모드 끄기':'빈칸 암기 모드';});
+    if(!on) document.querySelectorAll('.k.show').forEach(function(k){k.classList.remove('show');});
+    try{localStorage.setItem(KEY,on?'1':'0');}catch(e){}
+  }
+  var init=false; try{init=localStorage.getItem(KEY)==='1';}catch(e){}
+  setBlank(init);
+  btns.forEach(function(b){b.addEventListener('click',function(){setBlank(!document.body.classList.contains('blank'));});});
+  document.addEventListener('click',function(e){
+    var k=e.target.closest('.k'); if(k&&document.body.classList.contains('blank')) k.classList.toggle('show');
+  });
+
+  /* ---------- 탭 전환 ---------- */
+  var sections=[].slice.call(document.querySelectorAll('main > section'));
+  var links=[].slice.call(document.querySelectorAll('nav.toc a'));
+  var header=document.getElementById('top-header');
+  var TAB='om-midterm-tab';
+  function label(id){var a=links.filter(function(l){return l.getAttribute('href')==='#'+id;})[0];if(!a)return id;var t=a.cloneNode(true),w=t.querySelector('.wk');if(w)w.remove();return t.textContent.trim();}
+  sections.forEach(function(sec,i){
+    var p=document.createElement('div'); p.className='pager';
+    if(i>0){var b=document.createElement('button');b.type='button';b.className='btn';b.innerHTML='<small>이전</small>';b.appendChild(document.createTextNode('← '+label(sections[i-1].id)));b.addEventListener('click',function(){show(sections[i-1].id,true);});p.appendChild(b);}
+    if(i<sections.length-1){var n=document.createElement('button');n.type='button';n.className='btn next';n.innerHTML='<small>다음</small>';n.appendChild(document.createTextNode(label(sections[i+1].id)+' →'));n.addEventListener('click',function(){show(sections[i+1].id,true);});p.appendChild(n);}
+    sec.appendChild(p);
+  });
+  function show(id,scroll){
+    if(!sections.some(function(s){return s.id===id;})) id=sections[0].id;
+    sections.forEach(function(s){s.hidden=s.id!==id;});
+    links.forEach(function(l){ if(l.getAttribute('href')==='#'+id) l.setAttribute('aria-current','page'); else l.removeAttribute('aria-current'); });
+    header.hidden=id!=='sort';
+    var cur=links.filter(function(l){return l.getAttribute('aria-current');})[0];
+    if(cur&&cur.scrollIntoView&&window.matchMedia('(max-width:880px)').matches) cur.scrollIntoView({block:'nearest',inline:'center'});
+    if(scroll) window.scrollTo(0,0);
+    try{localStorage.setItem(TAB,id);}catch(e){}
+  }
+  links.forEach(function(l){l.addEventListener('click',function(e){e.preventDefault();show(l.getAttribute('href').slice(1),true);});});
+  var start=(location.hash||'').slice(1); if(!start){try{start=localStorage.getItem(TAB)||'';}catch(e){}}
+  show(start||'sort',false);
+
+  /* ---------- 노트 위치로 이동 / 돌아가기 ---------- */
+  var back=document.createElement('button'); back.type='button'; back.className='backbar'; back.hidden=true;
+  document.body.appendChild(back);
+  var ret=null;
+  function jumpTo(ref,fromId){
+    var el=document.getElementById(ref); if(!el) return;
+    var sec=el.closest('main > section'); if(!sec) return;
+    ret={id:fromId,y:window.scrollY};
+    show(sec.id,false);
+    el.scrollIntoView({block:'start'});
+    el.classList.remove('fade'); el.classList.add('flash');
+    setTimeout(function(){el.classList.add('fade');},1400);
+    setTimeout(function(){el.classList.remove('flash','fade');},3200);
+    back.textContent='← '+({essay:'서술형으로',cram:'요약으로'}[fromId]||'퀴즈로')+' 돌아가기';
+    back.hidden=false;
+  }
+  back.addEventListener('click',function(){
+    if(!ret) return; var r=ret; ret=null; back.hidden=true;
+    show(r.id,false);
+    var html=document.documentElement, prev=html.style.scrollBehavior; html.style.scrollBehavior='auto';
+    window.scrollTo(0,r.y); html.style.scrollBehavior=prev;
+  });
+  links.forEach(function(l){l.addEventListener('click',function(){ret=null;back.hidden=true;});});
+  function gotoBtn(ref,fromId,text){
+    var b=document.createElement('button'); b.type='button'; b.className='goto';
+    b.textContent=text||'관련 내용 보기 →';
+    b.addEventListener('click',function(){jumpTo(ref,fromId);});
+    return b;
+  }
+
+  document.querySelectorAll('#cram .ref').forEach(function(b){b.addEventListener('click',function(){jumpTo(b.getAttribute('data-ref'),'cram');});});
+
+  /* ---------- 유틸 ---------- */
+  function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+  var WK={L1:'1강',L2:'2강',L3:'3강'};
+
+  /* ---------- 객관식 문제은행: [범위, 문제, 보기, 정답 index, 해설, ref] ---------- */
+  var Q=[
+  // [범위, 문제, 보기 4개, 정답 index(0~3), 해설, 이동할 노트 id]
+  // ---- 1강 목표의 관점·통합 (gl)
+  ["L1","교안에서 조직목표가 하는 역할로 제시한 것이 아닌 것은?",["조직활동의 동기","의사결정 시 판단기준","조직 존재가치의 판단 지표","구성원 개인 급여의 산정 공식"],3,"교안 도식의 세 역할은 동기·판단기준·존재가치 판단 지표입니다. 급여 산정은 목표의 역할로 제시되지 않았습니다.","gl-lv"],
+  ["L1","“목표 달성보다 조직의 생존과 유지가 우선시될 수 있다”는 설명은 어느 관점인가?",["합리적 관점","자연적 관점","시스템적 관점","경쟁가치 관점"],1,"자연적 관점은 목표가 상황에 따라 형성·변화하고, 생존·유지가 목표보다 앞설 수 있다고 봅니다. 합리적 관점은 목표를 모든 활동의 기준으로 둡니다.","gl-view"],
+  ["L1","합리적 관점의 설명으로 옳은 것은?",["구성원은 공식 목표보다 자신에게 유리하게 행동한다","목표는 조직의 핵심 기준이며 모든 활동은 목표 달성에 맞춰 조정된다","개인목표와 조직목표의 불일치가 운영의 핵심 변수다","상황 변화에 따라 원래 목표가 새 목표로 대체된다"],1,"합리적 관점은 과학적 관리·구조 설계로 목표 달성을 극대화하며 목표를 핵심 기준으로 봅니다. 나머지는 자연적 관점입니다.","gl-view"],
+  ["L1","개인목표와 조직목표가 조화를 이루는 계기로 교안이 든 것은?",["엄격한 규정","개인이 조직에 기여한 노력에 대한 보상","최고경영자의 카리스마","부서 간 경쟁"],1,"조화의 계기는 기여에 대한 보상이며, 물질적(급여·승진)·비물질적(성취감·인정) 보상을 모두 포함합니다.","gl-gap"],
+  ["L1","다음 중 비물질적 보상에 해당하는 것은?",["급여 인상","승진","성과급","성취감과 인정"],3,"급여·승진·성과급은 물질적 보상, 성취감·인정·봉사 보람은 비물질적 보상입니다.","gl-gap"],
+  ["L1","군 복무자가 국가 충성심을 내면화하여 복무에 헌신하는 것은 어떤 통합 모형인가?",["교환모형","교화모형","수용모형","합의모형"],1,"교화(socialization)모형은 조직이 기대하는 가치·신념을 설득·교육으로 내면화시킵니다. 교환모형은 외재적 보상 교환입니다.","gl-model"],
+  ["L1","열심히 일한 직원에게 임금 인상과 성과급을 주는 방식은?",["교환모형","교화모형","수용모형","목표대치모형"],0,"교환모형은 개인의 시간·재능 제공과 조직의 물질적(외재적) 보상을 맞바꾸는 방식입니다.","gl-model"],
+  ["L1","자율성을 원하는 직원에게 조직이 자율권을 보장하여 목표 달성을 지원하는 모형은?",["교환모형","교화모형","수용모형","통제모형"],2,"수용(accommodation)모형은 조직이 개인의 목표를 인정·지원하며 유연성을 중시합니다.","gl-model"],
+  ["L1","통합 모형 세 가지를 나누는 기준은?",["조직 규모","개인과 조직 중 어느 편의 요구를 더 들어주느냐","산업의 종류","보상의 크기"],1,"교안은 개인과 조직 중 어느 쪽 요구를 더 들어주느냐에 따라 모형이 달라진다고 설명합니다.","gl-model"],
+  ["L1","증강판이 제시한 조직목표의 다섯 기능이 아닌 것은?",["정당성 부여","방향 제시","성과평가 기준","비용 절감"],3,"다섯 기능은 정당성 부여·방향 제시·의사결정 기준·성과평가 기준·동기부여입니다.","gl-fn"],
+  ["L1","“목표 없는 평가는 점수만 매기는 일이 된다”는 설명과 관련된 목표의 기능은?",["정당성 부여","성과평가 기준","방향 제시","동기부여"],1,"성과평가 기준 기능은 목표가 구성원·조직 단위 성과를 평가하는 척도가 된다는 뜻입니다.","gl-fn"],
+  // ---- 1강 목표 유형·충돌·변동 (gt)
+  ["L1","공식목표에 대한 설명으로 옳지 않은 것은?",["사명(Mission)이라고도 한다","조직 존재의 근거와 가치를 제시한다","측정 가능하고 단기적인 행동지침이다","추상적·포괄적이라 행동지침으로 바로 연결되기 어렵다"],2,"측정 가능·단기적 행동지침은 운영목표의 특징입니다. 공식목표는 추상적이며 조직 활동을 제약하는 요소로도 작용합니다.","gt-of"],
+  ["L1","다음 중 운영목표의 예로 가장 적절한 것은?",["홍익인간 육성","대학의 전인교육","수익률 목표와 신제품 개발","조직의 존재 이유"],2,"운영목표는 수익률·인재 확보·생산성 향상·신제품 개발처럼 구체적이고 측정 가능한 목표입니다.","gt-of"],
+  ["L1","증강판에서 공식목표의 핵심 용도로 든 것은?",["자원배분과 우선순위 결정","정당성(legitimacy) 확보","부서별 KPI 산정","인력 충원 방향"],1,"공식목표는 정당성 확보·이해관계자 방향 제시·외부 정체성 기준점. 자원배분·KPI는 운영목표의 용도입니다.","gt-of"],
+  ["L1","대학의 동아리 지원·시설관리는 어떤 목표에 해당하는가?",["주목표","부목표","공언목표","상위목표"],1,"주목표는 연구·교육, 부목표는 주목표를 보조하거나 조직 유지에 필요한 활동입니다.","gt-etc"],
+  ["L1","공식적으로는 ‘고객만족도 향상’을 내걸고 실제로는 ‘단기 매출 극대화’를 추구한다. 이 두 목표의 구분은?",["상위목표/하위목표","주목표/부목표","공언목표/실제목표","장기목표/단기목표"],2,"공언목표(Stated)는 표명된 목표, 실제목표(Real)는 실제로 달성하려는 목표이며 불일치 시 갈등이 생깁니다.","gt-etc"],
+  ["L1","상위목표와 하위목표에 대한 설명으로 옳은 것은?",["상위목표는 단기적·실행 중심이다","하위목표는 추상적이고 장기적이다","상위목표는 추상적·장기적, 하위목표는 단기적·실행 중심이다","하위목표 간에는 조정이 필요 없다"],2,"상위목표는 포괄적·장기적, 하위목표는 부문별·구체적·단기적이며 하위목표 간 조정과 우선순위 설정이 중요합니다.","gt-etc"],
+  ["L1","증강판의 목표 구분 세 축에서 장기목표의 시간 범위는?",["분기 단위","1년 이내","3~10년","20년 이상"],2,"단기는 분기·연 단위, 장기는 3~10년으로 비전·포지셔닝·역량 축적·ESG를 포함합니다.","gt-axis"],
+  ["L1","숫자·절차를 달성하느라 본래의 가치를 잃는, 수단이 목적이 되어버리는 현상을 증강판은 무엇이라 부르는가?",["목표전환(goal displacement)","목표 승계","목표 추가","목표 합의"],0,"목표전환은 수단이 목적이 되는 현상. 교안에서는 ‘목표와 수단의 전도’로 설명합니다.","gt-chain"],
+  ["L1","하위목표가 상위목표를 추월하여 충성·자원·시간이 실제 이슈가 아닌 곳에 몰리는 현상은?",["목표 교체","목표 대치(means-ends inversion)","목표 추가","공식목표화"],1,"증강판은 목표전환과 목표 대치를 나눠 설명하며, 목표 대치는 하위목표가 상위목표를 추월하는 현상입니다.","gt-chain"],
+  ["L1","영업부는 매출 증대를, 회계부는 채권 회수 안정을 중시한다. 이 상황을 설명하는 개념은?",["목표의 추가","다원목표 간의 충돌","목표의 승계","공언목표"],1,"한 조직 안에 여러 하위목표가 공존하면 충돌이 불가피합니다. 하위목표가 많을수록 갈등 가능성이 커집니다.","gt-multi"],
+  ["L1","지배력의 크기에 의해 다원목표의 순서가 결정되는 목표합의 방식은?",["타협과 협상","반강제적 통제","재조정","교화"],1,"반강제적 통제는 한편은 유리, 한편은 불리하게 지배력으로 순서를 정합니다. 재조정은 상황 변화로 합의를 바꾸는 것입니다.","gt-agree"],
+  ["L1","상황 변화로 합의 내용을 변경하는 과정에서 정치적 행동이 발생하는 목표합의 방식은?",["타협과 협상","반강제적 통제","재조정","목표 추가"],2,"재조정은 상황 변화로 합의를 다시 조정하며 정치적 행동이 수반됩니다.","gt-agree"],
+  ["L1","병원이 환자 치료보다 병상 가동률 최대화에 몰두한다. 교안의 목표 변동 유형은?",["목표의 교체","목표의 추가","목표의 왜곡","목표와 수단의 전도"],3,"목표는 잊고 수단 달성에만 주력하는 것이 목표와 수단의 전도입니다. 왜곡은 권력집단·인기 영합으로 하위목표가 부각되는 경우입니다.","gt-chg"],
+  ["L1","지자체의 목표가 ‘지역발전’에서 ‘단체장 재선 전략’으로 바뀌었다. 해당 유형은?",["목표의 승계","목표의 추가","목표의 왜곡","목표와 수단의 전도"],2,"합의 실패, 권력집단에 유리한 하위목표 부각, 인기 영합으로 변질되는 것이 목표의 왜곡입니다.","gt-chg"],
+  ["L1","대학이 연구·교육에 더해 지역사회 봉사를 목표로 병행하게 된 것은?",["목표의 교체","목표의 추가","목표의 왜곡","목표 대치"],1,"기존 목표 외에 부수적 목표를 병행해 활동 범위를 넓히는 것이 목표의 추가입니다.","gt-chg"],
+  ["L1","목표의 교체(승계)가 일어나는 조건으로 교안이 든 것은?",["기존 목표가 달성되었거나 달성이 불가능하다고 판단될 때","권력집단이 하위목표를 부각할 때","수단 달성에만 주력할 때","부수적 목표를 병행할 때"],0,"승계는 기존 목표가 달성되었거나 달성 불가능할 때 새 목표로 바꾸는 것입니다(예: 국내 점유율 → 해외 시장 개척).","gt-chg"],
+  // ---- 1강+ 목표관리 (mb)
+  ["L1","Locke & Latham 목표설정이론의 핵심 명제는?",["목표는 추상적일수록 좋다","구체적이고 도전적인 목표가 추상적 목표보다 성과로 이어진다","쉬운 목표가 가장 높은 성과를 낸다","목표는 상사가 강제할 때 효과가 가장 크다"],1,"구체성과 도전성이 핵심이며, 강제된 목표의 효과는 작다는 것이 ‘약속(commitment)’ 변인입니다.","mb-gs"],
+  ["L1","목표설정이론의 네 가지 핵심 변인이 아닌 것은?",["구체성","난이도","피드백","보상 규모"],3,"네 변인은 구체성·난이도·피드백·약속(commitment)입니다.","mb-gs"],
+  ["L1","“본인이 목표를 받아들였을 때 효과가 가장 크다”는 변인은?",["구체성","난이도","피드백","약속(commitment)"],3,"약속은 목표 수용을 말합니다. 난이도도 ‘단, 수용되어야’라는 조건이 붙습니다.","mb-gs"],
+  ["L1","SMART의 A가 뜻하는 것은?",["Accurate","Achievable","Aligned","Agile"],1,"S Specific, M Measurable, A Achievable, R Relevant, T Time-bound.","mb-smart"],
+  ["L1","MBO를 체계화한 인물과 시기는?",["Drucker, 1954","Locke, 1990","Kaplan & Norton, 1992","Doerr, 2018"],0,"증강판은 MBO를 Drucker(1954) 이후 가장 오래된 목표경영 체계로 소개합니다.","mb-mbo"],
+  ["L1","MBO의 한계로 증강판이 지적한 것이 아닌 것은?",["정량화하기 어려운 목표를 잘 다루지 못한다","평가와 맞물리면 목표 부풀리기가 발생한다","외부 환경 변화에 대한 적응이 느리다","목표가 투명하게 전사에 공개된다"],3,"전사 공개는 OKR의 특징입니다. MBO 한계는 정량화 곤란, 학습·문화 소실, 목표 부풀리기, 적응 지연입니다.","mb-mbo"],
+  ["L1","OKR이 MBO와 다른 점으로 옳지 않은 것은?",["점수가 보상에 직접 연결되지 않는다","누구의 OKR이든 볼 수 있다","도전적이되 분기 단위로 운영한다","달성도가 곧 승진·보상의 근거가 된다"],3,"달성도를 보상·승진에 직접 연결하는 것은 MBO의 원리입니다. OKR은 평가·보상에서 분리됩니다.","mb-okr3"],
+  ["L1","OKR에서 ‘좋은 분기’로 간주하는 달성 수준은?",["0.3~0.4","0.6~0.7","0.9 이상","1.0(100%)"],1,"0.6~0.7 달성이 좋은 분기이며, “100%는 비현실적”이라는 합의가 함께 작동해야 합니다(Google 사례).","mb-okr3"],
+  ["L1","OKR에서 Objective에 대한 설명으로 옳은 것은?",["측정 수치로만 적는다","방향과 의도를 한 문장으로 적는다(질적, 기억에 남는)","세 줄 이상의 KPI 목록이다","보상 산정 공식이다"],1,"O는 질적인 한 문장, KR은 측정 가능한 결과(예: 35→60%)입니다.","mb-okr"],
+  ["L1","AI 도입 이후 목표 재설계에서 증강판이 경고한 ‘함정’은?",["과업 단위 분해","스킬 기반 조직","AI 이용 빈도만 측정하면 목표가 ‘더 많이 쓰기’로 흘러내린다","업무 재설계 비율 KR"],2,"이용 빈도만 재면 목표가 ‘더 많이 쓰기’로 변질되므로 학습·품질·재설계 결과가 함께 가야 합니다.","mb-ai"],
+  ["L1","ESG 목표의 제도화에서 공시 의무화의 근거로 증강판이 든 것이 아닌 것은?",["ISSB IFRS S1·S2","EU CSRD","한국 KSSB 초안","ISO 9001"],3,"공시 기준으로 ISSB S1·S2, EU CSRD, KSSB 초안을 들었습니다. ISO 9001은 품질경영 표준입니다.","mb-esg"],
+  ["L1","ESG 임베디드 전략으로 GHG 감축 목표를 사업 운영과 결합한 사례 기업은?",["Google","Microsoft","Maersk","Spotify"],2,"Google은 OKR, Microsoft는 KPI+BSC형, Maersk는 ESG 임베디드 사례입니다.","mb-case"],
+  // ---- 1강 유효성 (ef)
+  ["L1","조직유효성의 용도로 교안이 제시하지 않은 것은?",["조직이 잘하고 있는지 판단","취업·투자 등 조직 선택 시 의사결정 기준","과거 성과로 미래 개선 방향 제시","구성원 개인의 법적 책임 판정"],3,"용도는 판단·선택 기준·미래 개선 방향 제시 세 가지입니다.","ef-def"],
+  ["L1","유효성 판단에 대한 현재 방향으로 교안이 제시한 것은?",["조직목표만으로 판단","재무 성과만으로 판단","목표·과정·결과 전반에 대해 판단","구성원 만족도만으로 판단"],2,"초기엔 조직목표가 조건이었지만(누구의 목표? 단기? 장기?), 현재는 목표·과정·결과 전반을 봅니다.","ef-def"],
+  ["L1","“더 적은 자원으로 더 많은 산출을 내고 있는가”라는 질문에 해당하는 개념(증강판 기준)은?",["유효성(effectiveness)","효율성(efficiency)","정당성","적응성"],1,"효율성 = 산출÷투입. 유효성은 의도한 결과에 도달했는가(올바른 일을 했는가)입니다.","ef-vs"],
+  ["L1","목표달성 접근법의 전제조건이 아닌 것은?",["운영목표의 계량화","측정 가능한 목표","달성 가능한 목표","자원 획득 능력의 평가"],3,"자원 획득 능력은 자원기준(시스템자원) 접근법의 판단 기준입니다.","ef-goal"],
+  ["L1","목표달성 접근법의 한계로 교안이 든 것은?",["목표들 간의 상충과 평가자의 주관성","외부 평가자가 측정하기 어려움","자원이 목표 달성으로 연결되지 않음","내부 인간관계 의존"],0,"목표 상충(주주-종업원 등), 주관성, 과거 업적으로 미래 예측의 문제가 한계입니다. 나머지는 시스템적 접근의 한계입니다.","ef-goal"],
+  ["L1","증강판이 목표접근법에 대해 “비어 있다”고 지적한 질문은?",["얼마나 달성했는가","좋은 목표일까","측정 가능한가","누가 평가하는가"],1,"목표접근법은 목표 자체가 옳다고 가정하므로 ‘좋은 목표일까’라는 질문이 비어 있습니다.","ef-goal2"],
+  ["L1","시스템적 접근법이 등장한 가정(문제의식)은?",["목표달성 접근법은 결과물에만 초점을 두어 부정한 방식이나 의외의 결과도 높이 평가한다","조직은 폐쇄 시스템이다","자원은 무한하다","내부 프로세스는 측정할 수 없다"],0,"시스템적 접근은 투입-변환-산출 전체를 하나의 시스템으로 평가해 결과 편향을 보완합니다.","ef-sys"],
+  ["L1","자원기준 접근법의 평가 초점은?",["업무구조 설계와 내부 프로세스의 원활한 작동","조직이 보유·획득한 자원의 가치와 활용 가능성","이해관계자 가치 분배","목표 대비 실적"],1,"자원기준은 투입(input) 측면, 내부프로세스는 변환·산출 과정의 효율성에 초점을 둡니다.","ef-sys"],
+  ["L1","“외부 평가자에게 측정이 어렵고, 내부 인간관계 의존도가 높아 주관적 평가 가능성이 있다”는 한계를 가진 접근법은?",["목표달성 접근법","자원기준 접근법","내부프로세스 접근법","이해관계자 접근법"],2,"내부프로세스 접근법의 한계입니다. 자원기준의 한계는 자원이 목표 달성으로 연결되지 않을 수 있다는 점입니다.","ef-sys"],
+  ["L1","Yuchtman & Seashore 계열 시스템자원접근법의 핵심 문장은?",["유효성은 무엇을 만들었나에 있다","유효성은 무엇을 끌어올 수 있는가에 있다","유효성은 내부가 평온한가에 있다","유효성은 주주 수익에 있다"],1,"생존에 필요한 자원을 안정적으로 얻는 조직이 유효하다고 봅니다(투입·능력·관계 자원).","ef-res"],
+  ["L1","증강판의 시스템자원 세 가지 중 신뢰·평판·네트워크·브랜드가 속하는 것은?",["투입 자원","능력 자원","관계 자원","재무 자원"],2,"투입(인력·자본·설비), 능력(지식·기술·데이터), 관계(신뢰·평판·네트워크·브랜드)입니다.","ef-res"],
+  ["L1","“‘잘 맞는 조직’이 ‘맞는 일을 하는 조직’은 아니다”라는 함정이 지적된 접근법은?",["목표접근법","시스템자원접근법","내부프로세스접근법","BSC"],2,"내부프로세스접근법은 평온함을 건강으로 착각하고 외부 변화 신호를 놓칠 수 있습니다.","ef-ip"],
+  ["L1","세 전통적 접근 비교에서 ‘자원 보유 ≠ 효과적 사용’이라는 한계를 가진 것은?",["목표접근법","시스템자원접근법","내부프로세스접근법","경쟁가치접근법"],1,"목표접근법은 목표의 옳음을 묻지 않음, 내부프로세스는 외부 환경 적응을 놓침이 한계입니다.","ef-cmp"],
+  ["L1","교안에서 ‘시스템적 접근법’의 하위로 묶은 두 접근은?",["목표달성·경쟁가치","자원기준·내부프로세스","이해관계자·BSC","합리적·자연적"],1,"교안은 시스템적 접근 아래 자원기준과 내부프로세스를 두고, 증강판은 이 둘을 독립된 전통적 접근으로 나란히 둡니다.","ef-map"],
+  ["L1","BSC의 네 관점이 아닌 것은?",["재무","고객","내부프로세스","경쟁자"],3,"BSC(Kaplan & Norton) 네 관점은 재무·고객·내부프로세스·학습과 성장입니다.","ef-bsc"],
+  ["L1","BSC에서 ‘미래를 만드는 사람과 역량(사람·시스템·문화)’을 보는 관점은?",["재무","고객","내부프로세스","학습·성장"],3,"학습·성장 관점은 사람·시스템·문화 등 미래 역량을 봅니다.","ef-bsc"],
+  ["L1","이해관계자 접근법이 보는 유효성은?",["사전 목표 달성률","다양한 이해관계자가 가치를 받아갈 수 있는 능력","내부 결속과 신뢰","자원 흡수 능력"],1,"“누구를 위한 조직인가” — 주주·고객·임직원·협력사·사회에 대한 가치 분배를 봅니다.","ef-bsc"],
+  ["L1","Bloom, Han & Liang(2024) 하이브리드 근무 연구의 결과로 증강판이 제시한 것은?",["생산성 크게 하락","자발적 이직률 약 1/3 감소","직무만족 하락","사무실 복귀가 유효성의 핵심"],1,"생산성에 유의한 부(-) 효과 없이 직무만족이 오르고 이직률이 약 1/3 줄었습니다. 공공부문 일부 12% 향상(Stanford SIEPR).","ef-new"],
+  // ---- 1강 경쟁가치 (cv)
+  ["L1","경쟁가치 접근법의 기본 생각으로 옳은 것은?",["하나의 가치 기준으로 유효성을 평가한다","서로 다른 가치들이 경쟁·갈등하는 상황을 고려해 균형 있게 반영한다","재무 성과만 본다","목표 달성 여부만 본다"],1,"생산/인간, 유연성/통제, 개인/조직 이익 등 경쟁하는 가치를 균형 있게 반영합니다.","cv-dim"],
+  ["L1","경쟁가치의 세 차원이 아닌 것은?",["구조/제도 차원(유연성-통제)","운영 초점 차원(구성원-조직)","수단과 목표 차원","규모와 연혁 차원"],3,"세 차원은 구조/제도, 운영 초점, 수단과 목표입니다.","cv-dim"],
+  ["L1","교안에서 운영 초점 차원의 ‘구성원(people)’ 지향은 어느 쪽으로 설명되는가?",["외부지향","내부지향","통제지향","목표지향"],1,"구성원 = 내부지향(욕구 충족·개인 발전), 조직 = 외부지향(조직 자체의 이익과 발전)입니다.","cv-dim"],
+  ["L1","‘통제 + 조직 지향’ 조합으로, 명확한 목표·생산성·이윤 극대화를 강조하는 모형은?",["개방체계모형","합리적목표모형","내부프로세스모형","인간관계모형"],1,"합리적목표모형: 수단은 기획·목표달성, 목적은 생산성·능률화·이윤입니다.","cv-4"],
+  ["L1","‘유연성 + 구성원 지향’ 모형의 목적(유효성의 목적)은?",["성장, 자원 획득","생산성, 이윤","팀워크, 안정의 유지","인적 자원의 개발과 성장"],3,"인간관계모형: 수단 응집력·신뢰와 사기, 목적 인적 자원의 개발·성장입니다.","cv-4"],
+  ["L1","내부프로세스모형의 축 조합은?",["유연성 + 조직","통제 + 조직","통제 + 구성원","유연성 + 구성원"],2,"내부프로세스 = 통제 + 구성원 지향. 안정성·질서·정보관리·절차 준수를 중시합니다.","cv-4"],
+  ["L1","창업기·변화기의 조직에 가장 적합한 유효성 모형은?",["개방체계모형","합리적목표모형","내부프로세스모형","인간관계모형"],0,"창업·변화기 → 개방체계, 생산성 향상기 → 합리적 목표, 안정화 → 내부프로세스, 사기 진작기 → 인간관계.","cv-stage"],
+  ["L1","조직문화·사기 진작이 필요한 시기에 적합한 모형은?",["개방체계모형","합리적목표모형","내부프로세스모형","인간관계모형"],3,"인간관계모형은 구성원 개발·팀워크·사기 진작을 중시합니다.","cv-stage"],
+  ["L1","CVF(경쟁가치모형)를 제시한 학자와 연도는?",["Quinn & Rohrbaugh, 1983","Kaplan & Norton, 1992","Lawrence & Lorsch, 1967","Woodward, 1965"],0,"증강판은 Quinn & Rohrbaugh(1983), 이후 Cameron & Quinn으로 소개합니다.","cv-cvf"],
+  ["L1","CVF에서 ‘유연성 + 외부 지향’, 실험과 도전을 특징으로 하는 문화유형은?",["Clan(관계지향)","Adhocracy(혁신지향)","Hierarchy(위계지향)","Market(과업지향)"],1,"Adhocracy는 유연성·외부 지향, 교안 모형으로는 개방체계모형에 대응합니다.","cv-cvf"],
+  ["L1","CVF의 Market(과업지향) 문화에 대응하는 교안의 유효성 모형은?",["개방체계모형","합리적목표모형","내부프로세스모형","인간관계모형"],1,"Market = 통제 + 외부 → 합리적목표모형(통제 + 조직/외부지향).","cv-cvf"],
+  ["L1","사고율, SLA 준수, 결재 라운드 수를 잘 측정하는 신호로 삼는 문화유형은?",["Clan","Adhocracy","Hierarchy","Market"],2,"위계지향(Hierarchy)은 안정적 운영·낮은 오류율·예측 가능성을 효과의 기준으로 봅니다.","cv-crit"],
+  ["L1","OCAI의 진단 방식으로 옳은 것은?",["4개 차원에서 1~5점 척도","6개 차원에서 100점을 네 유형에 배분해 현재와 선호를 비교","재무제표 분석","면접만으로 진단"],1,"OCAI는 6개 차원에서 100점을 네 유형에 배분하고, 현재와 5년 뒤 선호 분포를 나란히 봅니다.","cv-ocai"],
+  ["L1","Kasa et al.(2025)이 OCAI 연구에서 포착한 것은?",["조직 평균 문화","혼합 하위문화(blended subculture)","국가문화 차원","재무 성과 상관"],1,"평균이 아니라 개인 수준에서 한 구성원이 여러 유형을 동시에 떠안는 혼합 하위문화를 포착했습니다.","cv-ocai"],
+  ["L1","“문화는 관계지향인데 평가는 단기 매출로만 구성된 경우”는 어떤 정합 실패인가?",["전략 ↔ 문화","문화 ↔ 지표","전략 ↔ 지표","구조 ↔ 목표"],1,"문화 ↔ 지표 실패로, 구성원은 무엇이 가치 있는지 못 읽고 숫자 만드는 일만 점수화됩니다.","cv-fit"],
+  // ---- 2강 기본 (ds)
+  ["L2","조직구조를 “조직의 여러 활동과 과정이 어떻게 배열·연결되어 있는지 보여 주는 지도”로 정의한 학자는?",["P. Blau","E. A. Gerloff","J. Child","Ranson 등"],1,"Gerloff = 지도. Blau = 사회적 지위 배분(위계), Child = 관리 메커니즘, Ranson 등 = 상호작용의 매개체.","ds-st"],
+  ["L2","조직구조를 “구성원들의 역할관계에 영향을 미치는 사회적 지위를 배분하는 것”으로 본 학자는?",["P. Blau","E. A. Gerloff","J. Child","Galbraith"],0,"Blau는 노동의 분화, 서열·신분, 계층관계로 구조를 설명합니다.","ds-st"],
+  ["L2","“구성원끼리 상호작용하는 가운데 지속적으로 만들어지고 변동하는 구성적 측면”이라는 정의는?",["Blau","Gerloff","Child","Ranson, Hinnings & Greenwood"],3,"Ranson 등은 구조를 통제의 복잡한 매개체이자 살아 있는 구성적 측면으로 봅니다.","ds-st"],
+  ["L2","증강판이 구분한 조직구조와 조직설계의 관계로 옳은 것은?",["구조는 과정, 설계는 상태다","구조는 상태(결과), 설계는 결과를 만드는 의사결정의 묶음(과정)이다","둘은 완전히 같은 말이다","설계는 조직도 그리기에 한정된다"],1,"증강판: 구조 = 상태·골격, 설계 = 과정·결정의 흐름. 교안은 ‘같은 의미’로 적어 두 자료가 다릅니다.","ds-vs"],
+  ["L2","교안에서 조직설계를 설명한 두 가지 활동은?",["분화(differentiation)와 통합(integration)","계획과 통제","채용과 해고","전략과 문화"],0,"잘 나누고(분화) 나눈 과업이 연결되도록 잘 통합하는 것(통합)이 조직설계입니다.","ds-vs"],
+  ["L2","조직구조의 역할 중 ‘사람 관련’으로 분류된 것은?",["분업","조정과 통합","의사결정과 통제","전문화"],2,"분업(효율성)과 조정·통합은 일 관련, 의사결정과 통제는 사람 관련입니다.","ds-role"],
+  ["L2","조직구조 특성 중 ‘규칙과 절차의 표준화 정도’를 뜻하는 것은?",["복잡성","공식화","집권화","분권화"],1,"복잡성 = 단위 세분화 정도, 공식화 = 규칙·절차 표준화 정도, 집권화 = 의사결정 권한 집중 정도.","ds-3c"],
+  ["L2","과업 단위들의 묶음·분류와 보고·지휘·관리체계를 다루는 설계 차원은?",["과업구조(sub-structure)","부서구조(super-structure)","비공식 구조","가상 구조"],1,"과업구조는 개별 과업 단위, 부서구조(상위조직구조)는 과업 단위 묶음과 보고·지휘체계를 설계합니다.","ds-2d"],
+  ["L2","조직설계의 4가지 요소가 아닌 것은?",["업무와 책임의 할당","위계와 의사결정 배분","통제범위를 포함한 지시·보고 체계","시장점유율 목표 설정"],3,"4요소: 업무·책임 할당, 위계·의사결정 배분, 통제범위·지시보고 체계, 정보 교환과 조정·통합 장치.","ds-4"],
+  ["L2","증강판이 말한 ‘구조가 만들어내는 효과’가 아닌 것은?",["행동을 유도한다","정체성을 만든다","외부 인식을 만든다","법적 책임을 면제한다"],3,"네 효과는 행동 유도·정체성·외부 인식·비용과 속도 좌우입니다.","ds-eff"],
+  // ---- 2강 분업 (dv)
+  ["L2","자동차 조립을 엔진·도어·타이어 조립으로 나누는 것은?",["수평적 분업","수직적 분업","공식화","상호조정"],0,"동일한 수준에서 과업을 세부과업으로 나누는 것이 수평적 분업입니다.","dv-hv"],
+  ["L2","관리(계획·감독)와 실천(집행)을 분리하는 것은?",["수평적 분업","수직적 분업(분업 1)","표준화","연결핀"],1,"수직적 분업 1은 관리와 실천의 분리, 분업 2는 관리업무 자체를 분야별로 나누는 것입니다.","dv-hv"],
+  ["L2","규모가 큰 조직의 분업 양상으로 옳은 것은?",["수평·수직 분업이 모두 낮다","수평·수직 분업이 모두 강화되어 관리층이 다층화된다","수평 분업만 강화된다","한 사람이 다양한 역할을 수행한다"],1,"작은 조직은 둘 다 낮아 한 사람이 여러 역할, 큰 조직은 둘 다 강화되어 과업 세분화와 관리층 다층화가 일어납니다.","dv-hv"],
+  ["L2","분업화 정도에 영향을 미치는 요소에 대한 설명으로 옳지 않은 것은?",["조립부서는 회계부서보다 더 세분화된다","직위가 올라갈수록 분업은 최소화된다","반복적·단순한 기술일수록 분업화가 용이하다","연구처럼 창의적인 업무일수록 분업화를 강하게 해야 한다"],3,"연구·전문 영역은 지나친 분업화가 부적합하며 오히려 과업 간 통합과 협력이 중요합니다.","dv-fac"],
+  ["L2","지나친 분업화의 문제점이 아닌 것은?",["작업 범위 축소","조율·연결 비용 증가","부서 간 갈등","의사결정 권한의 과도한 분산"],3,"문제점은 작업 범위 축소·효율성 저하·조율 비용 증가·부서 간 갈등·무형의 비효율입니다.","dv-cost"],
+  ["L2","지나친 분업으로 숙련도는 높아지는데 효율이 떨어지는 이유로 교안이 든 것은?",["지나친 반복","과도한 자율","통제범위 축소","보상 부족"],0,"작업방법이 고정화되고 지나친 반복으로 오히려 효율이 떨어질 수 있습니다.","dv-cost"],
+  ["L2","교안 그래프에서 ‘적정 분업화 수준’의 의미는?",["분업을 최대로 한 점","분업을 최소로 한 점","분업화의 이득과 손실이 균형을 이루는 점","손실이 0인 점"],2,"분업은 많을수록 좋은 것이 아니라 이득과 손실이 균형을 이루는 적정 수준이 있습니다.","dv-opt"],
+  ["L2","증강판이 제시한 분할의 세 축은?",["수평·수직·공간/시간","기능·산출물·고객","공식·비공식·자동","전략·운영·전술"],0,"분할의 모양은 수평·수직·공간/시간 세 축이 함께 만듭니다. 기능·산출물·고객·지역은 수평 분할의 기준입니다.","dv-4"],
+  ["L2","증강판의 수평 분할 네 기준이 아닌 것은?",["기능별","산출물별","고객별","직급별"],3,"네 기준은 기능·산출물·고객·지역입니다. 직급은 수직 분할의 문제입니다.","dv-cut"],
+  ["L2","수직 분할에서 층이 깊을 때의 특징은?",["결재가 빠르지만 책임이 분산된다","책임은 분명해지지만 소통과정이 길어진다","통제범위가 무한히 넓어진다","관리자가 필요 없어진다"],1,"층이 얕으면 결재가 빠르지만 책임 분산, 깊으면 책임은 분명하지만 소통이 길어집니다.","dv-cut"],
+  ["L2","증강판에서 분할의 단위가 이동하는 방향으로 제시된 것은?",["스킬 단위 → 고정 직무","고정 직무 → 재구성 가능한 스킬 단위","부서 → 개인","지역 → 기능"],1,"OECD skills-first 담론: 분할 단위가 직무에서 역량 묶음(스킬)으로 점진 이동합니다.","dv-new"],
+  // ---- 2강 통합 (ig)
+  ["L2","교안의 통합화 수단 세 가지는?",["공식화·표준화·상호 조정","직접감독·규칙·목표설정","기능·산출물·지역","분업·통합·통제"],0,"교안 14쪽: 공식화·표준화·상호 조정. 증강판 조정 메커니즘 5와 구분하세요.","ig-def"],
+  ["L2","수직적 통합에 대한 설명으로 옳은 것은?",["과업들 간의 조정","계획·실행·피드백·지시보고가 원활한 것","부서 간 연결핀 설치","산출물 규격 통일"],1,"수평적 통합 = 과업 간 조정(coordination), 수직적 통합 = 계획·실행·피드백·지시보고의 원활함.","ig-def"],
+  ["L2","교안이 강조한 ‘공식화 정도’를 판단하는 핵심은?",["규정의 양","규정이 얼마나 잘 지켜지는지","문서의 두께","결재 단계 수"],1,"규정이 많아도 무시되거나 형식적이면 효과가 없으므로, 양이 아니라 준수 정도가 중요합니다.","ig-form"],
+  ["L2","지나친 공식화의 한계가 아닌 것은?",["융통성 감소","창의성 감소","비인간화·인간 소외","부서 간 연결비용 감소"],3,"지나친 공식화는 융통성·창의성 감소와 비인간화를 초래합니다.","ig-form-lim"],
+  ["L2","공식화와 표준화의 차이로 옳은 것은?",["공식화는 실제 작업 과정의 통일, 표준화는 문서 규정","공식화는 규정·문서에 따른 수행, 표준화는 실제 작업 방식·산출물의 통일","둘은 같은 개념이다","표준화는 상호조정의 한 종류다"],1,"규정만 있는 것이 공식화, 실제 작업 과정과 산출물이 통일되는 것이 표준화입니다.","ig-std"],
+  ["L2","훈련·교육(making)과 자격자 선발(buying)은 어떤 표준화에 해당하는가?",["투입물의 표준화","과정의 표준화","산출물의 표준화","결과 통제"],0,"작업자의 기술·자격을 표준화하는 것은 투입물의 표준화입니다.","ig-std"],
+  ["L2","작업 매뉴얼·절차 규정·지침서는 어떤 표준화의 예인가?",["투입물","과정","산출물","문화"],1,"과정의 표준화는 작업 수행 절차를 동일하게 규정합니다. 제품 규격·서비스 품질 기준은 산출물 표준화입니다.","ig-std"],
+  ["L2","상호조정의 특징으로 옳은 것은?",["위계적 권한관계를 설정해야만 가능하다","위계적 권한관계 없이도 과업을 조정할 수 있으며 비공식 커뮤니케이션에 의존한다","문서 규정에만 의존한다","최고경영자만 수행한다"],1,"상호조정은 위계 없이 지속적·비공식적 커뮤니케이션으로 조정합니다.","ig-mut"],
+  ["L2","기능·부서 간 연결 담당자를 두어 협조·조정하고 중재자 역할을 하게 하는 상호조정 방식은?",["직접 대면","연결핀(liaison role)","네트워크화","팀 운영"],1,"연결핀은 부서 간 연결 담당자, 중재자 역할입니다.","ig-mut"],
+  ["L2","교안 19쪽 연결 메커니즘 5가지에 포함되지 않는 것은?",["담당자끼리 상호 조정","관리·감독자의 지휘 조정","투입실무자 기술의 표준화","목표 설정에 의한 정렬"],3,"교안 5방식: 상호조정·관리감독자 지휘·투입기술 표준·작업방식 표준·산출물 표준. 목표 설정은 증강판 목록입니다.","ig-link"],
+  ["L2","증강판 조정 메커니즘 5 중 ‘가장 단순하고 빠르지만 통제 범위가 곧 한계’인 것은?",["직접 감독","규칙과 절차","상호조정의 문화","전담 통합자"],0,"직접 감독은 가장 가볍고 빠르며, 아래로 갈수록(전담 통합자) 느리지만 결합이 깊습니다.","ig-5"],
+  ["L2","매트릭스의 프로젝트 매니저처럼 ‘부서 사이의 연결’을 직업으로 맡는 조정 메커니즘은?",["직접 감독","목표 설정","상호조정의 문화","전담 통합자"],3,"전담 통합자는 가장 무거운 메커니즘으로, 특정 역할이 연결을 전담합니다.","ig-5"],
+  ["L2","비공식적 통합에 대한 설명으로 옳은 것은?",["조직도와 보고선이 만든다","가시적이지만 의례가 되면 얕아진다","결합은 깊지만 보이지 않기에 빠지면 다시 살리기 어렵다","공식 통합과 경쟁 관계다"],2,"비공식 통합(동호회·멘토링·잡담)은 결합은 깊지만 보이지 않아 되살리기 어렵습니다. 두 통합은 경쟁하지 않습니다.","ig-fi"],
+  ["L2","매트릭스 구조의 비용으로 증강판이 지적한 것은?",["사일로 증가","전문성 상실","충돌 두 배, 시간 두 배","보고선 하나"],2,"매트릭스는 사일로를 줄이고 전문성을 유지하지만 충돌과 시간이 두 배로 드는 ‘공짜가 아닌 장치’입니다.","ig-mx"],
+  ["L2","AI-Native 시대 통합의 병목으로 증강판이 제시한 것은?",["빨리 짓는가","무엇이 안전하고 보이며 가치 있는지 검증하는 과정","회의 수","인력 규모"],1,"이전 병목은 속도, 지금 병목은 검증. 통합의 모양이 검토·거버넌스를 포함하도록 바뀝니다.","ig-ai"],
+  // ---- 2강 통제 (ct)
+  ["L2","통제의 기본 이해에서 ‘주체’로 교안이 든 것이 아닌 것은?",["위계상 상급자","자기 통제·자기 규제","정보기술을 활용한 자동적 통제","고객 설문"],3,"주체는 상급자, 자기 통제, 전문 감독자(감사·감독기관), 정보기술 자동 통제입니다.","ct-4"],
+  ["L2","조직의 전반적 활동과 장기적 방향, 전략적 자원 활용에 관한 통제는?",["운영통제","전략적 통제","피드백 통제","전자적 감시"],1,"전략적 통제는 장기 방향·전략적 자원, 운영통제는 과업 실행 관련 지시·결정입니다.","ct-4"],
+  ["L2","정보에 의한 예측과 예방활동으로 이루어지는 통제는?",["피드백 통제","예방적 통제","부정적 통제","공식적 통제"],1,"피드백 통제 = 결과를 보고 시정, 예방적 통제 = 정보로 예측·예방.","ct-4"],
+  ["L2","허가·보고로 이루어지는 통제 방식은?",["긍정적 통제","부정적 통제","비공식적 통제","문화적 통제"],1,"부정적 통제 = 허가·보고, 긍정적 통제 = 권장·전파.","ct-4"],
+  ["L2","조직목표와 개인목표의 조화, 집단 자율성을 활용하는 대표적 통제 방식은?",["관료제적 통제","결과통제","전자적 감시","문화적 통제"],3,"문화적 통제는 목표 조화와 집단 자율성을 활용합니다. 관료제적 통제는 규정·절차 기반입니다.","ct-way"],
+  ["L2","산출물 달성 여부를 평가한 뒤 보상·처벌하는 통제 방식은?",["개인의 집권적 통제","관료제적 통제","결과통제","인적자원관리"],2,"결과통제는 산출물 기준입니다.","ct-way"],
+  ["L2","분권화가 유리한 상황으로 교안이 든 것은?",["업무가 긴밀히 연결될 때","업무 누락을 방지해야 할 때","조직 외부의 빠른 변화·환경 적응이 필요할 때","중앙에서 권력을 집중 행사해야 할 때"],2,"분권화는 외부 변화 적응, 현장 정보 활용에 유리합니다. 나머지는 집권화의 장점입니다.","ct-cd"],
+  ["L2","분권화·집권화 수준을 결정하는 요인이 아닌 것은?",["책임자의 가치관","사용 기술의 복잡성","환경 변화 정도","조직의 설립 연도 숫자"],3,"네 요인: 책임자 가치관, 기술 복잡성, 환경 변화 정도, 실무자 능력.","ct-fac"],
+  ["L2","첨단·전문 기술일수록, 훈련된 실무자가 많을수록 나타나는 경향은?",["집권화","분권화","공식화 강화","통제범위 축소"],1,"현장 실무자가 권한을 가져가므로 분권화가 용이해집니다.","ct-fac"],
+  ["L2","증강판이 말한 ‘위임’의 본질은?",["신뢰","책임의 재배치","권한의 포기","통제 범위 확대"],1,"위임은 ‘신뢰’가 아니라 ‘책임의 재배치’입니다. 통제 범위와 위임은 별개의 질문입니다.","ct-span"],
+  ["L2","증강판이 꼽은 가장 흔한 위임 실패의 모양은?",["권한은 내려가고 책무는 본부에 남는다","권한과 책무가 모두 내려간다","통제 범위가 좁아진다","역할이 사람에게 붙는다"],0,"결정을 맡기되 실패의 책임은 본부에 — 함정 5의 ‘권한만 내림’과도 같습니다.","ct-span"],
+  ["L2","분산형 의사결정에서 책무성을 지키기 위한 네 장치가 아닌 것은?",["결정 범위의 명문화","의사결정 기록의 가시화","예외 상황 에스컬레이션","모든 결정의 CEO 승인"],3,"네 장치는 명문화·기록 가시화·에스컬레이션·사후 검토입니다.","ct-span"],
+  ["L2","Holacracy 등 역할 기반 자기관리의 핵심은?",["권한이 사람(직함)에 붙는다","권한이 역할에 붙고 거버넌스 절차로 끊임없이 갱신된다","위계를 강화한다","직무기술서를 고정한다"],1,"권한은 역할에 붙고, 제안·승인·재정의 절차로 역할이 계속 갱신됩니다.","ct-new"],
+  ["L2","증강판 5양식 비교에서 ‘다중 시장, 다중 제품’에 잘 맞는 양식은?",["기능형","사업부제","매트릭스","역할 기반"],1,"사업부제는 산출물·시장 단위로 나누고 사업 단위에 위임합니다. 기능형은 안정 운영·규모의 경제.","ct-5"],
+  ["L2","이중 보고선을 권한 구조로 갖는 양식은?",["기능형","사업부제","매트릭스","스킬 기반"],2,"매트릭스는 기능 × 산출물로 나누고 통합자·PM이 잇는 이중 보고선 구조입니다.","ct-5"],
+  ["L2","수천 개의 작은 사업 단위로 잘게 쪼개 ‘분할의 극단’으로 소개된 사례는?",["Spotify","Haier","Scaled Agile","Google"],1,"Haier의 Rendanheyi·마이크로 엔터프라이즈. Spotify는 스쿼드·트라이브·길드입니다.","ct-case"],
+  ["L2","설계의 흔한 함정 중 “다른 회사가 매트릭스로 성공했으니 우리도 매트릭스”는?",["다이어트 설계","유행 복사","공식만 통합","기술만 도입"],1,"맥락 없이 따오면 구조는 장식이 됩니다. 다섯 함정 모두 ‘구조만’으로 해결하려는 환원의 오류입니다.","ct-pit"],
+  // ---- 3강 상황요인 (sf)
+  ["L3","“조직 구조는 상황에 따라 달라진다”는 관점의 이론은?",["기술결정론","상황적합성(Contingency) 이론","과학적 관리론","관료제론"],1,"전통 이론의 보편적 원칙 설계에 대한 반론으로 상황적합성 이론이 등장했습니다.","sf-def"],
+  ["L3","교안이 든 상황요인 중 내부 요인이 아닌 것은?",["조직규모","연혁","전략","정부 규제"],3,"내부 요인: 규모·연혁·기술·목표·전략. 정부 규제·법규·시장 조건은 외부 요인입니다.","sf-def"],
+  ["L3","구성원이 10명일 때 가능한 인간관계(쌍)의 수는?",["20","45","90","100"],1,"nC2 = n(n−1)/2 = 10×9/2 = 45. 인원이 늘면 관계 수가 기하급수적으로 늘어 조정 필요성이 커집니다.","sf-size"],
+  ["L3","교안이 제시한 규모 증가의 연쇄로 옳은 것은?",["규모 증가 → 공식화 → 통제범위 확장 → 부서규모 증가","규모 증가 → 분권화 → 통제범위 축소","규모 증가 → 비공식화 → 부서 축소","규모 증가 → 집권화 → 계층 감소"],0,"교안 5쪽 흐름: 규모증가 → 공식화 → 통제범위 확장 → 부서규모 증가.","sf-size"],
+  ["L3","연혁이 긴 조직의 특징으로 옳지 않은 것은?",["공식 규정·규칙이 많다","과거 성공 경험 때문에 새 방식 도입이 어렵다","안정적이지만 경직될 위험이 있다","단순·유연한 구조로 빠르게 적응한다"],3,"단순·유연·빠른 적응은 연혁이 짧은 조직의 특징입니다.","sf-age"],
+  ["L3","혁신 지향 목표를 가진 조직에 적합한 구조는?",["관료적·기계적 구조","분권적·유기적 구조","집권적 피라미드 구조","기계 문화 구조"],1,"안정 지향 → 기계적, 혁신 지향 → 유기적.","sf-goal"],
+  ["L3","“Structure follows Strategy”의 의미는?",["구조가 전략을 결정한다","조직구조는 전략을 따른다","전략과 구조는 무관하다","문화가 구조를 따른다"],1,"전략이 바뀌면 구조도 바뀌어야 한다는 고전적 명제. 반대로 구조가 전략을 제약하는 경우도 교안에 있습니다.","sf-str"],
+  ["L3","교안에서 ‘경직된 집권화 구조 → 관료화’가 이어지는 전략은?",["혁신적·진취적 전략","방어적·안정적 전략","차별화 전략","공격형 전략"],1,"Strategy follows structure의 예: 경직된 집권 구조 → 방어적·안정적 전략, 분권 조직 → 혁신적·진취적 전략.","sf-str"],
+  ["L3","방어형 전략에 적합한 구조는?",["유연하고 분권화된 자율 구조","경직적이고 표준화된 통제형 구조","수시로 변동적인 무형의 구조","느슨한 수평적 조정"],1,"공격형 → 유연·분권 자율, 방어형 → 경직·표준화 통제형, 반응형 → 무형의 구조.","sf-str6"],
+  ["L3","‘수시로 변동적인 무형의 구조’가 대응하는 전략은?",["공격형","방어형","분석형","반응형"],3,"반응형 전략은 일관된 구조 없이 수시로 변동하는 무형의 구조와 짝입니다.","sf-str6"],
+  ["L3","저가 전략에 적합한 관리 방식은?",["느슨한 수평적 조정","철저한 집권화와 표준화","유연·혁신적 분권","무형의 구조"],1,"저가(원가우위) → 철저한 집권화·표준화(기계적), 차별화 → 느슨한 수평적 조정(유기적).","sf-str6"],
+  ["L3","홉스테드 분류에서 상하거리감이 크고 불확실성 회피가 강한(모험 회피) 문화는?",["시장문화(스칸디나비아)","대가족 문화(아프리카)","기계 문화(독일)","피라미드 문화(일본)"],3,"피라미드 문화: 집권화·공식화·규정화·경직성·높은 계층.","sf-hof"],
+  ["L3","홉스테드 분류에서 ‘분권화·비공식·자율성·융통성·낮은 계층’을 특징으로 하는 문화는?",["시장문화(스칸디나비아)","대가족 문화(아프리카)","기계 문화(독일)","피라미드 문화(일본)"],0,"상하거리감 약함(평등) + 모험 선호 → 시장문화.","sf-hof"],
+  ["L3","전문성·경험·정보 보유를 통해 발생하며 공식 구조 외의 의사결정 경로를 만드는 권력은?",["공식적 권력","비공식적 권력","합법적 권력","강압적 권력"],1,"공식적 권력은 직급·직위로 부여되고, 비공식적 권력은 전문성·경험·정보에서 생깁니다.","sf-pow"],
+  ["L3","상황요인 종합표에서 ‘권력 집중’이 조직설계에 미치는 영향은?",["분권적·협의적 구조","집권화·계층적 구조","유기적 구조","무형의 구조"],1,"권력 집중 → 집권·계층적, 권력 분산 → 분권·협의적.","sf-sum"],
+  ["L3","상황요인과 구조 사이에서 가교 역할을 하는 매개변수가 아닌 것은?",["과업 다양성","과업 난이도","과업 불확실성","조직 연혁"],3,"매개변수 4: 과업 다양성·난이도·불확실성·의존성. 연혁은 상황요인 자체입니다.","sf-med"],
+  ["L3","과업 의존성이 높을 때의 설계로 옳은 것은?",["독립적 처리, 자율성 확대","협력·조정 장치 필요, 통합기제 강화","부서 세분화","표준화·단순화"],1,"의존성↑ → 통합기제 강화, 의존성↓ → 독립 처리. 다양성↑ → 부서 세분화.","sf-med"],
+  ["L3","과업 불확실성이 높을 때 적합한 구조는?",["규칙·절차 중심 기계적 구조","유연성·적응력 중심 유기적 구조","집권적 관료제","피라미드 구조"],1,"불확실성↑ → 유기적, 불확실성↓ → 기계적.","sf-med"],
+  // ---- 3강 기술 (tc)
+  ["L3","3강 교안에서 ‘작은 input을 큰 output으로 만드는 기술’로 정의된 차원은?",["효율성(effectiveness)","능률성(efficiency)","유효성","적합성"],1,"교안은 효율성(effectiveness) = 목표에 가장 적합한 기술, 능률성(efficiency) = 투입 대비 산출. 1강 증강판과 한국어 라벨이 다르니 주의.","tc-def"],
+  ["L3","조직기술 분석 기준 세 수준은?",["개인·부서·조직","투입·변환·산출","단위·대량·연속","전략·운영·전술"],0,"교안 17쪽: 개인수준, 부서수준, 조직수준.","tc-def"],
+  ["L3","‘기술결정론(technological imperative)’의 창시자이자 one best way를 주장한 학자는?",["우드워드","퍼로우","톰슨","로렌스 & 로쉬"],0,"우드워드는 기술에 따라 적합한 구조는 단 하나라는 최초의 주장을 했습니다.","tc-ww"],
+  ["L3","우드워드 분류에서 기술적 복잡성이 가장 높은 생산기술은?",["단위소량생산","대량생산","연속공정생산","주문생산"],2,"대부분 작업을 기계가 수행할수록 복잡성이 높고, 연속공정생산이 가장 높습니다.","tc-ww"],
+  ["L3","우드워드 표에서 기계적·비인적 통제 구조를 보이는 기술유형은?",["단위소량생산","대량생산","연속공정생산","세 유형 모두"],1,"양 끝(단위·연속공정)은 유기적, 대량생산만 기계적입니다.","tc-wwt"],
+  ["L3","우드워드 표에서 상급자의 통제범위가 ‘많고 넓음’인 기술유형은?",["단위소량생산","대량생산","연속공정생산","없음"],1,"통제범위: 단위 중간, 대량 많고 넓음, 연속공정 좁고 작음.","tc-wwt"],
+  ["L3","우드워드 표에서 관리계층의 수가 가장 많은(상) 기술유형은?",["단위소량생산","대량생산","연속공정생산","모두 같다"],2,"관리계층 수: 하(단위) → 중(대량) → 상(연속공정). 교안 요약 문구의 ‘단위소량 → 계층 증대’는 표와 어긋납니다.","tc-wwt"],
+  ["L3","연속공정기술에 대한 교안의 설명은?",["표준화·공식화·재량권 축소","변화와 예외 → 자율권, 분권화","공식화 최고","문서 커뮤니케이션 높음"],1,"대량조립 → 표준화·공식화·재량권 축소, 연속공정 → 변화·예외 → 자율권·분권화.","tc-ww"],
+  ["L3","퍼로우 기술분류의 두 축은?",["복잡성과 규모","다양성과 분석가능성","의존성과 빈도","안정성과 복잡성"],1,"다양성(예외성·일상성·반복성) × 분석가능성(해결 가능성·용이한 정도).","tc-pr"],
+  ["L3","외과 수술·맞춤 제작처럼 범위는 좁지만 경험과 직관에 의존하는 퍼로우 기술유형은?",["정형적 기술","장인적 기술","공학적 기술","비정형적 기술"],1,"장인적(Craft) 기술: 전문가 자율성·숙련도 의존. 공학적은 과학적 원리로 해결(건축·항공기 설계).","tc-pr"],
+  ["L3","기초 연구·신제품 개발에 해당하며 유연·분권적 유기적 구조가 적합한 기술은?",["정형적 기술","장인적 기술","공학적 기술","비정형적 기술"],3,"비정형(비일상적) 기술은 해결이 불확실하고 창의적 탐색이 필요합니다.","tc-pr"],
+  ["L3","퍼로우 표에서 ‘스탭의 자격 = 공식적 훈련, 조정 = 보고서·모임’인 기술은?",["일상적","비일상적","장인","공학적"],3,"공학적 기술은 공식적 훈련, 장인 기술은 작업경험(훈련·모임)입니다.","tc-prt"],
+  ["L3","톰슨 분류에서 은행 지점·패스트푸드 지점과 같이 표준화와 규정을 활용하는 의존 형태는?",["집합적 의존(중개형 기술)","순차적 의존(연속형 기술)","교호적 의존(집약형 기술)","팀 의존"],0,"집합적 의존 → 중개형 기술 → 공식·절차·표준화·규정. 의사소통 빈도 적음.","tc-th"],
+  ["L3","처음부터 끝까지 의사소통하고 직접대면이 필요한 톰슨의 기술은?",["중개형 기술","연속형 기술","집약형 기술","정형적 기술"],2,"교호적 의존 → 집약형 기술(레스토랑·병원). 순차적 의존 → 연속형(컨베이어).","tc-th"],
+  ["L3","톰슨 분류에서 대량 조립 공장·컨베이어시스템에 해당하는 것은?",["집합적 의존","순차적 의존","교호적 의존","팀 의존"],1,"순차적 의존 → 연속형 기술 → 상호 빈번한 의사소통(작업계획·수직 의사소통). 의사소통 빈도 중간.","tc-th"],
+  // ---- 3강 환경 (en)
+  ["L3","“비가 오긴 오는데, 우리가 팀빌딩을 할 수 있을지 모르겠네?”에 해당하는 불확실성은?",["상태 불확실성","결과 불확실성","반응 불확실성","과업 불확실성"],1,"상태는 알지만 조직에 미칠 결과를 예측 못함 = 결과 불확실성.","en-def"],
+  ["L3","변화와 결과를 알아도 취소·연기·실내 전환 중 결정을 못 하는 상황은?",["상태 불확실성","결과 불확실성","반응 불확실성","환경 복잡성"],2,"어떻게 대응해야 할지 모르는 것이 반응 불확실성입니다.","en-def"],
+  ["L3","환경 불확실성의 정의에 포함되는 것으로 옳은 것은?",["미래 예측의 어려움만 포함한다","현재 상황조차 정확히 인식하지 못하는 경우도 포함한다","정보가 충분한 상태를 말한다","환경이 단순할수록 높아진다"],1,"단순히 미래 예측이 어려운 것만이 아니라 현재 상황 인식 실패도 포함합니다.","en-def"],
+  ["L3","불확실성이 가장 높은 환경 유형과 예시의 연결로 옳은 것은?",["단순/안정 — 음료수 캔 제조","복잡/동태 — 전자산업·석유화학","복잡/안정 — 대학병원","단순/동태 — 의류 산업"],1,"복잡/동태 환경이 불확실성이 가장 높습니다(기술혁신·시장변화 빈번).","en-4"],
+  ["L3","대학병원처럼 고려할 요소는 많으나 변화 속도가 느린 환경의 불확실성은?",["매우 낮다","크지 않다","높다","매우 높다"],1,"복잡/안정 환경은 요소 간 상호작용은 복잡하지만 어느 정도 예측 가능해 불확실성이 크지 않습니다.","en-4"],
+  ["L3","유행 주기가 짧아 빠른 변화 대응이 필요한 의류 산업의 환경 유형은?",["단순/안정","복잡/안정","단순/동태","복잡/동태"],2,"고려 요소는 적지만 변화가 빠른 단순/동태 환경(불확실성 높음)입니다.","en-4"],
+  ["L3","기계적 조직의 특징으로 옳은 것은?",["커뮤니케이션은 충고·자문","권한은 능력과 기술을 가진 곳","정보의 흐름은 제한되고 하향적","공식화 낮음"],2,"기계적: 명령·지시, 최고층에 권한 집중, 상급자 결정, 제한·하향 정보, 공식화 높음.","en-mo"],
+  ["L3","유기적 조직의 갈등해결방식은?",["상급자의 의사결정","토론, 기타 상호작용","규정 적용","결재"],1,"유기적 조직은 토론과 상호작용으로 갈등을 해결합니다.","en-mo"],
+  ["L3","Lawrence & Lorsch가 강조한 점은?",["모든 부서는 같은 구조여야 한다","동일 조직 안에서도 부서에 따라 환경 예측성과 설계가 다를 수 있다","환경은 구조와 무관하다","기술이 구조를 결정한다"],1,"핵심조직(환경 영향 적음)과 변경(boundary)조직(환경 영향 큼)을 구분합니다.","en-ll"],
+  ["L3","환경의 영향을 많이 받는 조직 단위를 교안은 무엇이라 부르는가?",["핵심조직","변경(boundary)조직","스탭조직","라인조직"],1,"변경조직은 환경과 맞닿아 영향이 크고, 핵심조직은 영향을 덜 받습니다.","en-ll"],
+  ["L3","단순/안정 환경에 대한 설계 처방으로 옳은 것은?",["유기적, 다수의 변경조직","기계적, 소수의 변경조직, 아주 낮은 차별화, 생산지향적","유기적, 높은 차별화, 계획지향적","포괄적 계획, 예측"],1,"단순/안정 = 낮은 불확실성: 기계적·소수 변경조직·아주 낮은 차별화·아주 적은 통합방법·생산지향적.","en-ll"],
+  ["L3","복잡/동태 환경의 설계 처방으로 옳은 것은?",["기계적, 소수 변경조직","기계적, 약간의 계획","유기적, 다수 변경조직, 아주 높은 차별화·아주 많은 통합방법, 포괄적 계획·예측","유기적, 소수 변경조직, 계획지향적"],2,"높은 불확실성: 유기적·다수 변경조직·차별화와 통합 모두 최대·포괄적 계획·예측.","en-ll"]
+  ];
+
+  var box=document.getElementById('qs'), scoreEl=document.getElementById('score');
+  var scopeSel=document.getElementById('q-scope'), countSel=document.getElementById('q-count');
+  var summary=document.getElementById('summary'), sumText=document.getElementById('sum-text');
+  var current=[], answered=0, correct=0, wrong=[];
+  document.getElementById('pool-info').textContent='문제은행 '+Q.length+'문항에서 매번 무작위로 뽑고 보기 순서도 섞습니다';
+  function pool(){var sc=scopeSel.value;return Q.filter(function(q){return sc==='all'||q[0]===sc;});}
+  function updateScore(){scoreEl.textContent=correct+' / '+answered+' 정답 · '+current.length+'문항';}
+  function renderSet(set){
+    current=set; answered=0; correct=0; wrong=[]; box.innerHTML=''; summary.hidden=true;
+    set.forEach(function(q,i){
+      var order=shuffle([0,1,2,3]);
+      var d=document.createElement('div'); d.className='q';
+      d.innerHTML='<div class="qn"></div><div class="qt"></div><div class="opts"></div><div class="exp" hidden></div>';
+      d.querySelector('.qn').textContent='Q'+String(i+1).padStart(2,'0');
+      var t=document.createElement('span'); t.className='tagwk'; t.textContent=WK[q[0]]; d.querySelector('.qn').appendChild(t);
+      d.querySelector('.qt').textContent=q[1];
+      var opts=d.querySelector('.opts'), mark=['①','②','③','④'];
+      var rightPos=order.indexOf(q[3]);
+      order.forEach(function(oi,pos){
+        var b=document.createElement('button'); b.type='button'; b.className='opt';
+        b.textContent=mark[pos]+' '+q[2][oi];
+        b.addEventListener('click',function(){
+          var all=opts.querySelectorAll('.opt');
+          all.forEach(function(x){x.disabled=true;});
+          all[rightPos].classList.add('right');
+          var ok=oi===q[3];
+          if(ok) correct++; else {b.classList.add('wrong'); wrong.push(q);}
+          answered++;
+          var ex=d.querySelector('.exp'); ex.hidden=false; ex.innerHTML='';
+          ex.className='exp '+(ok?'is-right':'is-wrong');
+          var v=document.createElement('span'); v.className='verdict';
+          v.textContent=ok?'정답입니다':'오답 · 정답은 '+mark[rightPos]+' '+q[2][q[3]];
+          ex.appendChild(v);
+          if(!ok){var pk=document.createElement('span');pk.className='picked';pk.textContent='내가 고른 답: '+mark[pos]+' '+q[2][oi];ex.appendChild(pk);}
+          var why=document.createElement('span'); why.className='why'; why.textContent='해설 · '+q[4]; ex.appendChild(why);
+          ex.appendChild(gotoBtn(q[5],'quiz','관련 내용 보기 →'));
+          updateScore();
+          if(answered===current.length){
+            summary.hidden=false;
+            sumText.innerHTML='<b>'+correct+' / '+current.length+'</b> 정답';
+            document.getElementById('retry-wrong').hidden=wrong.length===0;
+          }
+        });
+        opts.appendChild(b);
+      });
+      box.appendChild(d);
+    });
+    updateScore();
+  }
+  function newSet(){
+    var p=shuffle(pool()), n=parseInt(countSel.value,10);
+    renderSet(n>0?p.slice(0,n):p);
+  }
+  document.getElementById('new-set').addEventListener('click',newSet);
+  document.getElementById('new-set-2').addEventListener('click',function(){newSet();document.getElementById('quiz').scrollIntoView();});
+  document.getElementById('retry-wrong').addEventListener('click',function(){renderSet(shuffle(wrong));document.getElementById('quiz').scrollIntoView();});
+  scopeSel.addEventListener('change',newSet); countSel.addEventListener('change',newSet);
+  newSet();
+
+  /* ---------- 서술형 문제은행: [범위, 문제, 모범답안, 핵심어] ---------- */
+  var E=[
+  // [범위, 문제, 모범답안, 핵심어, 이동할 노트 id]
+  ["L1","조직활동을 보는 합리적 관점과 자연적 관점을 비교하여 설명하시오.","합리적 관점은 효율적이고 체계적인 계획·절차(과학적 관리, 환경 분석, 구조 설계)를 통해 목표 달성을 극대화하려 하며, 목표를 조직의 핵심 기준으로 보고 모든 활동을 목표에 맞춰 조정한다. 반면 자연적 관점은 목표가 구성원의 자연스러운 활동과 상황 적응 속에서 형성·변화한다고 본다. 구성원은 공식 목표보다 자신에게 유리하게 행동하기도 하고, 목표 달성보다 조직의 생존과 유지가 우선될 수 있다. 특히 자연적 관점에서는 개인목표와 조직목표의 불일치가 조직 운영의 중요한 변수로 작용한다.","합리적 관점, 극대화, 핵심 기준, 자연적 관점, 상황 적응, 생존과 유지, 개인·조직 목표 불일치","gl-view"],
+  ["L1","개인목표와 조직목표의 통합을 위한 세 가지 모형(교환·교화·수용)을 예시와 함께 설명하시오.","세 모형은 개인과 조직 중 어느 편의 요구를 더 들어주느냐에 따라 나뉜다. 교환모형은 개인이 시간·재능을 제공하고 조직이 임금 인상·성과급 같은 외재적 보상을 주는 상호 이익 교환이다. 교화모형은 조직이 기대하는 행동을 개인이 당연하게 받아들이도록 설득·교육하여 가치와 신념을 내면화시키는 방식으로, 군 복무자가 국가 충성심을 내면화하는 것이 예다. 수용모형은 조직이 개인의 목표를 인정·지원하여 달성하게 하는 방식으로, 자율성을 원하는 직원에게 자율권을 보장하는 것이 예다.","교환(외재적 보상), 교화(내면화·설득·교육), 수용(개인목표 인정·자율권), 어느 편의 요구","gl-model"],
+  ["L1","조직목표의 다섯 가지 기능을 설명하시오.","첫째, 정당성 부여로 조직이 사회에 존재할 이유를 제시해 이해관계자의 신뢰를 얻는다. 둘째, 방향 제시로 구성원의 에너지가 흩어지지 않게 모은다. 셋째, 일상 결정에서 무엇을 우선할지 판단하는 의사결정 기준이 된다. 넷째, 구성원과 조직 단위의 성과를 평가하는 성과평가 기준이 된다. 다섯째, 의미 있는 목표는 ‘왜 일하는가’에 답을 주는 동기부여 기능을 하지만 잘 설계되었을 때만 그렇다.","정당성, 방향 제시, 의사결정 기준, 성과평가 기준, 동기부여","gl-fn"],
+  ["L1","공식목표와 운영목표의 차이를 설명하고, 두 목표가 불일치할 때의 문제를 서술하시오.","공식목표는 조직 설립 초기의 궁극적 목적, 즉 사명으로 존재의 근거와 가치를 제시하며 정당성 확보에 쓰이지만 추상적·포괄적이라 행동지침으로 바로 연결되기 어렵다(예: 전인교육). 운영목표는 공식목표를 구체적으로 달성하기 위한 세부 목표로 절차·방법이 명확하고 측정 가능하며 단기적 행동지침 역할을 한다(예: 수익률, 신제품 개발). 운영목표는 부서별 KPI와 자원배분을 실제로 움직이므로 공식목표와 어긋날 수 있고, 선언과 운영이 분리되면 구성원 갈등과 신뢰 저하가 생긴다. 따라서 선언만이 아니라 운영을 함께 읽어야 하며, 운영목표 간 균형도 필요하다.","사명, 정당성, 추상적, 세부 목표, 측정 가능, 자원배분, 불일치, 운영목표 간 균형","gt-of"],
+  ["L1","조직목표 변동의 유형을 구분하고 각각의 예를 드시오.","목표 변동은 새로운 목표의 승계와 추가, 목표 자체의 변질로 나뉜다. 목표의 교체(승계)는 기존 목표가 달성되었거나 불가능할 때 새 목표로 바꾸는 것으로, 국내 점유율 확대에서 해외 시장 개척으로 바꾸는 경우다. 목표의 추가는 부수적 목표를 병행해 활동 범위를 넓히는 것으로, 대학이 지역사회 봉사를 더하는 경우다. 목표의 왜곡은 합의 실패나 권력집단·인기 영합으로 변질되는 것으로, 지자체가 지역발전 대신 단체장 재선에 몰두하는 경우다. 목표와 수단의 전도는 목표를 잊고 수단에만 주력하는 것으로, 병원이 환자 치료보다 병상 가동률 최대화에 매달리는 경우다.","교체(승계), 추가, 왜곡, 목표와 수단의 전도(목표전환), 예시","gt-chg"],
+  ["L1","다원목표 간 충돌이 발생하는 이유와 목표합의 과정 세 가지를 설명하시오.","한 조직에는 다수의 이해관계자와 그들의 목표가 공존하고, 공동목표를 위한 하위목표가 많을수록 갈등 가능성이 커진다. 합리적 관점은 목표의 통일·합의를 요구하지만 실제로는 종업원의 높은 임금과 경영진의 인건비 절감, 영업부의 매출 증대와 회계부의 채권 회수 안정처럼 충돌이 불가피하다. 합의는 첫째 타협과 협상으로 달성 순서·조정을 통해, 둘째 반강제적 통제로 지배력의 크기에 따라, 셋째 상황 변화에 따른 재조정으로 이루어지며 재조정 과정에서는 정치적 행동이 발생한다.","다원목표, 이해관계자, 하위목표, 타협과 협상, 반강제적 통제, 재조정, 정치적 행동","gt-multi"],
+  ["L1","MBO와 OKR을 비교하고, OKR이 ‘MBO의 변주’가 되는 조건을 설명하시오.","MBO는 Drucker(1954) 이후의 목표경영 체계로 상향·하향 결합, 구체적·측정 가능한 목표, 정기 점검, 성과와 평가의 직접 연결을 원리로 한다. 그러나 정량화 어려운 목표를 다루지 못하고, 학습·문화가 사라지며, 평가와 맞물려 목표 부풀리기가 생기고 환경 적응이 느리다. OKR은 한 문장의 질적 Objective와 측정 가능한 Key Results로 구성되며 평가·보상에서 분리, 전사 투명 공개, 도전적 분기 단위(0.6~0.7 달성이 좋은 분기)라는 차이를 가진다. 형식만 도입하고 평가 분리·투명성·도전성 중 하나라도 빠뜨리면 OKR은 빠르게 MBO의 변주가 된다.","Drucker, 평가 직접 연결, 목표 부풀리기, 평가 분리, 투명성, 0.6~0.7, 분기","mb-okr3"],
+  ["L1","Locke & Latham의 목표설정이론과 SMART 원칙을 설명하시오.","목표설정이론은 구체적이고 도전적인 목표가 추상적 목표보다 성과로 이어진다고 본다. 핵심 변인은 구체성(“오류 15% 감소”처럼), 난이도(도전적이되 수용되어야 함), 피드백(진행 상황의 구체적 피드백), 약속(본인이 받아들인 목표의 효과가 가장 큼)이다. SMART는 이 이론을 점검표로 옮긴 것으로 Specific(구체적), Measurable(측정 가능), Achievable(도달 가능), Relevant(의미 있음), Time-bound(기한)를 한 글자씩 확인한다.","구체성, 난이도, 피드백, 약속(commitment), Specific, Measurable, Achievable, Relevant, Time-bound","mb-gs"],
+  ["L1","조직유효성 판단에서 목표달성 접근법의 의미, 전제조건, 한계를 설명하시오.","목표달성 접근법은 조직이 목표를 얼마나 달성했는가로 유효성을 판단한다. 전제조건은 운영목표의 계량화, 측정 가능하고 달성 가능한 목표다. 한계는 목표들 간의 상충(주주-종업원, 사원-고객), 평가자의 주관성, 과거 업적으로 미래를 예측하는 문제이며, 증강판은 목표 자체가 옳다고 가정해 ‘좋은 목표일까’라는 질문이 비어 있고 측정 쉬운 목표만 남는다고 지적한다. 따라서 전체 관련자의 의견을 수렴하고, 장기목표에 공헌하는 단기목표와 유형적·측정 가능한 목표를 고르며, 상황 변화에 따라 목표를 바꿔야 한다.","달성 정도, 계량화, 측정·달성 가능, 목표 상충, 주관성, 좋은 목표일까, 시사점","ef-goal"],
+  ["L1","시스템적 접근법의 두 갈래(자원기준·내부프로세스)를 비교하시오.","시스템적 접근법은 목표달성 접근법이 결과물에만 초점을 두어 부정한 방식도 높이 평가한다는 문제에서 출발해, 투입-변환-산출 전체를 하나의 시스템으로 평가한다. 자원기준 접근법은 투입 측면에 초점을 두고 외부 자원의 가치를 인지하고 확보·통합·활용하는 능력으로 평가하며, 자원 획득 능력이 경쟁력이라는 장점이 있지만 자원이 실제 목표 달성으로 이어지지 않을 수 있다. 내부프로세스 접근법은 변환 과정의 효율성, 즉 의사소통·협조·업무 연계·신뢰 분위기로 평가하며 내부 안정성과 밀접하지만 외부 평가자가 측정하기 어렵고 인간관계에 의존해 주관적일 수 있다.","투입-변환-산출, 자원기준(투입, 획득 능력), 내부프로세스(변환, 의사소통·신뢰), 각 한계","ef-sys"],
+  ["L1","효율성과 유효성의 차이를 설명하시오.","효율성(efficiency)은 ‘더 적은 자원으로 더 많은 산출을 내는가’를 묻는 개념으로 산출÷투입의 비율로 나타낸다. 유효성(effectiveness)은 ‘의도한 결과에 도달했는가, 올바른 일을 했는가’를 묻는 개념으로 설정한 목표의 달성 정도와 바람직한 영향까지 평가한다. 둘은 다르다. 효율적인 조직이 잘못된 목표를 빠르게 추구할 수 있고, 의미 있는 목표를 가진 조직이 비효율적일 수 있다. 다만 3강 교안은 effectiveness를 ‘효율성’, efficiency를 ‘능률성’이라 표기하므로 영어 뜻으로 구분하는 것이 안전하다.","산출÷투입, 올바른 일, 목표 달성 정도, 서로 다름, 용어 표기 차이","ef-vs"],
+  ["L1","BSC의 네 관점과 이해관계자 접근법을 설명하시오.","이해관계자 접근법은 ‘누구를 위한 조직인가’를 묻고, 주주·고객·임직원·협력사·사회 등 다양한 이해관계자가 가치를 받아갈 수 있는 능력으로 유효성을 본다. Kaplan & Norton의 BSC는 재무(매출·수익성·현금흐름), 고객(만족·유지·점유율), 내부프로세스(속도·품질·비용), 학습·성장(사람·시스템·문화)의 네 관점으로 성과를 균형 있게 본다. 둘 다 세 전통적 접근의 빈 곳을 메우려 ‘여러 목소리’를 보는 통합적 시도다.","누구를 위한 조직, 가치 분배, 재무, 고객, 내부프로세스, 학습·성장, 통합적 접근","ef-bsc"],
+  ["L1","경쟁가치 접근법의 네 가지 유효성 모형을 축 조합과 목적 중심으로 설명하고, 조직 단계별 적합 모형을 제시하시오.","경쟁가치 접근법은 유연성/통제와 조직/구성원 지향을 축으로 네 모형을 도출한다. 개방체계모형(유연성+조직)은 적응력·위기대응력을 수단으로 성장과 자원 획득을 목적으로 한다. 합리적목표모형(통제+조직)은 기획·목표달성으로 생산성·능률·이윤을 추구한다. 내부프로세스모형(통제+구성원)은 정보관리·의사소통으로 팀워크와 안정의 유지를 추구한다. 인간관계모형(유연성+구성원)은 응집력·신뢰와 사기로 인적 자원의 개발을 추구한다. 창업·변화기에는 개방체계, 생산성 향상기에는 합리적 목표, 안정화 단계에는 내부프로세스, 문화·사기 진작기에는 인간관계모형이 적합하다.","유연성/통제, 조직/구성원, 개방체계, 합리적목표, 내부프로세스, 인간관계, 단계별 적합","cv-4"],
+  ["L1","OCAI의 진단 방법과 CVF 네 문화유형을 설명하시오.","CVF(Quinn & Rohrbaugh, 1983)는 유연성-통제와 내부-외부 두 축으로 관계지향(Clan), 혁신지향(Adhocracy), 위계지향(Hierarchy), 과업지향(Market)의 네 문화유형을 제시한다. OCAI는 Cameron & Quinn이 이를 측정 도구로 옮긴 것으로, 핵심 신조·리더십·구성원 관리·결속·전략적 강조점·성공 기준의 여섯 차원에서 100점을 네 유형에 배분해 현재 문화를 점수화한다. 그리고 5년 뒤 의도적으로 가고자 하는 선호 문화와 나란히 비교한다. 최근 연구(Kasa et al., 2025)는 평균이 아닌 개인 수준의 혼합 하위문화까지 포착하며, 문화를 정답처럼 다루면 진단이 아니라 규범이 된다는 점을 주의해야 한다.","두 축, Clan·Adhocracy·Hierarchy·Market, 6개 차원, 100점 배분, 현재 vs 선호, 혼합 하위문화","cv-ocai"],
+  ["L1","전략·문화·지표의 정합 실패 사례 세 가지를 설명하시오.","첫째, 전략과 문화의 실패는 혁신을 선언하면서 보수적 위계문화를 유지하는 경우로, 발언은 ‘실험하자’지만 의사결정은 과거 사례를 따른다. 둘째, 문화와 지표의 실패는 관계지향 문화인데 평가를 단기 매출로만 구성한 경우로, 학습·협업은 평가받지 못하고 숫자만 점수화된다. 셋째, 전략과 지표의 실패는 장기 ESG 전환 전략인데 KPI가 단기 성과에 묶인 경우로, 지속가능성 투자가 운영 KPI 어디에도 들어가지 않는다. 세 요소가 같은 줄에 놓일 때 비로소 ‘효과적 조직’이 일관된 모양을 갖는다.","전략↔문화, 문화↔지표, 전략↔지표, 관찰 신호, 같은 줄","cv-fit"],
+  ["L2","조직구조와 조직설계의 의미를 설명하고, 교안과 증강판의 관점 차이를 서술하시오.","조직구조는 과업이 분리되고, 분리된 과업이 연결되며, 과업 집단이 모여 부서를 이루고 부서들이 연결된 상태다. 교안은 조직설계를 조직구조와 같은 의미로 보고, 작업과 담당 부문을 전문화해 잘 나누고(분화) 나눈 과업이 연결되도록 잘 통합하는(통합) 것이라 설명한다. 반면 증강판은 구조와 설계를 구분해, 구조는 현재 조직의 모습인 상태·결과이고 설계는 그 구조를 의도적으로 고르고 결정하는 과정, 즉 의사결정의 묶음이라고 본다. 두 관점을 합치면, 설계는 분화와 통합에 대한 의도적 결정이며 그 결과가 구조라고 정리할 수 있다.","분리·연결·부서화, 분화와 통합, 같은 의미(교안), 상태 vs 과정(증강판), 의사결정의 묶음","ds-vs"],
+  ["L2","조직구조에 대한 네 학자(Blau, Gerloff, Child, Ranson 등)의 정의를 비교하시오.","Blau는 구성원의 역할관계에 영향을 미치는 사회적 지위의 배분, 즉 노동 분화와 서열·계층으로 구조를 본다(위계). Gerloff는 조직의 활동과 과정이 어떻게 배열·연결되는지 보여 주는 지도로 본다(지도). Child는 공식적 작업역할의 할당과 조직 경계를 가로지르는 작업 활동의 통제·통합을 위한 관리 메커니즘으로 본다(메커니즘). Ranson, Hinnings & Greenwood는 구성원이 상호작용하며 지속적으로 만들고 바꾸는 통제의 매개체이자 구성적 측면으로 본다(상호작용). 네 정의는 같은 현상을 다른 렌즈로 본다.","Blau 지위 배분·위계, Gerloff 지도, Child 관리 메커니즘, Ranson 상호작용","ds-st"],
+  ["L2","조직설계의 4가지 요소와 조직구조 특성 세 가지를 설명하시오.","조직설계의 4요소는 개인과 부서별 업무·책임의 할당, 부서 간 위계와 개인 간 의사결정의 배분, 통제범위를 포함한 지시·보고 체계, 정보 교환과 조정·통합을 위한 장치다. 조직구조의 특성은 복잡성(단위의 세분화 정도), 공식화(규칙과 절차의 표준화 정도), 집권화(의사결정 권한의 집중 정도)로 파악한다. 설계는 과업구조(개별 과업의 분화·통합)와 부서구조(과업 단위의 묶음과 보고·지휘체계)의 두 차원에서 이루어진다.","업무·책임 할당, 위계·의사결정, 통제범위·보고, 조정·통합 장치, 복잡성, 공식화, 집권화","ds-4"],
+  ["L2","수평적 분업과 수직적 분업을 설명하고 조직 규모에 따른 차이를 서술하시오.","수평적 분업은 동일한 수준에서 과업을 세부과업으로 나누는 것으로, 자동차 조립을 엔진·도어·타이어 조립으로 나누는 것이 예다. 분업이 높을수록 숙련도는 높아지지만 전체 조율 문제가 생길 수 있다. 수직적 분업은 관리(계획·감독)와 실천(집행)을 분리하는 것, 그리고 관리업무 자체를 분야별로 나누어 전문화하는 것이다. 규모가 작은 조직은 두 분업이 모두 낮아 한 사람이 여러 역할을 하고, 규모가 큰 조직은 두 분업이 모두 강화되어 과업이 세분화되고 관리층이 다층화된다.","동일 수준, 세부과업, 관리와 실천 분리, 관리직의 수평 분업, 소규모/대규모","dv-hv"],
+  ["L2","지나친 분업화의 문제점과 분업화의 적정 수준에 대해 설명하시오.","분업화가 지나치면 한 사람의 작업 범위가 축소되어 단순 반복이 늘고 보람이 줄며, 작업 방법이 고정화되고 지나친 반복으로 오히려 효율이 떨어진다. 세분화된 과업을 다시 조합·연결하는 비용(경제적 비용, 시간, 노력)이 늘고, 이해관계 충돌과 의사소통 문제로 부서 간 갈등이 생기며, 부서 단절로 조직 전체의 유연성이 떨어지는 무형의 비효율도 생긴다. 따라서 분업은 많을수록 좋은 것이 아니라, 분업화의 이득과 손실이 균형을 이루는 적정 분업화 수준을 찾아야 한다. 분업화 정도는 부서 특성, 직위 수준, 기술 수준, 과업 성격에 따라 달라진다.","작업 범위 축소, 효율성 저하, 연결비용, 부서 간 갈등, 무형의 비효율, 적정 수준, 이득과 손실의 균형","dv-cost"],
+  ["L2","통합화의 세 가지 수단(공식화·표준화·상호조정)을 설명하고 공식화와 표준화의 차이를 서술하시오.","공식화는 분업된 과업을 문서화된 규정·절차로 연결해 조정하는 방식으로, 양이 아니라 얼마나 잘 지켜지는지가 중요하며 지나치면 융통성·창의성 감소와 비인간화를 부른다. 표준화는 작업 방식·행동 양식·산출물의 품질을 사전에 통일하는 방식으로 투입물(기술·자격; 훈련=making, 선발=buying), 과정(매뉴얼·절차), 산출물(제품 규격·서비스 기준)의 표준화가 있다. 상호조정은 위계적 권한관계 없이 당사자 간 비공식 소통으로 조정하는 방식으로 직접 대면, 연결핀, 네트워크화, 팀 운영이 있다. 공식화는 규정·문서에 따라 수행하는 것이고, 표준화는 실제 작업 과정과 산출물이 통일되는 것이라는 점이 다르다.","공식화(문서·준수), 표준화(투입·과정·산출), 상호조정(위계 없이·연결핀), 규정 vs 실제 통일","ig-std"],
+  ["L2","분업화된 업무의 연결 메커니즘(교안)과 조정 메커니즘 다섯 가지(증강판)를 비교하시오.","교안의 연결 메커니즘은 담당자끼리의 상호 조정·교환, 관리·감독자의 지휘 조정, 투입실무자 기술의 표준·규정, 작업 방식과 절차의 표준·규정, 산출물의 표준·규정의 다섯 가지로, 투입-과정-산출 흐름에 표준화를 거는 Mintzberg식 틀이다. 증강판의 조정 메커니즘은 직접 감독, 규칙과 절차, 목표 설정, 상호조정의 문화, 전담 통합자의 다섯 가지로 ‘무게’ 순으로 정렬되며, 위로 갈수록 비용이 작고 빠르고 아래로 갈수록 느리지만 결합이 깊다. 두 목록 모두 상호조정과 감독, 규칙(표준)을 포함하지만, 증강판은 목표 설정과 전담 통합자(매트릭스의 PM)를 추가해 통합이 약할수록 더 무거운 장치가 필요하다고 본다.","상호조정, 관리감독자 지휘, 투입·과정·산출 표준, 직접 감독, 규칙과 절차, 목표 설정, 전담 통합자, 무게 순","ig-5"],
+  ["L2","집권화와 분권화의 장점을 비교하고, 분권화 수준을 결정하는 요인을 설명하시오.","권한의 집중 정도를 집권화, 그 반대를 분권화라 한다. 집권화는 부서 간 조정·통합이 원활하고 업무 누락을 막으며 의사소통·통제가 쉽고, 업무가 긴밀히 연결될 때나 신속한 결정이 필요할 때 강력한 리더십을 발휘할 수 있다. 분권화는 한 개인이 모든 것을 알 수 없다는 점에서 합리적이고, 외부 환경 변화에 빠르게 적응하며 현장 실무자가 더 정확·신속한 정보로 결정할 수 있다. 수준을 결정하는 요인은 책임자의 가치관, 사용 기술의 복잡성(첨단일수록 분권), 환경 변화 정도(변화가 많을수록 분권), 실무자 능력(전문화될수록 분권)이다.","집권화 장점, 분권화 장점, 책임자 가치관, 기술 복잡성, 환경 변화, 실무자 능력","ct-cd"],
+  ["L2","통제의 주체, 대상, 방식을 정리하고 대표적 통제 방식을 설명하시오.","통제의 주체는 위계상 상급자, 자기 통제·자기 규제, 전문 감독자(감사·감독기관), 정보기술을 활용한 자동 통제다. 대상은 조직의 장기 방향과 전략적 자원 활용에 관한 전략적 통제와 과업 실행에 관한 운영통제로 나뉜다. 방식은 부정적(허가·보고) vs 긍정적(권장·전파), 공식적(규정대로) vs 비공식적(대면·설득·동의), 피드백(결과 후 시정) vs 예방적(예측·예방) 통제가 있다. 대표 방식으로는 개인의 집권적 통제, 관료제적 통제, 결과통제, 전자적 감시, 인적자원관리, 목표 조화와 집단 자율성을 활용하는 문화적 통제가 있다.","주체 4, 전략적/운영 통제, 부정/긍정, 공식/비공식, 피드백/예방, 대표 방식 6","ct-4"],
+  ["L2","위임과 분산형 의사결정에서 책무성이 왜 중요한지 설명하시오.","통제 범위(몇 명을 직접 보느냐)와 위임(결정 권한을 어디까지 내리느냐)은 별개의 질문이며, 위임은 신뢰가 아니라 책임의 재배치다. 가장 흔한 위임 실패는 권한은 내려가는데 책무는 본부에 남는 경우이고, 통제 범위가 명목과 실제로 갈라지는 것도 실패 신호다. 분산형 의사결정은 더 가까운 사람이 문맥을 잘 알아 속도·품질·동기에서 이점이 있지만, 책무성이 흐려지면 모두가 결정하되 아무도 책임지지 않는 상태가 된다. 그래서 결정 범위의 명문화, 의사결정 기록의 가시화, 예외 에스컬레이션, 사후 검토가 필요하며, 분산은 책무성과 함께하는 자유여야 한다.","통제 범위 vs 위임, 책임의 재배치, 권한만 내림, 명문화, 기록 가시화, 에스컬레이션, 사후 검토","ct-span"],
+  ["L2","조직설계의 흔한 함정 다섯 가지를 설명하시오.","첫째 ‘다이어트’ 설계는 구조만 줄이면 일이 따라간다고 보지만 남은 사람에게 짐이 실린다. 둘째 ‘유행’ 복사는 다른 회사의 매트릭스 성공을 맥락 없이 따와 구조를 장식으로 만든다. 셋째 ‘공식만’ 통합은 회의·KPI·문서만 갖추고 서로의 작업을 모르게 해 결합이 표면에 머문다. 넷째 ‘권한만’ 내림은 결정 권한은 주되 책무성은 본부에 두는 위임 실패다. 다섯째 ‘기술만’ 도입은 협업 도구를 깔아도 무엇을 연결할지 정하지 않아 도구만 남는다. 다섯 가지 모두 구조만으로 해결하려는 환원의 오류이며, 구조는 전략·문화·목표와 함께 정렬되어야 한다.","다이어트, 유행 복사, 공식만 통합, 권한만 내림, 기술만 도입, 환원의 오류","ct-pit"],
+  ["L3","상황적합성 이론의 의미와 조직설계에 영향을 미치는 상황요인을 설명하시오.","전통 이론은 보편적 원칙으로 조직을 설계할 수 있다고 봤지만, 실제로는 내부·외부 상황요인을 고려하지 않으면 효과적인 설계가 불가능하다는 점에서 ‘조직 구조는 상황에 따라 달라진다’는 상황적합성(Contingency) 이론이 등장했다. 내부 요인에는 조직규모, 연혁, 기술, 목표, 전략 등이, 외부 요인에는 시장 조건, 사회문화적 환경, 법규·정부 규제, 경제 조건, 기술 수준 등이 있다. 교안은 규모(공식화·분화·통합), 연혁(관료화), 목표(안정→기계적, 혁신→유기적), 전략(원가우위→기계적, 차별화→유기적), 문화(권위주의→집권, 참여→분권), 권력관계(집중→집권·계층)를 주요 요인으로 제시한다.","보편적 원칙 비판, Contingency, 내부 요인, 외부 요인, 규모·연혁·목표·전략·문화·권력","sf-def"],
+  ["L3","조직규모와 조직연혁이 조직구조에 미치는 영향을 설명하시오.","조직규모가 커지면 인간관계 수가 n(n−1)/2로 기하급수적으로 늘어 조정 필요성이 확대되고, 부서 수 증가로 규정·규칙·공식화가 강화되며 권한 위임과 분화·통합 장치가 필요해진다(규모 증가 → 공식화 → 통제범위 확장 → 부서규모 증가). 다만 지나친 공식화는 경직성과 비효율을 낳는다. 조직연혁이 길어지면 부서와 의존성이 늘면서 공식화·표준화가 심화되고, 과거 성공 경험에 의존해 새 방식 도입이 어려워져 안정적이지만 혁신에 둔감한 관료적 구조(복지부동)가 된다. 연혁이 짧은 조직은 단순·유연해 변화에 빠르게 적응한다.","nC2, 조정 필요성, 공식화 강화, 연쇄, 관료화, 과거 성공 경험, 복지부동, 유연성","sf-size"],
+  ["L3","조직전략과 조직구조의 관계를 ‘Structure follows Strategy’와 그 반대 명제를 포함해 설명하시오.","전략은 조직구조를 이끄는 가장 중요한 요인이며 전략과 구조의 적합성이 성과를 좌우한다. ‘조직구조는 전략을 따른다’는 고전적 명제에 따라 전략이 바뀌면 구조도 바뀌어야 하며, 부적합은 성과 저하를 초래한다. 예컨대 공격형은 유연·분권 자율 구조, 방어형은 경직·표준화 통제형 구조, 분석형은 유연·혁신·분권 구조, 반응형은 무형의 구조, 저가 전략은 철저한 집권화·표준화, 차별화 전략은 느슨한 수평적 조정이 적합하다. 반대로 ‘전략은 구조를 따른다’는 상황도 흔해, 경직된 집권 구조는 관료화를 거쳐 방어적·안정적 전략을, 분권 조직은 혁신적·진취적 전략을 낳는다.","적합성, Structure follows Strategy, 6가지 전략-구조, Strategy follows structure, 방어적/혁신적","sf-str"],
+  ["L3","홉스테드의 문화분류에 따른 조직설계를 설명하시오.","교안은 상하거리감(약함=평등주의, 강함=수직주의)과 불확실성에 대한 태도(모험 선호/모험 회피)의 두 축으로 네 문화를 나눈다. 평등주의·모험 선호의 시장문화(스칸디나비아)는 분권화·비공식·자율·융통성·낮은 계층, 수직주의·모험 선호의 대가족 문화(아프리카)는 집권화·공식 무시·유연성·높은 계층이다. 평등주의·모험 회피의 기계 문화(독일)는 분권화·공식화·경직성·낮은 계층, 수직주의·모험 회피의 피라미드 문화(일본)는 집권화·공식화·경직성·높은 계층이다. 즉 상하거리감이 크면 집권화·높은 계층, 불확실성을 회피할수록 공식화·경직성이 나타난다.","상하거리감, 불확실성 회피, 시장·대가족·기계·피라미드, 집권화, 공식화","sf-hof"],
+  ["L3","상황요인과 조직구조 사이의 매개변수 네 가지를 설명하시오.","매개변수는 상황요인이 곧바로 구조를 결정하는 것이 아니라 그 사이에서 작용하는 중간 기제로, 상황과 구조를 잇는 가교다. 과업 다양성이 높으면 부서 세분화와 분화가 늘고 낮으면 단순·표준화가 쉽다. 과업 난이도가 높으면 전문 인력과 분권화가 필요하고 낮으면 표준화가 가능하다. 과업 불확실성이 높으면 유연성·적응력을 갖춘 유기적 구조가, 낮으면 규칙·절차 중심의 기계적 구조가 적합하다. 과업 의존성이 높으면 협력·조정 장치와 통합기제를 강화하고, 낮으면 독립 처리와 자율성을 확대한다.","중간 기제·가교, 다양성, 난이도, 불확실성, 의존성, 각 설계 영향","sf-med"],
+  ["L3","우드워드의 기술분류와 그에 따른 조직구조를 설명하시오.","우드워드는 기술에 따라 조직 적합성을 구현할 수 있다는 최초의 주장을 한 기술결정론자로, 한 기술에 적합한 구조는 하나(one best way)라고 보았다. 1950년대 기계화 정도와 예측 가능성을 기준으로 한 기술적 복잡성에 따라 단위소량생산(낮음), 대량생산, 연속공정생산(높음)으로 분류했다. 단위소량생산과 연속공정생산은 공식화·집권화가 낮고 구두 커뮤니케이션이 높은 유기적 구조이고, 대량생산은 공식화·집권화·문서 커뮤니케이션이 높고 통제범위가 넓은 기계적 구조다. 관리계층의 수와 관리자 비율은 단위→대량→연속공정으로 갈수록 증가한다.","기술결정론, one best way, 기술적 복잡성, 단위·대량·연속공정, 양 끝 유기적, 대량 기계적, 관리계층","tc-wwt"],
+  ["L3","퍼로우의 기술유형 네 가지와 적합한 조직구조를 설명하시오.","퍼로우는 다양성(예외성·반복성)과 분석가능성(해결의 용이성)의 두 축으로 기술을 분류하고, 부서 단위 설계 기준을 제시했다. 정형적(일상적) 기술은 반복적·예측 가능해 규칙으로 해결되며(자동차 조립) 공식화·집권화가 높은 기계적 구조가 적합하다. 장인적 기술은 범위는 좁지만 경험과 직관에 의존하며(외과 수술, 맞춤 제작) 전문가 자율성과 숙련도에 의존한다. 공학적 기술은 다양한 문제를 과학적 원리로 해결하며(건축·항공기 설계) 전문성과 부서 간 조정이 필요하다. 비정형적 기술은 해결이 불확실해 창의적 탐색이 필요하며(기초 연구, 신제품 개발) 유연·분권적 유기적 구조가 적합하다.","다양성, 분석가능성, 부서 단위, 정형적-기계적, 장인적, 공학적, 비정형적-유기적","tc-pr"],
+  ["L3","톰슨의 상호의존성에 따른 기술 분류와 조정 방식을 설명하시오.","톰슨은 작업 간 상호의존성 정도에 따라 기술을 나누었다. 집합적 의존에 의한 중개형 기술은 각 단위가 독립적으로 전체에 기여하는 형태로(은행 지점, 패스트푸드 지점) 공식·절차·표준화·규정으로 조정하며 의사소통 빈도가 적다. 순차적 의존에 의한 연속형 기술은 앞 작업의 산출이 다음 작업의 투입이 되는 형태로(대량 조립, 컨베이어) 작업계획과 빈번한 의사소통이 필요하다. 교호적 의존에 의한 집약형 기술은 단위들이 서로 주고받는 형태로(레스토랑, 병원) 처음부터 끝까지 의사소통하고 직접대면·상호 조정·회의가 필요하다. 의존성이 커질수록 조정수단이 누적되고 의사소통이 늘어난다.","집합적-중개형-표준화, 순차적-연속형-계획, 교호적-집약형-직접대면, 의사소통 빈도","tc-th"],
+  ["L3","환경 불확실성의 세 가지 측면을 예시와 함께 설명하시오.","환경 불확실성은 충분한 정보가 없어 변화나 결과를 정확히 예측할 수 없는 상태로, 현재 상황조차 인식하지 못하는 경우를 포함한다. 상태 불확실성은 현재 환경의 상태를 제대로 인식하지 못하는 것으로, 팀빌딩 날 비가 올지 모르는 상황이다. 결과 불확실성은 상태는 알지만 그것이 조직에 미칠 결과를 예측하지 못하는 것으로, 비가 오는데 팀빌딩이 가능할지 모르는 상황이다. 반응 불확실성은 변화와 결과를 알아도 어떻게 대응할지 모르는 것으로, 취소·연기·실내 전환 중 결정을 못 하는 상황이다.","정보 부족, 현재 인식 포함, 상태, 결과, 반응, 팀빌딩 예시","en-def"],
+  ["L3","환경의 복잡성과 동태성에 따른 네 가지 환경 유형과 그에 맞는 조직설계(Lawrence & Lorsch)를 설명하시오.","단순/안정 환경(음료 캔 제조)은 불확실성이 낮아 기계적 구조, 소수의 변경조직, 아주 낮은 차별화와 적은 통합방법, 생산지향이 적합하다. 복잡/안정 환경(대학병원)은 다소 낮은 불확실성으로 기계적 구조에 다수의 변경조직, 낮은 차별화, 약간의 계획이 필요하다. 단순/동태 환경(의류 산업)은 다소 높은 불확실성으로 유기적 구조, 소수의 변경조직, 높은 차별화와 많은 통합방법, 계획지향이 필요하다. 복잡/동태 환경(전자·석유화학)은 불확실성이 가장 높아 유기적 구조, 다수의 변경조직, 아주 높은 차별화와 아주 많은 통합방법, 포괄적 계획·예측이 필요하다. Lawrence & Lorsch는 같은 조직 안에서도 환경 영향을 덜 받는 핵심조직과 많이 받는 변경조직의 설계가 다를 수 있다고 보았다.","단순/안정, 복잡/안정, 단순/동태, 복잡/동태, 기계적/유기적, 변경조직, 차별화·통합, 핵심조직","en-ll"],
+  ["L3","기계적 조직과 유기적 조직을 비교하시오.","기계적 조직은 안정적 환경에서 위계와 규칙에 따라 운영되는 집권적·표준화된 조직으로, 작업의 분업화가 높고 커뮤니케이션은 명령·지시이며 권한은 최고층에 집중되고 갈등은 상급자가 결정하며 정보는 제한되고 하향적으로 흐르고 공식화가 높다. 유기적 조직은 불확실한 동태적 환경에서 유연성과 협력을 중시하는 분권적·자율적 조직으로, 분업화가 낮고 커뮤니케이션은 충고·자문이며 권한은 능력과 기술을 가진 곳에 있고 갈등은 토론과 상호작용으로 풀며 정보는 상하로 자유롭게 흐르고 공식화가 낮다.","안정/동태 환경, 분업화, 명령·지시 vs 충고·자문, 권한 위치, 갈등해결, 정보 흐름, 공식화","en-mo"],
+  ["L1","AI 도입과 ESG가 조직목표를 어떻게 재설계하고 있는지 설명하시오.","생성형·에이전틱 AI가 확산하면서 목표의 단위가 산출량 지표에서 역량·재설계 지표로 바뀌고 있다. 직무가 아니라 과업 단위로 목표를 재정의해 AI가 대체할 단위와 보조할 단위를 나누고, 보유 스킬과 재학습 속도로 사람을 정의하는 스킬 기반 조직으로 이동하며, AI 활용률·업무 재설계 비율 같은 새로운 KR이 더해진다. 다만 이용 빈도만 재면 목표가 ‘더 많이 쓰기’로 흘러내리므로 학습·품질·재설계 결과를 함께 봐야 한다. ESG는 재무와 병렬로 운영되는 두 번째 KPI 트리가 되었고, ISSB S1·S2, EU CSRD, KSSB 등 공시 의무화로 측정 가능한 감사 가능 목표가 요구되며, 선언과 실행이 어긋나면 그린워싱 비용이 발생한다.","과업 단위, 스킬 기반, 새로운 KR, 더 많이 쓰기 함정, 두 번째 KPI 트리, 공시 의무화, 그린워싱","mb-ai"],
+  ["L2","분업화 정도에 영향을 미치는 요소 네 가지를 설명하시오.","분업화 정도는 부서 특성, 직위 수준, 기술 수준, 과업 성격에 따라 달라진다. 같은 조직이라도 조립부서는 매우 세분화되고 회계부서는 덜 세분화되는 것처럼 부서의 특성이 다르다. 직위가 올라갈수록 분업은 최소화된다. 반복적이고 단순한 기술일수록 분업화가 쉽고, 전문적·복잡한 기술은 과도한 분업이 불가능해 통합이 더 필요하다. 연구처럼 지적이고 창의적인 업무는 지나친 분업화가 적합하지 않으며 과업 간 통합과 협력이 중요하다. 적정 수준을 넘는 분업은 조정 비용과 의사소통 문제로 비효율을 낳는다.","부서 특성, 직위 수준, 기술 수준, 연구·전문 영역, 적정 수준","dv-fac"],
+  ["L2","공식적 통합과 비공식적 통합, 그리고 매트릭스 구조의 득실을 설명하시오.","공식적 통합은 조직도·직무기술서·보고선·회의체가 만드는 보이는 약속으로(월례 회의, KPI 연동, SOP, 통합 PM) 가시적이지만 의례가 되면 결합이 얕아진다. 비공식적 통합은 동호회·멘토링·잡담·우연한 만남에서 생기는 보이지 않는 결합으로 깊지만 한번 빠지면 되살리기 어렵다. 두 통합은 경쟁하지 않으며 둘 다 의도적으로 설계해야 한다. 매트릭스는 한 사람이 두 매니저에게 보고하는 구조로 기능과 산출물을 동시에 자르고 이어 사일로를 줄이고 전문성을 유지하지만, 충돌과 시간이 두 배로 드는 비용이 있어 잘 작동하면 끈적한 조직, 실패하면 회의만 많은 조직이 된다.","공식 통합(가시적·의례화), 비공식 통합(깊음·되살리기 어려움), 경쟁하지 않음, 이중 보고선, 충돌·시간 두 배","ig-fi"]
+  ];
+  var eScope=document.getElementById('e-scope'), eNum=document.getElementById('e-num'), eQ=document.getElementById('e-q');
+  var eDraft=document.getElementById('e-draft'), eAns=document.getElementById('e-ans'), eKw=document.getElementById('e-kw'), eProg=document.getElementById('e-progress');
+  var deck=[], pos=-1, seen=0;
+  document.getElementById('essay-info').textContent='문제은행 '+E.length+'문항에서 한 문제씩 무작위로 나옵니다. 먼저 답을 써 보고 모범답안과 비교하세요.';
+  function newDeck(){var sc=eScope.value;deck=shuffle(E.filter(function(e){return sc==='all'||e[0]===sc;}));pos=-1;seen=0;}
+  function nextEssay(){
+    if(pos>=deck.length-1) newDeck();
+    pos++; seen++;
+    var e=deck[pos];
+    eNum.textContent='서술 '+seen+' · '+WK[e[0]];
+    eQ.textContent=e[1]; eDraft.value=''; eAns.hidden=true; eKw.hidden=true;
+    eAns.textContent=e[2]; eKw.textContent='핵심어: '+e[3]+'  ';
+    eKw.appendChild(gotoBtn(e[4],'essay','관련 노트 보기 →'));
+    document.getElementById('e-show').textContent='모범답안 보기';
+    eProg.textContent=(pos+1)+' / '+deck.length+' (한 바퀴 돌면 다시 섞음)';
+  }
+  document.getElementById('e-show').addEventListener('click',function(){
+    var open=eAns.hidden; eAns.hidden=!open; eKw.hidden=!open;
+    this.textContent=open?'모범답안 숨기기':'모범답안 보기';
+  });
+  document.getElementById('e-next').addEventListener('click',nextEssay);
+  eScope.addEventListener('change',function(){newDeck();nextEssay();});
+  newDeck(); nextEssay();
+})();
+</script>
